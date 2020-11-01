@@ -8,20 +8,28 @@ using System.Threading.Tasks;
 
 namespace ApplyInk.Web.Data.Entities
 {
-    public class City
+    public class Shop
     {
         public int Id { get; set; }
 
-        [MaxLength(50)]
+        [MaxLength(50, ErrorMessage = "The field {0} must contain less than {1} characteres.")]
         [Required]
-        [Display(Name = "City")]
         public string Name { get; set; }
 
         [JsonIgnore]
         [NotMapped]
-        public int IdDepartment { get; set; }
+        public int IdCity { get; set; }
+
 
         [JsonIgnore]
-        public Department Department { get; set; }
+        public City City { get; set; }
+
+        [JsonIgnore]
+        public ICollection<User> Users { get; set; }
+
+
+        [Display(Name = "# Users")]
+        public int UsersNumber => Users == null ? 0 : Users.Count;
+
     }
 }
