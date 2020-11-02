@@ -11,10 +11,8 @@ namespace ApplyInk.Web.Data.Entities
     {
         public int Id { get; set; }
 
+        [Required]
         public User User { get; set; }
-
-        public User Tattooer { get; set; }
-
 
         public StatusMeeting Status { get; set; }
 
@@ -25,6 +23,7 @@ namespace ApplyInk.Web.Data.Entities
         [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd hh:mm tt}")]
         public DateTime DateLocal => Date.ToLocalTime();
 
-        public Shop Shop { get; set; }
+
+
     }
 }
