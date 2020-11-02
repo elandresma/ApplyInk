@@ -14,6 +14,8 @@ namespace ApplyInk.Web.Data.Entities
         [Required]
         public User User { get; set; }
 
+        public Shop Shop { get; set; }
+
         public StatusMeeting Status { get; set; }
 
         [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd hh:mm tt}")]
