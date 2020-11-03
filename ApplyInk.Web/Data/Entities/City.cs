@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -16,6 +17,12 @@ namespace ApplyInk.Web.Data.Entities
         [Required]
         [Display(Name = "City")]
         public string Name { get; set; }
+        public ICollection<Shop> Shops { get; set; }
+
+        [DisplayName("Shops Number")]
+        [JsonIgnore]
+        [NotMapped]
+        public int ShopsNumber => Shops == null ? 0 : Shops.Count;
 
         [JsonIgnore]
         [NotMapped]

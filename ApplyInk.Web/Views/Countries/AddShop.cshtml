@@ -1,0 +1,29 @@
+﻿@model ApplyInk.Web.Data.Entities.Shop
+
+@{
+    ViewData["Title"] = "Add Shop";
+}
+
+<h2>Add</h2>
+
+<h4>Shop</h4>
+
+<flash dismissable="true" />
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AddShop">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="IdCity" />
+
+            <partial name="_Shop" />
+
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+                <a asp-action="DetailsCity" asp-route-id="@Model.IdCity" class="btn btn-success">Back to List</a>
+            </div>
+        </form>
+    </div>
+</div>
+

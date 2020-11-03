@@ -1,4 +1,4 @@
-﻿@model ApplyInk.Web.Data.Entities.Department
+﻿@model ApplyInk.Web.Data.Entities.City
 
 @{
     ViewData["Title"] = "Details";
@@ -8,7 +8,7 @@
 <h2>Details</h2>
 
 <div>
-    <h4>Department</h4>
+    <h4>City</h4>
 
     <flash dismissable="true" />
 
@@ -21,17 +21,17 @@
             @Html.DisplayFor(model => model.Name)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.CitiesNumber)
+            @Html.DisplayNameFor(model => model.ShopsNumber)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.CitiesNumber)
+            @Html.DisplayFor(model => model.ShopsNumber)
         </dd>
     </dl>
 </div>
 <div>
-    <a asp-action="AddCity" asp-route-id="@Model.Id" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i> City</a>
-    <a asp-action="EditDepartment" asp-route-id="@Model.Id" class="btn btn-warning">Edit</a>
-    <a asp-action="Details" asp-route-id="@Model.IdCountry" class="btn btn-success">Back to List</a>
+    <a asp-action="AddShop" asp-route-id="@Model.Id" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i> Shop</a>
+    <a asp-action="EditCity" asp-route-id="@Model.Id" class="btn btn-warning">Edit</a>
+    <a asp-action="DetailsDepartment" asp-route-id="@Model.IdDepartment" class="btn btn-success">Back to List</a>
 </div>
 <br />
 
@@ -46,27 +46,26 @@
                     <thead>
                         <tr>
                             <th>
-                                @Html.DisplayNameFor(model => model.Cities.FirstOrDefault().Name)
+                                @Html.DisplayNameFor(model => model.Shops.FirstOrDefault().Name)
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.Cities.FirstOrDefault().ShopsNumber)
+                                @Html.DisplayNameFor(model => model.Shops.FirstOrDefault().UsersNumber)
                             </th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (var item in Model.Cities)
+                        @foreach (var item in Model.Shops)
                         {
                         <tr>
                             <td>
                                 @Html.DisplayFor(modelItem => item.Name)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.ShopsNumber)
+                                @Html.DisplayFor(modelItem => item.UsersNumber)
                             </td>
                             <td>
-                                <a asp-action="EditCity" asp-route-id="@item.Id" class="btn btn-warning"><i class="glyphicon glyphicon-pencil"></i></a>
-                                <a asp-action="DetailsCity" asp-route-id="@item.Id" class="btn btn-info"><i class="glyphicon glyphicon-align-justify"></i></a>
+                                <a asp-action="EditShop" asp-route-id="@item.Id" class="btn btn-warning"><i class="glyphicon glyphicon-pencil"></i></a>
                                 <button data-id="@item.Id" class="btn btn-danger deleteItem" data-toggle="modal" data-target="#deleteDialog"><i class="glyphicon glyphicon-trash"></i></button>
                             </td>
                         </tr>
@@ -90,7 +89,7 @@
             $('#MyTable').DataTable();
 
             // Delete item
-            sc_deleteDialog.openModal('deleteItem', true, 'btnYesDelete', '/Countries/DeleteCity/', false);
+            sc_deleteDialog.openModal('deleteItem', true, 'btnYesDelete', '/Countries/DeleteShop/', false);
         });
     </script>
 }

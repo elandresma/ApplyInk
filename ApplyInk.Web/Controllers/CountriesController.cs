@@ -160,8 +160,17 @@ namespace ApplyInk.Web.Controllers
                 return NotFound();
             }
 
-            _context.Countries.Remove(country);
-            await _context.SaveChangesAsync();
+            try
+            {
+                _context.Countries.Remove(country);
+                await _context.SaveChangesAsync();
+                _flashMessage.Info("Delete Succesfully");
+            }
+            catch (Exception)
+            {
+
+                _flashMessage.Danger("The country could not be eliminated because it has cities");
+            }
             return RedirectToAction(nameof(Index));
         }
 
@@ -289,8 +298,19 @@ namespace ApplyInk.Web.Controllers
             }
 
             Country country = await _context.Countries.FirstOrDefaultAsync(c => c.Departments.FirstOrDefault(d => d.Id == department.Id) != null);
-            _context.Departments.Remove(department);
-            await _context.SaveChangesAsync();
+
+            try
+            {
+                _context.Departments.Remove(department);
+                await _context.SaveChangesAsync();
+                _flashMessage.Info("Delete Succesfully");
+            }
+            catch (Exception)
+            {
+
+                _flashMessage.Danger("The department could not be eliminated because it has cities");
+            }
+
             return RedirectToAction($"{nameof(Details)}/{country.Id}");
         }
         public async Task<IActionResult> DetailsDepartment(int? id)
@@ -302,6 +322,7 @@ namespace ApplyInk.Web.Controllers
 
             Department department = await _context.Departments
                 .Include(d => d.Cities)
+                .ThenInclude(c => c.Shops)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (department == null)
             {
@@ -420,6 +441,27 @@ namespace ApplyInk.Web.Controllers
             }
             return View(city);
         }
+
+        public async Task<IActionResult> DetailsCity(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            City city = await _context.Cities
+                .Include(d => d.Shops)
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (city == null)
+            {
+                return NotFound();
+            }
+
+            Department department = await _context.Departments.FirstOrDefaultAsync(c => c.Cities.FirstOrDefault(d => d.Id == city.Id) != null);
+            city.IdDepartment = department.Id;
+            return View(city);
+        }
+
         public async Task<IActionResult> DeleteCity(int? id)
         {
             if (id == null)
@@ -435,12 +477,161 @@ namespace ApplyInk.Web.Controllers
             }
 
             Department department = await _context.Departments.FirstOrDefaultAsync(d => d.Cities.FirstOrDefault(c => c.Id == city.Id) != null);
-            _context.Cities.Remove(city);
-            await _context.SaveChangesAsync();
+
+            try
+            {
+                _context.Cities.Remove(city);
+                await _context.SaveChangesAsync();
+                _flashMessage.Info("Update Succesfully");
+            }
+            catch (Exception)
+            {
+
+                _flashMessage.Danger("The city could not be eliminated because it has shop");
+            }
+
             return RedirectToAction($"{nameof(DetailsDepartment)}/{department.Id}");
         }
+
+        public async Task<IActionResult> AddShop(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            City city = await _context.Cities.FindAsync(id);
+            if (city == null)
+            {
+                return NotFound();
+            }
+
+            Shop model = new Shop { IdCity = city.Id };
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AddShop(Shop shop)
+        {
+            if (ModelState.IsValid)
+            {
+                City city= await _context.Cities
+                    .Include(d => d.Shops)
+                    .FirstOrDefaultAsync(c => c.Id == shop.IdCity);
+                if (city == null)
+                {
+                    return NotFound();
+                }
+
+                try
+                {
+                    shop.Id = 0;
+                    city.Shops.Add(shop);
+                    _context.Update(city);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction($"{nameof(DetailsCity)}/{city.Id}");
+
+                }
+                catch (DbUpdateException dbUpdateException)
+                {
+                    if (dbUpdateException.InnerException.Message.Contains("duplicate"))
+                    {
+                        _flashMessage.Danger("There are a record with the same name.");
+                    }
+                    else
+                    {
+                        _flashMessage.Danger(dbUpdateException.InnerException.Message);
+                    }
+                }
+                catch (Exception exception)
+                {
+                    _flashMessage.Danger(exception.Message);
+                }
+            }
+
+            return View(shop);
+        }
+
+        public async Task<IActionResult> EditShop(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            Shop shop= await _context.Shops.FindAsync(id);
+            if (shop == null)
+            {
+                return NotFound();
+            }
+
+            City city = await _context.Cities.FirstOrDefaultAsync(d => d.Shops.FirstOrDefault(c => c.Id == shop.Id) != null);
+            shop.IdCity = city.Id;
+            return View(shop);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditShop(Shop shop)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(shop);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction($"{nameof(DetailsCity)}/{shop.IdCity}");
+                    _flashMessage.Info("Update Succesfully");
+                }
+                catch (DbUpdateException dbUpdateException)
+                {
+                    if (dbUpdateException.InnerException.Message.Contains("duplicate"))
+                    {
+                        _flashMessage.Danger("There are a record with the same name.");
+                    }
+                    else
+                    {
+                        _flashMessage.Danger(dbUpdateException.InnerException.Message);
+                    }
+                }
+                catch (Exception exception)
+                {
+                    _flashMessage.Danger(exception.Message);
+                }
+            }
+            return View(shop);
+        }
+
+        public async Task<IActionResult> DeleteShop(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            Shop shop= await _context.Shops
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (shop == null)
+            {
+                return NotFound();
+            }
+
+            City city = await _context.Cities.FirstOrDefaultAsync(d => d.Shops.FirstOrDefault(c => c.Id == shop.Id) != null);
+            try
+            {
+                _context.Shops.Remove(shop);
+                await _context.SaveChangesAsync();
+                _flashMessage.Info("Update Succesfully");
+            }
+            catch (Exception exception)
+            {
+
+                _flashMessage.Danger(exception.Message);
+            }
+
+
+            return RedirectToAction($"{nameof(DetailsCity)}/{city.Id}");
+        }
     }
-
-
-
 }
