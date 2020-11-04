@@ -125,7 +125,7 @@ namespace ApplyInk.Web.Controllers
                 }
                 catch (DbUpdateException dbUpdateException)
                 {
-                    if (dbUpdateException.InnerException.Message.Contains("duplicate") || dbUpdateException.InnerException.Message.Contains("duplicada"))
+                    if (dbUpdateException.InnerException.Message.Contains("duplicate"))
                     {
                         _flashMessage.Danger("There are a record with the same name.");
                     }
