@@ -125,7 +125,7 @@ namespace ApplyInk.Web.Controllers
                 }
                 catch (DbUpdateException dbUpdateException)
                 {
-                    if (dbUpdateException.InnerException.Message.Contains("duplicate"))
+                    if (dbUpdateException.InnerException.Message.Contains("duplicate") || dbUpdateException.InnerException.Message.Contains("duplicada"))
                     {
                         _flashMessage.Danger("There are a record with the same name.");
                     }
@@ -622,7 +622,7 @@ namespace ApplyInk.Web.Controllers
             {
                 _context.Shops.Remove(shop);
                 await _context.SaveChangesAsync();
-                _flashMessage.Info("Update Succesfully");
+                _flashMessage.Info("Delete Succesfully");
             }
             catch (Exception exception)
             {
