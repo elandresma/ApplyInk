@@ -482,7 +482,7 @@ namespace ApplyInk.Web.Controllers
             {
                 _context.Cities.Remove(city);
                 await _context.SaveChangesAsync();
-                _flashMessage.Info("Update Succesfully");
+                _flashMessage.Info("Delete Succesfully");
             }
             catch (Exception)
             {
