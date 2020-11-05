@@ -27,7 +27,7 @@ namespace ApplyInk.Web.Data
             await CheckCategoriesAsync();
             await CheckRolesAsync();
            
-            await CheckUserAsync("1010", "Admin", "Admin2", "admin@yopmail.com", "322 311 4620", "Avenida siempre viva", UserType.Admin);
+            await CheckUserAsync("1010", "Admin", "Admin2", "admin1@yopmail.com", "322 311 4620", "Avenida siempre viva", UserType.Admin);
 
         }
 
