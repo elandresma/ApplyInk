@@ -26,7 +26,46 @@ namespace ApplyInk.Web.Data
             await CheckCountriesAsync();
             await CheckCategoriesAsync();
             await CheckRolesAsync();
+           
+            await CheckUserAsync("1010", "Admin", "Admin2", "admin@yopmail.com", "322 311 4620", "Avenida siempre viva", UserType.Admin);
+
         }
+
+        private async Task<User> CheckUserAsync(
+          string document,
+          string firstName,
+          string lastName,
+          string email,
+          string phone,
+          string address,
+          UserType userType)
+        {
+            User user = await _userHelper.GetUserAsync(email);
+            if (user == null)
+            {
+                user = new User
+                {
+                    FirstName = firstName,
+                    LastName = lastName,
+                    Email = email,
+                    UserName = email,
+                    PhoneNumber = phone,
+                    Address = address,
+                    Document = document,
+                    Shop = _context.Shops.FirstOrDefault(),
+                    UserType = userType
+                };
+
+                await _userHelper.AddUserAsync(user, "123456");
+                await _userHelper.AddUserToRoleAsync(user, userType.ToString());
+
+                string token = await _userHelper.GenerateEmailConfirmationTokenAsync(user);
+                await _userHelper.ConfirmEmailAsync(user, token);
+            }
+
+            return user;
+        }
+
 
         private async Task CheckRolesAsync()
         {
