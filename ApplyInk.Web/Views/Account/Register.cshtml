@@ -1,0 +1,154 @@
+﻿@model ApplyInk.Web.Models.AddUserViewModel
+
+@{
+    ViewData["Title"] = "Register";
+}
+
+<h2>Register</h2>
+
+<h4>User</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Register" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="Username" class="control-label"></label>
+                <input asp-for="Username" class="form-control" />
+                <span asp-validation-for="Username" class="text-danger"></span>
+            </div>
+            <input asp-for="CategoriesID" id="category" class="form-control" type="hidden"/>
+            <partial name="_User" />
+
+            <label asp-for="CategoriesID" class="control-label"></label>
+
+            <div Id="categories" class="form-group" style="max-height: 200px;margin: auto;border: 2px solid #010101;overflow-y: auto;">
+
+                @if (Model.Categories != null)
+                {
+                    @foreach (var item in Model.Categories)
+                    {
+                        <input type="checkbox" id="category+@item.Value" name="@item.Text" value="@item.Text" class="form-control">
+                        <label style="margin-left: 10px;" for="category+@item.Value"> @item.Text</label><br>
+                    }
+                }
+                else 
+                {
+            <label>
+                To register another user, refresh the page
+            </label>
+                }
+                <span asp-validation-for="CategoriesID" class="text-danger"></span>
+            </div>
+            <br>
+            <div class="form-group">
+                <label asp-for="Password" class="control-label"></label>
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="PasswordConfirm" class="control-label"></label>
+                <input asp-for="PasswordConfirm" class="form-control" />
+                <span asp-validation-for="PasswordConfirm" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" Id="btnregistrar" value="Register" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+<div class="text-success">
+    <p>
+        @ViewBag.Message
+    </p>
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+<script type="text/javascript">
+        $(document).ready(function () {
+            $("#CountryId").change(function () {
+                $("#DepartmentId").empty();
+                $("#DepartmentId").append('<option value="0">[Select a department...]</option>');
+                $("#CityId").empty();
+                $("#CityId").append('<option value="0">[Select a city...]</option>');
+                $("#ShopId").empty();
+                $("#ShopId").append('<option value="0">[Select a shop...]</option>');
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("GetDepartments")',
+                    dataType: 'json',
+                    data: { countryId: $("#CountryId").val() },
+                    success: function (subcategories) {
+                        $.each(subcategories, function (i, department) {
+                            $("#DepartmentId").append('<option value="'
+                                + department.id + '">'
+                                + department.name + '</option>');
+                        });
+                    },
+                    error: function (ex) {
+                        alert('Failed to retrieve department.' + ex);
+                    }
+                });
+                return false;
+            })
+
+            $("#DepartmentId").change(function () {
+                $("#CityId").empty();
+                $("#CityId").append('<option value="0">[Select a city...]</option>');
+                $("#ShopId").empty();
+                $("#ShopId").append('<option value="0">[Select a shop...]</option>');
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("GetCities")',
+                    dataType: 'json',
+                    data: { departmentId: $("#DepartmentId").val() },
+                    success: function (cities) {
+                        $.each(cities, function (i, city) {
+                            $("#CityId").append('<option value="'
+                                + city.id + '">'
+                                + city.name + '</option>');
+                        });
+                    },
+                    error: function (ex) {
+                        alert('Failed to retrieve cities.' + ex);
+                    }
+                });
+                return false;
+            })
+            $("#btnregistrar").click(function () {
+                var categorias = [];
+                $("input[id*='category']").each(function (index) {
+                    if ($(this).prop("checked") == true) {
+                        let IdCategory = $(this).prop("id").split("+")[1]
+                        categorias.push(IdCategory);
+                    }
+                })
+                $("#category").val(categorias);
+            })
+            $("#CityId").change(function () {
+                $("#ShopId").empty();
+                $("#ShopId").append('<option value="0">[Select a shop...]</option>');
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("GetShops")',
+                    dataType: 'json',
+                    data: { cityId: $("#CityId").val() },
+                    success: function (shops) {
+                        $.each(shops, function (i, shop) {
+                            $("#ShopId").append('<option value="'
+                                + shop.id + '">'
+                                + shop.name + '</option>');
+                        });
+                    },
+                    error: function (ex) {
+                        alert('Failed to retrieve shops.' + ex);
+                    }
+                });
+                return false;
+            })
+        });
+</script>
+}
