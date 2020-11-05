@@ -245,6 +245,38 @@ namespace Iglesia.Web.Controllers
 
             return View(model);
         }
+        public IActionResult NotAuthorized()
+        {
+            return View();
+        }
+
+
+
+        public IActionResult ResetPassword(string token)
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ResetPassword(ResetPasswordViewModel model)
+        {
+            User user = await _userHelper.GetUserAsync(model.UserName);
+            if (user != null)
+            {
+                IdentityResult result = await _userHelper.ResetPasswordAsync(user, model.Token, model.Password);
+                if (result.Succeeded)
+                {
+                    ViewBag.Message = "Password reset successful.";
+                    return View();
+                }
+
+                ViewBag.Message = "Error while resetting the password.";
+                return View(model);
+            }
+
+            ViewBag.Message = "User not found.";
+            return View(model);
+        }
 
         /* public async Task<IActionResult> ChangeUser()
          {
@@ -367,103 +399,6 @@ namespace Iglesia.Web.Controllers
                  }
              }
 
-             return View(model);
-         }
-
-         public IActionResult NotAuthorized()
-         {
-             return View();
-         }
-
-       
-
-         public IActionResult ResetPassword(string token)
-         {
-             return View();
-         }
-
-         [HttpPost]
-         public async Task<IActionResult> ResetPassword(ResetPasswordViewModel model)
-         {
-             User user = await _userHelper.GetUserAsync(model.UserName);
-             if (user != null)
-             {
-                 IdentityResult result = await _userHelper.ResetPasswordAsync(user, model.Token, model.Password);
-                 if (result.Succeeded)
-                 {
-                     ViewBag.Message = "Password reset successful.";
-                     return View();
-                 }
-
-                 ViewBag.Message = "Error while resetting the password.";
-                 return View(model);
-             }
-
-             ViewBag.Message = "User not found.";
-             return View(model);
-         }
-
-         public IActionResult CreateTeacher()
-         {
-             AddUserViewModel model = new AddUserViewModel
-             {
-                 Regions = _combosHelper.GetComboRegions(),
-                 Professions = _combosHelper.GetComboProfessions(),
-                 Districts = _combosHelper.GetComboDistricts(0),
-                 Churches = _combosHelper.GetComboChurches(0),
-             };
-
-             return View(model);
-         }
-
-         [HttpPost]
-         [ValidateAntiForgeryToken]
-         public async Task<IActionResult> CreateTeacher(AddUserViewModel model)
-         {
-             if (ModelState.IsValid)
-             {
-                 Guid imageId = Guid.Empty;
-
-                 if (model.ImageFile != null)
-                 {
-                     imageId = await _blobHelper.UploadBlobAsync(model.ImageFile, "users");
-                 }
-
-                 User user = await _userHelper.AddUserAsync(model, imageId, UserType.Teacher);
-                 if (user == null)
-                 {
-                     ModelState.AddModelError(string.Empty, "This email is already used.");
-                     model.Regions = _combosHelper.GetComboRegions();
-                     model.Professions = _combosHelper.GetComboProfessions();
-                     model.Districts = _combosHelper.GetComboDistricts(model.RegionId);
-                     model.Churches = _combosHelper.GetComboChurches(model.DistrictId);
-                     return View(model);
-                 }
-
-                 string myToken = await _userHelper.GenerateEmailConfirmationTokenAsync(user);
-                 string tokenLink = Url.Action("ConfirmEmail", "Account", new
-                 {
-                     userid = user.Id,
-                     token = myToken
-                 }, protocol: HttpContext.Request.Scheme);
-
-                 Response response = _mailHelper.SendMail(model.Username, "Email confirmation", $"<h1>Email Confirmation</h1>" +
-                     $"To allow the user, " +
-                     $"plase click in this link:</br></br><a href = \"{tokenLink}\">Confirm Email</a>");
-                 if (response.IsSuccess)
-                 {
-                     ViewBag.Message = "The instructions to allow your user has been sent to email.";
-                     return View(model);
-                 }
-
-                 ModelState.AddModelError(string.Empty, response.Message);
-             }
-
-
-             model.Professions = _combosHelper.GetComboProfessions();
-             model.Regions = _combosHelper.GetComboRegions();
-             model.Districts = _combosHelper.GetComboDistricts(model.RegionId);
-             model.Churches = _combosHelper.GetComboChurches(model.DistrictId);
              return View(model);
          }*/
 
