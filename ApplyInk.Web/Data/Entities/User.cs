@@ -11,11 +11,6 @@ namespace ApplyInk.Web.Data.Entities
 {
     public class User : IdentityUser
     {
-
-        [MaxLength(20)]
-        [Required]
-        public string Document { get; set; }
-
         [Display(Name = "First Name")]
         [MaxLength(50)]
         [Required]

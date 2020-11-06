@@ -5,6 +5,7 @@
 }
 
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" />
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <br />
 
 <h2>Register</h2>
@@ -22,37 +23,39 @@
                 <span asp-validation-for="Username" class="text-danger"></span>
             </div>
             <input asp-for="CategoriesID" id="category" class="form-control" type="hidden" />
+            <input asp-for="userType" id="usertype" class="form-control" type="hidden" />
             <partial name="_User" />
+            <div class="TattoBlock">
+                <label asp-for="CategoriesID" class="control-label"></label>
 
-            <label asp-for="CategoriesID" class="control-label"></label>
+                <div Id="categories" class="form-group" style="max-height: 200px;margin: auto;border: 2px solid #010101;overflow-y: auto;">
 
-            <div Id="categories" class="form-group" style="max-height: 200px;margin: auto;border: 2px solid #010101;overflow-y: auto;">
-
-                @if (Model.Categories != null)
-                {
-                    <table class="table table-hover table-responsive table-striped" id="MyTable">
-                        <tbody>
-                            @foreach (var item in Model.Categories)
-                            {
-                                <tr>
-                                    <td align="center">
-                                        <input type="checkbox" id="category+@item.Value" name="@item.Text" value="@item.Text" class="form-control">
-                                    </td>
-                                    <td align="left">
-                                        <label style="margin-left: 10px;" for="category+@item.Value"> @item.Text</label>
-                                    </td>
-                                </tr>
-                            }
-                        </tbody>
-                    </table>
-                }
-                else
-                {
-                    <label>
-                        To register another user, refresh the page
-                    </label>
-                }
-                <span asp-validation-for="CategoriesID" class="text-danger"></span>
+                    @if (Model.Categories != null)
+                    {
+                        <table class="table table-hover table-responsive table-striped" id="MyTable">
+                            <tbody>
+                                @foreach (var item in Model.Categories)
+                                {
+                                    <tr>
+                                        <td align="center">
+                                            <input type="checkbox" id="category+@item.Value" name="@item.Text" value="@item.Text" class="form-control">
+                                        </td>
+                                        <td align="left">
+                                            <label style="margin-left: 10px;" for="category+@item.Value"> @item.Text</label>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    }
+                    else
+                    {
+                        <label>
+                            To register another user, refresh the page
+                        </label>
+                    }
+                    <span asp-validation-for="CategoriesID" class="text-danger"></span>
+                </div>
             </div>
             <br>
             <div class="form-group">
@@ -82,6 +85,29 @@
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
     <script type="text/javascript">
         $(document).ready(function () {
+
+            swal("Are you going to register a tattooer or a client?", {
+                buttons: {
+                    cancel: "Tattooer",
+                    catch: {
+                        text: "Customer",
+                        value: "catch",
+                    },
+                },
+            })
+                .then((value) => {
+                    switch (value) {
+                        case "catch":
+                            $(".TattoBlock").hide();
+                            $("#usertype").val("customer");
+                            break;
+
+                        default:
+                            $("#usertype").val("tattoer")
+                    }
+                });
+
+
             $("#CountryId").change(function () {
                 $("#DepartmentId").empty();
                 $("#DepartmentId").append('<option value="0">[Select a department...]</option>');
