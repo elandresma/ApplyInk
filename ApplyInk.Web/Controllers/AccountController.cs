@@ -247,6 +247,7 @@ namespace Iglesia.Web.Controllers
         }
         public IActionResult NotAuthorized()
         {
+
             return View();
         }
 

@@ -2,7 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace ApplyInk.Web.Data.Entities
@@ -11,9 +13,7 @@ namespace ApplyInk.Web.Data.Entities
     {
         public int Id { get; set; }
 
-        [Required]
-        public User User { get; set; }
-
+        public ICollection<MasterDetailMeeting> masterDetailMeeting { get; set; }
         public Shop Shop { get; set; }
 
         public StatusMeeting Status { get; set; }
@@ -24,8 +24,6 @@ namespace ApplyInk.Web.Data.Entities
         [Display(Name = "Date")]
         [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd hh:mm tt}")]
         public DateTime DateLocal => Date.ToLocalTime();
-
-
 
     }
 }

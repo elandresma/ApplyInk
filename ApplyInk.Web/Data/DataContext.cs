@@ -36,6 +36,7 @@ namespace ApplyInk.Web.Data
                 .HasIndex(t => t.Name)
                 .IsUnique();
 
+
             modelBuilder.Entity<Country>(cou =>
             {
                 cou.HasIndex("Name").IsUnique();

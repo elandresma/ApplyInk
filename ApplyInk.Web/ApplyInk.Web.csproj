@@ -5,6 +5,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20201105235853_fixEntity.cs" />
+    <Compile Remove="Migrations\20201105235853_fixEntity.Designer.cs" />
+    <Compile Remove="Migrations\20201106014130_fixingDatabase7.cs" />
+    <Compile Remove="Migrations\20201106014130_fixingDatabase7.Designer.cs" />
+    <Compile Remove="Migrations\20201106014314_addmasterdetail.cs" />
+    <Compile Remove="Migrations\20201106014314_addmasterdetail.Designer.cs" />
+    <Compile Remove="Migrations\20201106015511_addmasterdetail2.cs" />
+    <Compile Remove="Migrations\20201106015511_addmasterdetail2.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="MailKit" Version="2.9.0" />
     <PackageReference Include="Microsoft.AspNetCore" Version="2.1.7" />
     <PackageReference Include="Microsoft.AspNetCore.App" />

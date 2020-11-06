@@ -52,7 +52,7 @@ namespace ApplyInk.Web.Data.Entities
         [Display(Name = "User")]
         public string FullName => $"{FirstName} {LastName}";
 
-        public ICollection<Meeting> Meetings { get; set; }
+        public ICollection<MasterDetailMeeting> masterDetailMeeting { get; set; }
 
         //Agregar carrusel con fotos del trabajo del tatuador.
     }
