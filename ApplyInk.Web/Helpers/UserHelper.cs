@@ -85,7 +85,6 @@ namespace ApplyInk.Web.Helpers
             User user = new User
             {
                 Address = model.Address,
-                Document = model.Document,
                 Email = model.Username,
                 FirstName = model.FirstName,
                 LastName = model.LastName,
@@ -95,26 +94,29 @@ namespace ApplyInk.Web.Helpers
                 UserName = model.Username,
                 UserType = userType
             };
-            if (model.CategoriesID.Length>0)
+            if (model.CategoriesID!=null )
             {
-                List<Category> categories = new List<Category>();
-                string[] mystring = model.CategoriesID.Split(",");
-                int[] myInts = Array.ConvertAll(mystring, s => int.Parse(s));
-                foreach (var item in myInts)
+                if (model.CategoriesID.Length>0)
                 {
-                    Category categoria_aux;
+                    List<Category> categories = new List<Category>();
+                    string[] mystring = model.CategoriesID.Split(",");
+                    int[] myInts = Array.ConvertAll(mystring, s => int.Parse(s));
+                    foreach (var item in myInts)
+                    {
+                        Category categoria_aux;
 
-                    try
-                    {
-                        categoria_aux = await _context.Categories.FindAsync(item);
-                        categories.Add(categoria_aux);
+                        try
+                        {
+                            categoria_aux = await _context.Categories.FindAsync(item);
+                            categories.Add(categoria_aux);
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine(ex.Message);
+                        }
                     }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine(ex.Message);
-                    }
+                    user.Categories = categories;
                 }
-                user.Categories = categories;
             }
 
             IdentityResult result = await _userManager.CreateAsync(user, model.Password);

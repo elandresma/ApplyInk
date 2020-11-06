@@ -101,16 +101,19 @@ namespace Iglesia.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(AddUserViewModel model)
         {
+            
             if (ModelState.IsValid)
             {
                 Guid imageId = Guid.Empty;
 
-               /* if (model.ImageFile != null)
-                {
-                    imageId = await _blobHelper.UploadBlobAsync(model.ImageFile, "users");
-                }*/
+                /* if (model.ImageFile != null)
+                 {
+                     imageId = await _blobHelper.UploadBlobAsync(model.ImageFile, "users");
+                 }*/
 
-                User user = await _userHelper.AddUserAsync(model, imageId, UserType.User);
+                var usertype = (model.userType.Equals("tattoer")) ? UserType.Tattooer : UserType.User;
+
+                User user = await _userHelper.AddUserAsync(model, imageId, usertype);
                 if (user == null)
                 {
                     ModelState.AddModelError(string.Empty, "This email is already used.");
@@ -397,7 +400,7 @@ namespace Iglesia.Web.Controllers
              model.Churches = _combosHelper.GetComboChurches(model.DistrictId);
              return View(model);
          }
-
+        */
          public IActionResult ChangePassword()
          {
              return View();
@@ -428,7 +431,7 @@ namespace Iglesia.Web.Controllers
              }
 
              return View(model);
-         }*/
+         }
 
 
     }

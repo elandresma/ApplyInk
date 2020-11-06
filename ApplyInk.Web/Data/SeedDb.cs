@@ -27,12 +27,11 @@ namespace ApplyInk.Web.Data
             await CheckCategoriesAsync();
             await CheckRolesAsync();
            
-            await CheckUserAsync("1010", "Admin", "Admin2", "admin1@yopmail.com", "322 311 4620", "Avenida siempre viva", UserType.Admin);
+            await CheckUserAsync("Admin", "Admin2", "admin1@yopmail.com", "322 311 4620", "Avenida siempre viva", UserType.Admin);
 
         }
 
         private async Task<User> CheckUserAsync(
-          string document,
           string firstName,
           string lastName,
           string email,
@@ -51,7 +50,6 @@ namespace ApplyInk.Web.Data
                     UserName = email,
                     PhoneNumber = phone,
                     Address = address,
-                    Document = document,
                     Shop = _context.Shops.FirstOrDefault(),
                     UserType = userType
                 };
