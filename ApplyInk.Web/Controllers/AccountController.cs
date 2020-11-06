@@ -298,6 +298,8 @@ namespace Iglesia.Web.Controllers
         {
             return View(await _context.Users
                   .Where(u => u.UserType == UserType.Tattooer)
+                  .Include(c => c.Categories)
+                  .Include(s => s.Shop)
                   .ToListAsync());
         }
 

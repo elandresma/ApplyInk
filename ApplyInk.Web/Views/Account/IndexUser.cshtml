@@ -7,9 +7,7 @@
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" />
 <br />
 
-<p>
-    <a asp-action="CreateCustomer" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i> New Customer</a>
-</p>
+
 <p>
     <h3>Customer</h3>
 </p>
@@ -30,9 +28,6 @@
                             </th>
                             <th>
                                 @Html.DisplayNameFor(model => model.LastName)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Document)
                             </th>
                             <th>
                                 @Html.DisplayNameFor(model => model.Address)
@@ -63,9 +58,6 @@
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.LastName)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Document)
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.Address)

@@ -8,9 +8,6 @@
 <br />
 
 <p>
-    <a asp-action="CreateTattooer" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i> New Tattooer</a>
-</p>
-<p>
     <h3>Tattooer</h3>
 </p>
 
@@ -30,10 +27,7 @@
                             </th>
                             <th>
                                 @Html.DisplayNameFor(model => model.LastName)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Document)
-                            </th>
+                            </th>                       
                             <th>
                                 @Html.DisplayNameFor(model => model.Address)
                             </th>
@@ -49,10 +43,6 @@
                             <th>
                                 @Html.DisplayNameFor(model => model.Categories)
                             </th>
-
-                            @*<th>
-                                @Html.DisplayNameFor(model => model.ImageFullPath)
-                            </th>*@
                             <th>
                             </th>
 
@@ -72,9 +62,7 @@
                             <td>
                                 @Html.DisplayFor(modelItem => item.LastName)
                             </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Document)
-                            </td>
+                          
                             <td>
                                 @Html.DisplayFor(modelItem => item.Address)
                             </td>
@@ -85,10 +73,13 @@
                                 @Html.DisplayFor(modelItem => item.SocialNetworkURL)
                             </th>
                             <th>
-                                @Html.DisplayFor(modelItem => item.Shop)
+                                @Html.DisplayFor(modelItem => item.Shop.Name)
                             </th>
                             <th>
-                                @Html.DisplayFor(modelItem => item.Categories)
+                                @foreach (var itemCat in item.Categories)
+                                {
+                                    @Html.DisplayFor(modelItem => itemCat.Name)<br />
+                                }
                             </th>
 
                            @*<td>
