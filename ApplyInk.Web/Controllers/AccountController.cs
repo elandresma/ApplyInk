@@ -12,6 +12,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using ApplyInk.Common.Responses;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Iglesia.Web.Controllers
 {
@@ -277,6 +278,32 @@ namespace Iglesia.Web.Controllers
 
             ViewBag.Message = "User not found.";
             return View(model);
+        }
+
+
+
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> IndexAdmin()
+        {
+            return View(await _context.Users
+                  .Where(u => u.UserType == UserType.Admin)
+                  .ToListAsync());
+        }
+
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> IndexTattooer()
+        {
+            return View(await _context.Users
+                  .Where(u => u.UserType == UserType.Tattooer)
+                  .ToListAsync());
+        }
+
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> IndexUser()
+        {
+            return View(await _context.Users
+                  .Where(u => u.UserType == UserType.User)
+                  .ToListAsync());
         }
 
         /* public async Task<IActionResult> ChangeUser()
