@@ -53,6 +53,7 @@
                         <label>
                             To register another user, refresh the page
                         </label>
+                        
                     }
                     <span asp-validation-for="CategoriesID" class="text-danger"></span>
                 </div>
@@ -85,28 +86,28 @@
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
     <script type="text/javascript">
         $(document).ready(function () {
-
-            swal("Are you going to register a tattooer or a client?", {
-                buttons: {
-                    cancel: "Tattooer",
-                    catch: {
-                        text: "Customer",
-                        value: "catch",
+            if ($("#firstname").val() == "") {
+                swal("Are you going to register a tattooer or a client?", {
+                    buttons: {
+                        cancel: "Tattooer",
+                        catch: {
+                            text: "Customer",
+                            value: "catch",
+                        },
                     },
-                },
-            })
-                .then((value) => {
-                    switch (value) {
-                        case "catch":
-                            $(".TattoBlock").hide();
-                            $("#usertype").val("customer");
-                            break;
+                })
+                    .then((value) => {
+                        switch (value) {
+                            case "catch":
+                                $(".TattoBlock").hide();
+                                $("#usertype").val("customer");
+                                break;
 
-                        default:
-                            $("#usertype").val("tattoer")
-                    }
-                });
-
+                            default:
+                                $("#usertype").val("tattoer")
+                        }
+                    });
+            }
 
             $("#CountryId").change(function () {
                 $("#DepartmentId").empty();
