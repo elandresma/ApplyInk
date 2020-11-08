@@ -39,7 +39,7 @@ namespace ApplyInk.Web.Models
 
         [Display(Name = "Image")]
         public string ImageFullPath => ImageId == Guid.Empty
-               ? $"https://localhost:44301/images/noimage.png"
+               ? $"https://applyink.azurewebsites.net/images/noimage.png"
                : $"https://applyink.blob.core.windows.net/users/{ImageId}";
 
         [Display(Name = "Image")]

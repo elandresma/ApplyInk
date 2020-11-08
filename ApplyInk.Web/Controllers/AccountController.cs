@@ -307,7 +307,7 @@ namespace Iglesia.Web.Controllers
                   .ToListAsync());
         }
 
-        [Authorize(Roles = "Tattooer" + "," + "Admin")]
+
         public async Task<IActionResult> IndexTattooer()
         {
             return View(await _context.Users

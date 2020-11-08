@@ -41,7 +41,7 @@
                         <li><a asp-area="" asp-controller="Account" asp-action="IndexTattooer">Tattooer</a></li>
                         <li><a asp-area="" asp-controller="Account" asp-action="IndexUser">Customer</a></li>
                     }
-                    else if (User.Identity.IsAuthenticated && User.IsInRole(ApplyInk.Common.Enum.UserType.Tattooer.ToString()))
+                    else if (User.Identity.IsAuthenticated)
                     {
                         <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
                         <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
