@@ -8,6 +8,7 @@ using System.Linq;
 using ApplyInk.Web.Helpers;
 using ApplyInk.Common.Services;
 using ApplyInk.Web.Models;
+using System.IO;
 
 namespace ApplyInk.Web.Data
 {
@@ -16,13 +17,15 @@ namespace ApplyInk.Web.Data
         private readonly DataContext _context;
         private readonly IUserHelper _userHelper;
         private readonly IApiService _apiService;
+        private readonly IBlobHelper _blobHepler;
         private readonly Random _random = new Random();
 
-        public SeedDb(DataContext context, IUserHelper userHelper, IApiService apiService)
+        public SeedDb(DataContext context, IUserHelper userHelper, IApiService apiService, IBlobHelper blobHelper)
         {
             _context = context;
             _userHelper = userHelper;
             _apiService = apiService;
+            _blobHepler = blobHelper;
 
         }
 
@@ -78,14 +81,14 @@ namespace ApplyInk.Web.Data
                 randomUsers = await _apiService.GetRandomUser("https://randomuser.me", "api");
             } while (randomUsers == null);
 
-          //  Guid imageId = Guid.Empty;
+            Guid imageId = Guid.Empty;
             RandomUser randomUser = randomUsers.Results.FirstOrDefault();
-            //string imageUrl = randomUser.Picture.Large.ToString().Substring(22);
-            //Stream stream = await _apiService.GetPictureAsync("https://randomuser.me", imageUrl);
-            //if (stream != null)
-            //{
-            //    imageId = await _blobHelper.UploadBlobAsync(stream, "users");
-            //}
+            string imageUrl = randomUser.Picture.Large.ToString().Substring(22);
+            Stream stream = await _apiService.GetPictureAsync("https://randomuser.me", imageUrl);
+            if (stream != null)
+            {
+                imageId = await _blobHepler.UploadBlobAsync(stream, "users");
+            }
 
             int ShopId = _random.Next(1, _context.Shops.Count());
           
@@ -103,7 +106,7 @@ namespace ApplyInk.Web.Data
                     PhoneNumber = randomUser.Cell,
                     Address = $"{randomUser.Location.Street.Number}, {randomUser.Location.Street.Name}",                   
                     UserType = userType,
-                    //ImageId = imageId,
+                    ImageId = imageId,
                  
                 };
 

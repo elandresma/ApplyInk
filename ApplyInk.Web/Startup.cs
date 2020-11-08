@@ -44,6 +44,12 @@ namespace ApplyInk.Web
                 options.AccessDeniedPath = "/Account/NotAuthorized";
             });
 
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.LoginPath = "/Account/NotAuthorized";
+                options.AccessDeniedPath = "/Account/NotAuthorized";
+            });
+
             services.AddIdentity<User, IdentityRole>(cfg =>
             {
                 cfg.User.RequireUniqueEmail = true;
@@ -64,6 +70,7 @@ namespace ApplyInk.Web
 
             services.AddScoped<IApiService, ApiService>();
             services.AddScoped<ICombosHelper, CombosHelper>();
+            services.AddScoped<IBlobHelper, BlobHelper>();
             services.AddScoped<IMailHelper, MailHelper>();
             services.AddScoped<IUserHelper, UserHelper>();
             services.AddTransient<SeedDb>();
@@ -88,6 +95,7 @@ namespace ApplyInk.Web
             }
 
             app.UseHttpsRedirection();
+            app.UseStatusCodePagesWithReExecute("/error/{0}");
             app.UseStaticFiles();
             app.UseCookiePolicy();
             app.UseAuthentication();

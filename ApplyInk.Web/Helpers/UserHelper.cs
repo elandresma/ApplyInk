@@ -88,7 +88,7 @@ namespace ApplyInk.Web.Helpers
                 Email = model.Username,
                 FirstName = model.FirstName,
                 LastName = model.LastName,
-                //ImageId = imageId,
+                ImageId = imageId,
                 PhoneNumber = model.PhoneNumber,
                 UserName = model.Username,
                 UserType = userType

@@ -32,11 +32,11 @@ namespace ApplyInk.Web.Data.Entities
         [Display(Name = "Image")]
         public Guid ImageId { get; set; }
 
-     /*   [Display(Name = "Image")]
+       [Display(Name = "Image")]
         public string ImageFullPath => ImageId == Guid.Empty
-            ? $"https://iglesiaamarinh.azurewebsites.net/images/noimage.png"
-            : $"https://iglesiamarin.blob.core.windows.net/users/{ImageId}";
-     */
+               ? $"https://localhost:44301/images/noimage.png"
+               : $"https://applyink.blob.core.windows.net/users/{ImageId}";
+        
         [Display(Name = "User Type")]
         public UserType UserType { get; set; }
 
@@ -48,7 +48,5 @@ namespace ApplyInk.Web.Data.Entities
         public string FullName => $"{FirstName} {LastName}";
 
         public ICollection<MasterDetailMeeting> masterDetailMeeting { get; set; }
-
-        //Agregar carrusel con fotos del trabajo del tatuador.
     }
 }

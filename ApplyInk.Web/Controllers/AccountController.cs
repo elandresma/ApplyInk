@@ -23,7 +23,7 @@ namespace Iglesia.Web.Controllers
         private readonly DataContext _context;
         private readonly IUserHelper _userHelper;
         private readonly ICombosHelper _combosHelper;
-        //private readonly IBlobHelper _blobHelper;
+        private readonly IBlobHelper _blobHelper;
         private readonly IMailHelper _mailHelper;
 
 
@@ -31,14 +31,14 @@ namespace Iglesia.Web.Controllers
             DataContext context,
             IUserHelper userHelper,
             ICombosHelper combosHelper,
-            IMailHelper mailHelper
-            /*IBlobHelper blobHelper*/)
+            IMailHelper mailHelper,
+            IBlobHelper blobHelper)
 
         {
             _context = context;
             _userHelper = userHelper;
             _combosHelper = combosHelper;
-           // _blobHelper = blobHelper;
+            _blobHelper = blobHelper;
             _mailHelper = mailHelper;
 
         }
@@ -108,10 +108,10 @@ namespace Iglesia.Web.Controllers
             {
                 Guid imageId = Guid.Empty;
 
-                /* if (model.ImageFile != null)
+                 if (model.ImageFile != null)
                  {
                      imageId = await _blobHelper.UploadBlobAsync(model.ImageFile, "users");
-                 }*/
+                 }
 
                 var usertype = (model.userType.Equals("tattoer")) ? UserType.Tattooer : UserType.User;
 
@@ -403,10 +403,10 @@ namespace Iglesia.Web.Controllers
             {
                 Guid imageId = model.ImageId;
 
-               /* if (model.ImageFile != null)
+                if (model.ImageFile != null)
                 {
                     imageId = await _blobHelper.UploadBlobAsync(model.ImageFile, "users");
-                }*/
+                }
 
                 User user = await _userHelper.GetUserAsync(User.Identity.Name);
 
@@ -513,10 +513,10 @@ namespace Iglesia.Web.Controllers
             {
                 Guid imageId = Guid.Empty;
 
-                //if (model.ImageFile != null)
-                //{
-                //    imageId = await _blobHelper.UploadBlobAsync(model.ImageFile, "users");
-                //}
+               if (model.ImageFile != null)
+               {
+                   imageId = await _blobHelper.UploadBlobAsync(model.ImageFile, "users");
+               }
 
                 User user = await _userHelper.AddUserAsync(model, imageId, UserType.Admin);
                 if (user == null)
