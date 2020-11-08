@@ -68,8 +68,7 @@ namespace ApplyInk.Web.Data
             }
         }
 
-        private async Task<User> CheckUserAsync( string document, string email,
-            UserType userType)
+        private async Task<User> CheckUserAsync( string document, string email, UserType userType)
         {
             RandomUsers randomUsers;
 
@@ -90,6 +89,7 @@ namespace ApplyInk.Web.Data
             //int cityId = _random.Next(1, _context.Cities.Count());
           
 
+
             User user = await _userHelper.GetUserAsync(email);
             if (user == null)
             {
@@ -100,14 +100,24 @@ namespace ApplyInk.Web.Data
                     Email = email,
                     UserName = email,
                     PhoneNumber = randomUser.Cell,
-                    Address = $"{randomUser.Location.Street.Number}, {randomUser.Location.Street.Name}",
-                    //Document = document,
+
+                    Address = $"{randomUser.Location.Street.Number}, {randomUser.Location.Street.Name}",                   
                     UserType = userType,
+                 
                   //  City = await _context.Cities.FindAsync(cityId),
                     //ImageId = imageId,
                  
                 };
 
+
+                if (userType.Equals("Tattooer"))
+                {
+                    List<Category> Categories = new List<Category>();
+                   // Categories = await _context.Categories.FirstOrDefaultAsync();
+                    user.Categories = Categories;
+                    user.SocialNetworkURL = "https://www.instagram.com/yulderq/?hl=es-la";
+                    user.Shop = await _context.Shops.FirstOrDefaultAsync();
+                }              
                 await _userHelper.AddUserAsync(user, "123456");
                 await _userHelper.AddUserToRoleAsync(user, userType.ToString());
                 string token = await _userHelper.GenerateEmailConfirmationTokenAsync(user);
