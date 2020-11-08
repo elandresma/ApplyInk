@@ -58,6 +58,9 @@
                             <th>
                                 @Html.DisplayNameFor(model => model.Categories)
                             </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ImageFullPath)
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -76,29 +79,29 @@
                             <td>
                                 @Html.DisplayFor(modelItem => item.Address)
                             </td>
-                            <th>
+                            <td>
                                 @Html.DisplayFor(modelItem => item.UserType)
-                            </th>
-                            <th>
+                            </td>
+                            <td>
                                 <a href="@item.SocialNetworkURL" target="_blank">See work.</a>
-                            </th>
-                            <th>
+                            </td>
+                            <td>
                                 @Html.DisplayFor(modelItem => item.Shop.City.Name)
-                            </th>
-                            <th>
+                            </td>
+                            <td>
                                 @Html.DisplayFor(modelItem => item.Shop.Name)
-                            </th>
-                            <th>
+                            </td>
+                            <td>
 
                                 @foreach (var itemCat in item.Categories)
                                 {
                                     @Html.DisplayFor(modelItem => itemCat.Name)<br />
                                 }
 
-                            </th>
-                            @*<td>
-             <img src="@item.ImageFullPath" style="width:100px;height:100px;max-width: 100%; height: auto;" />
-        </td>*@
+                            </td>
+                            <td>
+                             <img src="@item.ImageFullPath" style="width:100px;height:100px;max-width: 100%; height: auto;" />
+                            </td>
 
                         </tr>
                         }

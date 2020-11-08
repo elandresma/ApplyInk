@@ -35,11 +35,9 @@
                             <th>
                                 @Html.DisplayNameFor(model => model.UserType)
                             </th>
-                  
-
-                            @*<th>
-                                    @Html.DisplayNameFor(model => model.ImageFullPath)
-                                </th>*@
+                            <th>
+                                @Html.DisplayNameFor(model => model.ImageFullPath)
+                            </th>
                             <th>
                             </th>
 
@@ -65,11 +63,9 @@
                                 <th>
                                     @Html.DisplayFor(modelItem => item.UserType)
                                 </th>                         
-
-                                @*<td>
-                                        <img src="@item.ImageFullPath" style="width:100px;height:100px;max-width: 100%; height: auto;" />
-                                    </td>*@
-
+                                <td>
+                                    <img src="@item.ImageFullPath" style="width:100px;height:100px;max-width: 100%; height: auto;" />
+                                </td>
                             </tr>
                         }
                     </tbody>
