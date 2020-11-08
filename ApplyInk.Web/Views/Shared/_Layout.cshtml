@@ -17,8 +17,8 @@
     </environment>
 </head>
 <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top" style="background-color:antiquewhite">
-        <div class="container" style="background-color:azure">
+    <nav class="navbar navbar-inverse navbar-fixed-top" style="        background-color: #051226">
+        <div class="container" style="background-color:#051226">
             <div class="navbar-header" >
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
@@ -40,6 +40,13 @@
                         <li><a asp-area="" asp-controller="Account" asp-action="IndexAdmin">Admin</a></li>
                         <li><a asp-area="" asp-controller="Account" asp-action="IndexTattooer">Tattooer</a></li>
                         <li><a asp-area="" asp-controller="Account" asp-action="IndexUser">Customer</a></li>
+                    }
+                    else if (User.Identity.IsAuthenticated && User.IsInRole(ApplyInk.Common.Enum.UserType.Tattooer.ToString()))
+                    {
+                        <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
+                        <li><a asp-area="" asp-controller="Account" asp-action="IndexTattooer">Tattooer</a></li>
                     }
                 </ul>
                 <ul class="nav navbar-nav navbar-right">

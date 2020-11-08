@@ -27,6 +27,9 @@ namespace ApplyInk.Web.Models
         [MaxLength(100)]
         public string Address { get; set; }
 
+        [MaxLength(100)]
+        public string SocialNetworkURL { get; set; }
+
         [Display(Name = "Phone Number")]
         [MaxLength(20)]
         public string PhoneNumber { get; set; }

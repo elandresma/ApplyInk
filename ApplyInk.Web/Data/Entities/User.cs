@@ -44,8 +44,6 @@ namespace ApplyInk.Web.Data.Entities
 
         public Shop Shop { get; set; }
 
-        public City city { get; set; }
-
         [Display(Name = "User")]
         public string FullName => $"{FirstName} {LastName}";
 

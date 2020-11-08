@@ -13,6 +13,8 @@ using System.Threading.Tasks;
 using ApplyInk.Common.Responses;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.AspNetCore.Authorization;
+using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace Iglesia.Web.Controllers
 {
@@ -305,14 +307,13 @@ namespace Iglesia.Web.Controllers
                   .ToListAsync());
         }
 
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Tattooer" + "," + "Admin")]
         public async Task<IActionResult> IndexTattooer()
         {
             return View(await _context.Users
                   .Where(u => u.UserType == UserType.Tattooer)
                   .Include(c => c.Categories)
-                  .Include(s => s.Shop)
-                  .Include(l => l.city)
+                  .Include(s => s.Shop).ThenInclude(s=>s.City)
                   .ToListAsync());
         }
 
@@ -328,91 +329,70 @@ namespace Iglesia.Web.Controllers
         public async Task<IActionResult> ChangeUser()
         {
             User user = await _userHelper.GetUserAsync(User.Identity.Name);
+            Department department = new Department();
+            City city = new City();
+            Country country = new Country();
+
             if (user == null)
             {
                 return NotFound();
             }
 
-            string typeuser = user.UserType.ToString();
-
-            if (typeuser.Equals("Tattooer"))
+            if (User.IsInRole(UserType.Tattooer.ToString()))
             {
-
-                //Shop shop = await _context.Shops.FirstOrDefaultAsync(d => d.Shops.FirstOrDefault(c => c.Id == user.Shop.Id) != null);
-                //if (shop == null)
-                //{
-                //    shop = await _context.Shops.FirstOrDefaultAsync();
-                //}
-
-                Shop shop = await _context.Shops.FirstOrDefaultAsync();
-                if (shop == null)
-                {
-                    shop = await _context.Shops.FirstOrDefaultAsync();
-                }
-
-                City city = await _context.Cities.FirstOrDefaultAsync(d => d.Shops.FirstOrDefault(c => c.Id == shop.Id) != null);
+                city = await _context.Cities.FirstOrDefaultAsync(c => c.Shops.FirstOrDefault(s => s.Id == user.Shop.Id) != null);
                 if (city == null)
                 {
                     city = await _context.Cities.FirstOrDefaultAsync();
                 }
 
-                Department department = await _context.Departments.FirstOrDefaultAsync(d => d.Cities.FirstOrDefault(c => c.Id == city.Id) != null);
+                department = await _context.Departments.FirstOrDefaultAsync(d => d.Cities.FirstOrDefault(c => c.Id == city.Id) != null);
                 if (department == null)
                 {
                     department = await _context.Departments.FirstOrDefaultAsync();
                 }
 
-                Country country = await _context.Countries.FirstOrDefaultAsync(c => c.Departments.FirstOrDefault(d => d.Id == department.Id) != null);
+                country = await _context.Countries.FirstOrDefaultAsync(c => c.Departments.FirstOrDefault(d => d.Id == department.Id) != null);
                 if (country == null)
                 {
                     country = await _context.Countries.FirstOrDefaultAsync();
                 }
-
-                Category category = await _context.Categories.FirstOrDefaultAsync();
-                if (category == null)
-                {
-                    category = await _context.Categories.FirstOrDefaultAsync();
-                }
-
-
-                EditUserViewModel model = new EditUserViewModel
-                {
-                    Address = user.Address,
-                    FirstName = user.FirstName,
-                    LastName = user.LastName,
-                    PhoneNumber = user.PhoneNumber,
-                    // ImageId = user.ImageId,
-                    Cities = _combosHelper.GetComboCities(department.Id),
-                    CityId = user.Shop.Id,
-                    Countries = _combosHelper.GetComboCountries(),
-                    CountryId = country.Id,
-                    DepartmentId = department.Id,
-                    userType = typeuser,
-                    Departments = _combosHelper.GetComboDepartments(country.Id),
-                    Shops = _combosHelper.GetComboShops(shop.Id),
-                    Categories = _combosHelper.GetComboCategories(),
-                    Id = user.Id,
-                };
-                return View(model);
             }
-            else {
 
-                EditUserViewModel model = new EditUserViewModel
-                {
-                    Address = user.Address,
-                    FirstName = user.FirstName,
-                    LastName = user.LastName,
-                    PhoneNumber = user.PhoneNumber,
-                    userType = typeuser,
-                    Id = user.Id,
-                };
-                return View(model);
+            EditUserViewModel model = new EditUserViewModel
+            {
+                Address = user.Address,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                PhoneNumber = user.PhoneNumber,
+                ImageId = user.ImageId,
+                Countries = _combosHelper.GetComboCountries(),
+                Categories = _combosHelper.GetComboCategories(),
+                Id = user.Id,
+                SocialNetworkURL = user.SocialNetworkURL,
+                userType = user.UserType.ToString()
+            };
 
-
+            if (User.IsInRole(UserType.Tattooer.ToString()))
+            {
+                model.Shops = _combosHelper.GetComboShops(city.Id);
+                model.ShopId = user.Shop.Id;
+                model.Cities = _combosHelper.GetComboCities(department.Id);
+                model.CityId = city.Id;
+                model.CountryId = country.Id;
+                model.DepartmentId = department.Id;
+                model.Departments = _combosHelper.GetComboDepartments(country.Id);
+                model.CategoriesID = JsonConvert.SerializeObject(user.Categories);
 
             }
-            
-                                     
+            else
+            {
+                model.Departments = _combosHelper.GetComboDepartments(0);
+                model.Cities = _combosHelper.GetComboCities(0);
+                model.Shops = _combosHelper.GetComboShops(0);
+            }
+
+            return View(model);
         }
 
         [HttpPost]
@@ -421,12 +401,12 @@ namespace Iglesia.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                //Guid imageId = model.ImageId;
+                Guid imageId = model.ImageId;
 
-                //if (model.ImageFile != null)
-                //{
-                //    imageId = await _blobHelper.UploadBlobAsync(model.ImageFile, "users");
-                //}
+               /* if (model.ImageFile != null)
+                {
+                    imageId = await _blobHelper.UploadBlobAsync(model.ImageFile, "users");
+                }*/
 
                 User user = await _userHelper.GetUserAsync(User.Identity.Name);
 
@@ -434,18 +414,45 @@ namespace Iglesia.Web.Controllers
                 user.LastName = model.LastName;
                 user.Address = model.Address;
                 user.PhoneNumber = model.PhoneNumber;
-                
-               //user.ImageId = imageId;
-               //user.City = await _context.Cities.FindAsync(model.CityId);
-               //user.Document = model.Document;
+                user.ImageId = imageId;
+
+
+                if (model.CategoriesID != null)
+                {
+                    if (model.CategoriesID.Length > 0)
+                    {
+                        List<Category> categories = new List<Category>();
+                        string[] mystring = model.CategoriesID.Split(",");
+                        int[] myInts = Array.ConvertAll(mystring, s => int.Parse(s));
+                        foreach (var item in myInts)
+                        {
+                            Category categoria_aux;
+
+                            try
+                            {
+                                categoria_aux = await _context.Categories.FindAsync(item);
+                                categories.Add(categoria_aux);
+                            }
+                            catch (Exception ex)
+                            {
+                                Console.WriteLine(ex.Message);
+                            }
+                        }
+                        user.Categories = categories;
+                        user.SocialNetworkURL = model.SocialNetworkURL;
+                        user.Shop = await _context.Shops.FindAsync(model.ShopId);
+                    }
+                }
 
                 await _userHelper.UpdateUserAsync(user);
                 return RedirectToAction("Index", "Home");
             }
 
-            model.Cities = _combosHelper.GetComboCities(model.DepartmentId);
+            model.Categories = _combosHelper.GetComboCategories();
             model.Countries = _combosHelper.GetComboCountries();
-            model.Departments = _combosHelper.GetComboDepartments(model.CityId);
+            model.Departments = _combosHelper.GetComboDepartments(model.CountryId);
+            model.Cities = _combosHelper.GetComboCities(model.DepartmentId);
+            model.Shops = _combosHelper.GetComboShops(model.CityId);
             return View(model);
         }
 

@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ApplyInk.Web.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20201107020643_AddCityInEntity")]
-    partial class AddCityInEntity
+    [Migration("20201108181427_fixUserEntity")]
+    partial class fixUserEntity
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -222,8 +222,6 @@ namespace ApplyInk.Web.Migrations
 
                     b.Property<int>("UserType");
 
-                    b.Property<int?>("cityId");
-
                     b.HasKey("Id");
 
                     b.HasIndex("NormalizedEmail")
@@ -235,8 +233,6 @@ namespace ApplyInk.Web.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.HasIndex("ShopId");
-
-                    b.HasIndex("cityId");
 
                     b.ToTable("AspNetUsers");
                 });
@@ -404,10 +400,6 @@ namespace ApplyInk.Web.Migrations
                     b.HasOne("ApplyInk.Web.Data.Entities.Shop", "Shop")
                         .WithMany("Users")
                         .HasForeignKey("ShopId");
-
-                    b.HasOne("ApplyInk.Web.Data.Entities.City", "city")
-                        .WithMany()
-                        .HasForeignKey("cityId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

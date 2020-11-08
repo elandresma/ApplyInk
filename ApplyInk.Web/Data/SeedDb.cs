@@ -16,6 +16,7 @@ namespace ApplyInk.Web.Data
         private readonly DataContext _context;
         private readonly IUserHelper _userHelper;
         private readonly IApiService _apiService;
+        private readonly Random _random = new Random();
 
         public SeedDb(DataContext context, IUserHelper userHelper, IApiService apiService)
         {
@@ -56,15 +57,15 @@ namespace ApplyInk.Web.Data
 
         private async Task CheckAdminsAsync()
         {
-            await CheckUserAsync("1001", "admin1@yopmail.com", UserType.Admin);
-            await CheckUserAsync("1002", "admin2@yopmail.com", UserType.Admin);
+            await CheckUserAsync("1001", "Admin1@yopmail.com", UserType.Admin);
+            await CheckUserAsync("1002", "Admin2@yopmail.com", UserType.Admin);
         }
 
         private async Task CheckTatooerAsync()
         {
             for (int i = 1; i <= 10; i++)
             {
-                await CheckUserAsync($"100{i}", $"tato{i}@yopmail.com", UserType.Tattooer);
+                await CheckUserAsync($"100{i}", $"Tattooer{i}@yopmail.com", UserType.Tattooer);
             }
         }
 
@@ -86,7 +87,7 @@ namespace ApplyInk.Web.Data
             //    imageId = await _blobHelper.UploadBlobAsync(stream, "users");
             //}
 
-            //int cityId = _random.Next(1, _context.Cities.Count());
+            int ShopId = _random.Next(1, _context.Shops.Count());
           
 
 
@@ -100,24 +101,24 @@ namespace ApplyInk.Web.Data
                     Email = email,
                     UserName = email,
                     PhoneNumber = randomUser.Cell,
-
                     Address = $"{randomUser.Location.Street.Number}, {randomUser.Location.Street.Name}",                   
                     UserType = userType,
-                 
-                  //  City = await _context.Cities.FindAsync(cityId),
                     //ImageId = imageId,
                  
                 };
 
 
-                if (userType.Equals("Tattooer"))
+                if (userType.ToString().Equals(UserType.Tattooer.ToString()))
                 {
                     List<Category> Categories = new List<Category>();
-                   // Categories = await _context.Categories.FirstOrDefaultAsync();
+                    int CategoryId = _random.Next(1, _context.Categories.Count());
+
+                    Categories.Add(await _context.Categories.FindAsync(CategoryId));
                     user.Categories = Categories;
-                    user.SocialNetworkURL = "https://www.instagram.com/yulderq/?hl=es-la";
-                    user.Shop = await _context.Shops.FirstOrDefaultAsync();
-                }              
+                    user.SocialNetworkURL = "https://www.instagram.com/yulderq/";
+                    user.Shop = await _context.Shops.FindAsync(ShopId);
+                }     
+                
                 await _userHelper.AddUserAsync(user, "123456");
                 await _userHelper.AddUserToRoleAsync(user, userType.ToString());
                 string token = await _userHelper.GenerateEmailConfirmationTokenAsync(user);
@@ -141,14 +142,14 @@ namespace ApplyInk.Web.Data
         {
             if (!_context.Categories.Any())
             {
-                _context.Categories.Add(new Category { Name = "Realista ", });
-                _context.Categories.Add(new Category { Name = "Trash Polka", });
-                _context.Categories.Add(new Category { Name = "tribal ", });
-                _context.Categories.Add(new Category { Name = "japoneses", });
-                _context.Categories.Add(new Category { Name = "Old School ", });
-                _context.Categories.Add(new Category { Name = "New School", });
-                _context.Categories.Add(new Category { Name = "neotradicionales ", });
-                _context.Categories.Add(new Category { Name = "Acuarela", });
+                _context.Categories.Add(new Category { Name = "Realist" });
+                _context.Categories.Add(new Category { Name = "Trash Polka" });
+                _context.Categories.Add(new Category { Name = "Tribal " });
+                _context.Categories.Add(new Category { Name = "Oriental" });
+                _context.Categories.Add(new Category { Name = "Old School " });
+                _context.Categories.Add(new Category { Name = "New School" });
+                _context.Categories.Add(new Category { Name = "Neotraditional" });
+                _context.Categories.Add(new Category { Name = "BlackWork" });
             }
 
             await _context.SaveChangesAsync();

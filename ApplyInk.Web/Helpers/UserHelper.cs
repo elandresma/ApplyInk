@@ -90,7 +90,6 @@ namespace ApplyInk.Web.Helpers
                 LastName = model.LastName,
                 //ImageId = imageId,
                 PhoneNumber = model.PhoneNumber,
-                Shop = await _context.Shops.FindAsync(model.ShopId),
                 UserName = model.Username,
                 UserType = userType
             };
@@ -116,6 +115,8 @@ namespace ApplyInk.Web.Helpers
                         }
                     }
                     user.Categories = categories;
+                    user.SocialNetworkURL = model.SocialNetworkURL;
+                    user.Shop = await _context.Shops.FindAsync(model.ShopId);
                 }
             }
 
