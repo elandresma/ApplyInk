@@ -195,6 +195,18 @@ namespace Iglesia.Web.Controllers
         }
 
 
+        public JsonResult GetCaterories(int categoryId)
+        {
+            Category category = _context.Categories 
+            .FirstOrDefault(d => d.Id == categoryId);
+            if (category == null)
+            {
+                return null;
+            }
+
+            return Json(category);
+        }
+
         public async Task<IActionResult> ConfirmEmail(string userId, string token)
         {
             if (string.IsNullOrEmpty(userId) || string.IsNullOrEmpty(token))
@@ -300,6 +312,7 @@ namespace Iglesia.Web.Controllers
                   .Where(u => u.UserType == UserType.Tattooer)
                   .Include(c => c.Categories)
                   .Include(s => s.Shop)
+                  .Include(l => l.city)
                   .ToListAsync());
         }
 
@@ -311,129 +324,223 @@ namespace Iglesia.Web.Controllers
                   .ToListAsync());
         }
 
-        /* public async Task<IActionResult> ChangeUser()
-         {
-             User user = await _userHelper.GetUserAsync(User.Identity.Name);
-             District district = new District();
-             Region region = new Region();
 
-             if (user == null)
-             {
-                 return NotFound();
-             }
+        public async Task<IActionResult> ChangeUser()
+        {
+            User user = await _userHelper.GetUserAsync(User.Identity.Name);
+            if (user == null)
+            {
+                return NotFound();
+            }
 
-             if (!User.IsInRole(UserType.Admin.ToString()))
-             {
-                 district = await _context.Districts.FirstOrDefaultAsync(d => d.Churches.FirstOrDefault(c => c.Id == user.Church.Id) != null);
-                 if (district == null)
-                 {
-                     district = await _context.Districts.FirstOrDefaultAsync();
-                 }
+            string typeuser = user.UserType.ToString();
 
-                 region = await _context.Regions.FirstOrDefaultAsync(c => c.Districts.FirstOrDefault(d => d.Id == district.Id) != null);
-                 if (region == null)
-                 {
-                     region = await _context.Regions.FirstOrDefaultAsync();
-                 }
-             }
+            if (typeuser.Equals("Tattooer"))
+            {
 
-             EditUserViewModel model = new EditUserViewModel
-             {
-                 Address = user.Address,
-                 FirstName = user.FirstName,
-                 LastName = user.LastName,
-                 PhoneNumber = user.PhoneNumber,
-                 ImageId = user.ImageId,
-                 Regions = _combosHelper.GetComboRegions(),
-                 Professions = _combosHelper.GetComboProfessions(),
-                 Id = user.Id,
-                 Document = user.Document
-             };
+                //Shop shop = await _context.Shops.FirstOrDefaultAsync(d => d.Shops.FirstOrDefault(c => c.Id == user.Shop.Id) != null);
+                //if (shop == null)
+                //{
+                //    shop = await _context.Shops.FirstOrDefaultAsync();
+                //}
 
-             if (User.IsInRole(UserType.Admin.ToString()))
-             {
-                 model.Districts = _combosHelper.GetComboDistricts(0);
-                 model.Churches = _combosHelper.GetComboChurches(0);
-             }
-             else
-             {
-                 model.Churches = _combosHelper.GetComboChurches(district.Id);
-                 model.ChurchId = user.Church.Id;
-                 model.RegionId = region.Id;
-                 model.DistrictId = district.Id;
-                 model.Districts = _combosHelper.GetComboDistricts(region.Id);
-                 model.ProfessionID = user.Profession.Id;
-             }
+                Shop shop = await _context.Shops.FirstOrDefaultAsync();
+                if (shop == null)
+                {
+                    shop = await _context.Shops.FirstOrDefaultAsync();
+                }
 
-             return View(model);
-         }
+                City city = await _context.Cities.FirstOrDefaultAsync(d => d.Shops.FirstOrDefault(c => c.Id == shop.Id) != null);
+                if (city == null)
+                {
+                    city = await _context.Cities.FirstOrDefaultAsync();
+                }
 
-         [HttpPost]
-         [ValidateAntiForgeryToken]
-         public async Task<IActionResult> ChangeUser(EditUserViewModel model)
-         {
-             if (ModelState.IsValid)
-             {
-                 Guid imageId = model.ImageId;
+                Department department = await _context.Departments.FirstOrDefaultAsync(d => d.Cities.FirstOrDefault(c => c.Id == city.Id) != null);
+                if (department == null)
+                {
+                    department = await _context.Departments.FirstOrDefaultAsync();
+                }
 
-                 if (model.ImageFile != null)
-                 {
-                     imageId = await _blobHelper.UploadBlobAsync(model.ImageFile, "users");
-                 }
+                Country country = await _context.Countries.FirstOrDefaultAsync(c => c.Departments.FirstOrDefault(d => d.Id == department.Id) != null);
+                if (country == null)
+                {
+                    country = await _context.Countries.FirstOrDefaultAsync();
+                }
 
-                 User user = await _userHelper.GetUserAsync(User.Identity.Name);
+                Category category = await _context.Categories.FirstOrDefaultAsync();
+                if (category == null)
+                {
+                    category = await _context.Categories.FirstOrDefaultAsync();
+                }
 
-                 user.FirstName = model.FirstName;
-                 user.LastName = model.LastName;
-                 user.Address = model.Address;
-                 user.PhoneNumber = model.PhoneNumber;
-                 user.ImageId = imageId;
-                 user.Church = await _context.Churches.FindAsync(model.ChurchId);
-                 user.Profession = await _context.Professions.FindAsync(model.ProfessionID);
-                 user.Document = model.Document;
 
-                 await _userHelper.UpdateUserAsync(user);
-                 return RedirectToAction("Index", "Home");
-             }
+                EditUserViewModel model = new EditUserViewModel
+                {
+                    Address = user.Address,
+                    FirstName = user.FirstName,
+                    LastName = user.LastName,
+                    PhoneNumber = user.PhoneNumber,
+                    // ImageId = user.ImageId,
+                    Cities = _combosHelper.GetComboCities(department.Id),
+                    CityId = user.Shop.Id,
+                    Countries = _combosHelper.GetComboCountries(),
+                    CountryId = country.Id,
+                    DepartmentId = department.Id,
+                    userType = typeuser,
+                    Departments = _combosHelper.GetComboDepartments(country.Id),
+                    Shops = _combosHelper.GetComboShops(shop.Id),
+                    Categories = _combosHelper.GetComboCategories(),
+                    Id = user.Id,
+                };
+                return View(model);
+            }
+            else {
 
-             model.Professions = _combosHelper.GetComboProfessions();
-             model.Regions = _combosHelper.GetComboRegions();
-             model.Districts = _combosHelper.GetComboDistricts(model.RegionId);
-             model.Churches = _combosHelper.GetComboChurches(model.DistrictId);
-             return View(model);
-         }
-        */
-         public IActionResult ChangePassword()
-         {
-             return View();
-         }
+                EditUserViewModel model = new EditUserViewModel
+                {
+                    Address = user.Address,
+                    FirstName = user.FirstName,
+                    LastName = user.LastName,
+                    PhoneNumber = user.PhoneNumber,
+                    userType = typeuser,
+                    Id = user.Id,
+                };
+                return View(model);
 
-         [HttpPost]
-         public async Task<IActionResult> ChangePassword(ChangePasswordViewModel model)
-         {
-             if (ModelState.IsValid)
-             {
-                 var user = await _userHelper.GetUserAsync(User.Identity.Name);
-                 if (user != null)
-                 {
-                     var result = await _userHelper.ChangePasswordAsync(user, model.OldPassword, model.NewPassword);
-                     if (result.Succeeded)
-                     {
-                         return RedirectToAction("ChangeUser");
-                     }
-                     else
-                     {
-                         ModelState.AddModelError(string.Empty, result.Errors.FirstOrDefault().Description);
-                     }
-                 }
-                 else
-                 {
-                     ModelState.AddModelError(string.Empty, "User no found.");
-                 }
-             }
 
-             return View(model);
-         }
+
+            }
+            
+                                     
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ChangeUser(EditUserViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                //Guid imageId = model.ImageId;
+
+                //if (model.ImageFile != null)
+                //{
+                //    imageId = await _blobHelper.UploadBlobAsync(model.ImageFile, "users");
+                //}
+
+                User user = await _userHelper.GetUserAsync(User.Identity.Name);
+
+                user.FirstName = model.FirstName;
+                user.LastName = model.LastName;
+                user.Address = model.Address;
+                user.PhoneNumber = model.PhoneNumber;
+                
+               //user.ImageId = imageId;
+               //user.City = await _context.Cities.FindAsync(model.CityId);
+               //user.Document = model.Document;
+
+                await _userHelper.UpdateUserAsync(user);
+                return RedirectToAction("Index", "Home");
+            }
+
+            model.Cities = _combosHelper.GetComboCities(model.DepartmentId);
+            model.Countries = _combosHelper.GetComboCountries();
+            model.Departments = _combosHelper.GetComboDepartments(model.CityId);
+            return View(model);
+        }
+
+        public IActionResult ChangePasswordMVC()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ChangePasswordMVC(ChangePasswordViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = await _userHelper.GetUserAsync(User.Identity.Name);
+                if (user != null)
+                {
+                    var result = await _userHelper.ChangePasswordAsync(user, model.OldPassword, model.NewPassword);
+                    if (result.Succeeded)
+                    {
+                        return RedirectToAction("ChangeUser");
+                    }
+                    else
+                    {
+                        ModelState.AddModelError(string.Empty, result.Errors.FirstOrDefault().Description);
+                    }
+                }
+                else
+                {
+                    ModelState.AddModelError(string.Empty, "User no found.");
+                }
+            }
+
+            return View(model);
+        }
+
+        [Authorize(Roles = "Admin")]
+        [HttpGet]
+        public IActionResult RegisterAdmin()
+        {
+
+            AddUserViewModel model = new AddUserViewModel
+            {
+                Countries = _combosHelper.GetComboCountries(),           
+                Departments = _combosHelper.GetComboDepartments(0),
+                Cities = _combosHelper.GetComboCities(0),
+                Shops = _combosHelper.GetComboShops(0)
+
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> RegisterAdmin(AddUserViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                Guid imageId = Guid.Empty;
+
+                //if (model.ImageFile != null)
+                //{
+                //    imageId = await _blobHelper.UploadBlobAsync(model.ImageFile, "users");
+                //}
+
+                User user = await _userHelper.AddUserAsync(model, imageId, UserType.Admin);
+                if (user == null)
+                {
+                    ModelState.AddModelError(string.Empty, "This email is already used.");
+                    
+                    return View(model);
+                }
+
+                string myToken = await _userHelper.GenerateEmailConfirmationTokenAsync(user);
+                string tokenLink = Url.Action("ConfirmEmail", "Account", new
+                {
+                    userid = user.Id,
+                    token = myToken
+                }, protocol: HttpContext.Request.Scheme);
+
+                Response response = _mailHelper.SendMail(model.Username, "Email confirmation", $"<h1>Email Confirmation</h1>" +
+                    $"To allow the user, " +
+                    $"plase click in this link:</br></br><a href = \"{tokenLink}\">Confirm Email</a>");
+                if (response.IsSuccess)
+                {
+                    ViewBag.Message = "The instructions to allow your user has been sent to email.";
+                    return View(model);
+                }
+
+                ModelState.AddModelError(string.Empty, response.Message);
+            }
+
+        
+            return View(model);
+        }
 
 
     }

@@ -6,6 +6,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using ApplyInk.Web.Helpers;
+using ApplyInk.Common.Services;
+using ApplyInk.Web.Models;
 
 namespace ApplyInk.Web.Data
 {
@@ -13,11 +15,14 @@ namespace ApplyInk.Web.Data
     {
         private readonly DataContext _context;
         private readonly IUserHelper _userHelper;
+        private readonly IApiService _apiService;
 
-        public SeedDb(DataContext context, IUserHelper userHelper)
+        public SeedDb(DataContext context, IUserHelper userHelper, IApiService apiService)
         {
             _context = context;
             _userHelper = userHelper;
+            _apiService = apiService;
+
         }
 
         public async Task SeedAsync()
@@ -26,37 +31,85 @@ namespace ApplyInk.Web.Data
             await CheckCountriesAsync();
             await CheckCategoriesAsync();
             await CheckRolesAsync();
+            await CheckUsersAsync();
            
-            await CheckUserAsync("Admin", "Admin2", "admin1@yopmail.com", "322 311 4620", "Avenida siempre viva", UserType.Admin);
-
+        }
+        //Ramdom
+        private async Task CheckUsersAsync()
+        {
+            if (!_context.Users.Any())
+            {
+                await CheckAdminsAsync();
+                await CheckCustomersAsync();
+                await CheckTatooerAsync();
+            }
+            
         }
 
-        private async Task<User> CheckUserAsync(
-          string firstName,
-          string lastName,
-          string email,
-          string phone,
-          string address,
-          UserType userType)
+        private async Task CheckCustomersAsync()
         {
+            for (int i = 1; i <= 10; i++)
+            {
+                await CheckUserAsync($"100{i}", $"Customer{i}@yopmail.com", UserType.User);
+            }
+        }
+
+        private async Task CheckAdminsAsync()
+        {
+            await CheckUserAsync("1001", "admin1@yopmail.com", UserType.Admin);
+            await CheckUserAsync("1002", "admin2@yopmail.com", UserType.Admin);
+        }
+
+        private async Task CheckTatooerAsync()
+        {
+            for (int i = 1; i <= 10; i++)
+            {
+                await CheckUserAsync($"100{i}", $"tato{i}@yopmail.com", UserType.Tattooer);
+            }
+        }
+
+        private async Task<User> CheckUserAsync( string document, string email,
+            UserType userType)
+        {
+            RandomUsers randomUsers;
+
+            do
+            {
+                randomUsers = await _apiService.GetRandomUser("https://randomuser.me", "api");
+            } while (randomUsers == null);
+
+          //  Guid imageId = Guid.Empty;
+            RandomUser randomUser = randomUsers.Results.FirstOrDefault();
+            //string imageUrl = randomUser.Picture.Large.ToString().Substring(22);
+            //Stream stream = await _apiService.GetPictureAsync("https://randomuser.me", imageUrl);
+            //if (stream != null)
+            //{
+            //    imageId = await _blobHelper.UploadBlobAsync(stream, "users");
+            //}
+
+            //int cityId = _random.Next(1, _context.Cities.Count());
+          
+
             User user = await _userHelper.GetUserAsync(email);
             if (user == null)
             {
                 user = new User
                 {
-                    FirstName = firstName,
-                    LastName = lastName,
+                    FirstName = randomUser.Name.First,
+                    LastName = randomUser.Name.Last,
                     Email = email,
                     UserName = email,
-                    PhoneNumber = phone,
-                    Address = address,
-                    Shop = _context.Shops.FirstOrDefault(),
-                    UserType = userType
+                    PhoneNumber = randomUser.Cell,
+                    Address = $"{randomUser.Location.Street.Number}, {randomUser.Location.Street.Name}",
+                    //Document = document,
+                    UserType = userType,
+                  //  City = await _context.Cities.FindAsync(cityId),
+                    //ImageId = imageId,
+                 
                 };
 
                 await _userHelper.AddUserAsync(user, "123456");
                 await _userHelper.AddUserToRoleAsync(user, userType.ToString());
-
                 string token = await _userHelper.GenerateEmailConfirmationTokenAsync(user);
                 await _userHelper.ConfirmEmailAsync(user, token);
             }
@@ -64,6 +117,8 @@ namespace ApplyInk.Web.Data
             return user;
         }
 
+        //End Ramdom
+      
 
         private async Task CheckRolesAsync()
         {

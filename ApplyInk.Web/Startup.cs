@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ApplyInk.Common.Services;
 using ApplyInk.Web.Data;
 using ApplyInk.Web.Data.Entities;
 using ApplyInk.Web.Helpers;
@@ -61,6 +62,7 @@ namespace ApplyInk.Web
                 cfg.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
             });
 
+            services.AddScoped<IApiService, ApiService>();
             services.AddScoped<ICombosHelper, CombosHelper>();
             services.AddScoped<IMailHelper, MailHelper>();
             services.AddScoped<IUserHelper, UserHelper>();

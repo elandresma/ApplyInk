@@ -13,6 +13,8 @@
     <Compile Remove="Migrations\20201106014314_addmasterdetail.Designer.cs" />
     <Compile Remove="Migrations\20201106015511_addmasterdetail2.cs" />
     <Compile Remove="Migrations\20201106015511_addmasterdetail2.Designer.cs" />
+    <Compile Remove="Migrations\20201107003102_AddCityInEntityUser.cs" />
+    <Compile Remove="Migrations\20201107003102_AddCityInEntityUser.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
