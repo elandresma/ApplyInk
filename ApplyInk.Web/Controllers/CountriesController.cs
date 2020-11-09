@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using ApplyInk.Web.Data;
 using ApplyInk.Web.Data.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Vereyon.Web;
@@ -11,7 +12,7 @@ using Vereyon.Web;
 namespace ApplyInk.Web.Controllers
 {
     
-    //[Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin")]
     public class CountriesController : Controller
     {
         private readonly DataContext _context;
