@@ -16,7 +16,7 @@ using Microsoft.AspNetCore.Authorization;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 
-namespace Iglesia.Web.Controllers
+namespace ApplyInk.Web.Controllers
 {
     public class AccountController : Controller
     {
@@ -231,13 +231,13 @@ namespace Iglesia.Web.Controllers
             return View();
         }
 
-        public IActionResult RecoverPassword()
+        public IActionResult RecoverPasswordMVC()
         {
             return View();
         }
 
        [HttpPost]
-        public async Task<IActionResult> RecoverPassword(RecoverPasswordViewModel model)
+        public async Task<IActionResult> RecoverPasswordMVC(RecoverPasswordViewModel model)
         {
             if (ModelState.IsValid)
             {
