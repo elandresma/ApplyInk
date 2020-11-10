@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - ApplyInk.Web</title>
 
+
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
         <link rel="stylesheet" href="~/css/site.css" />
@@ -17,50 +18,52 @@
     </environment>
 </head>
 <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top" style="        background-color: #051226">
-        <div class="container" style="background-color:#051226">
+    <nav class="navbar navbar-inverse navbar-fixed-top" style="background-color: #ecf1f8; border-color: rgba(137, 165, 183, 0.05); " >
+        <div class="container" >
             <div class="navbar-header" >
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" style="color: black">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand"><img src="~/images/Logo.png" style="width: 73px; position: relative; top: -17px;"/></a>
+                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand"><img src="~/images/Logo.png" style="width: 80px; position: relative; top: -20px;"/></a>
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
-                    {
-                        <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                        <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
-                        <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
-                        <li><a asp-area="" asp-controller="Categories" asp-action="Index">Categories</a></li>
-                        <li><a asp-area="" asp-controller="Countries" asp-action="Index">Countries</a></li>
-                        <li><a asp-area="" asp-controller="Account" asp-action="IndexAdmin">Admin</a></li>
-                        <li><a asp-area="" asp-controller="Account" asp-action="IndexTattooer">Tattooer</a></li>
-                        <li><a asp-area="" asp-controller="Account" asp-action="IndexUser">Customer</a></li>
-                    }
-                    else if (User.Identity.IsAuthenticated)
-                    {
-                        <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                        <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
-                        <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
-                        <li><a asp-area="" asp-controller="Account" asp-action="IndexTattooer">Tattooer</a></li>
-                    }
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    @if (User.Identity.IsAuthenticated)
-                    {
-                        <li><a asp-area="" asp-controller="Account" asp-action="ChangeUser">@User.Identity.Name</a></li>
-                        <li><a asp-area="" asp-controller="Account" asp-action="Logout">Logout</a></li>
-                    }
-                    else
-                    {
-                        <li><a asp-area="" asp-controller="Account" asp-action="Login">Login</a></li>
-                    }
-                </ul>
-            </div>
+            
+                <div class="navbar-collapse collapse">
+                   
+                        <ul class="nav navbar-nav">
+                            @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                            {
+                               
+                                <li><a asp-area="" asp-controller="Home" asp-action="Privacy"><font color="black">Privacy</font></a></li>  
+                                <li><a asp-area="" asp-controller="Categories" asp-action="Index"><font color="black">Categories</font></a></li>
+                                <li><a asp-area="" asp-controller="Countries" asp-action="Index"><font color="black">Countries</font></a></li>
+                                <li><a asp-area="" asp-controller="Account" asp-action="IndexAdmin"><font color="black">Admin</font></a></li>
+                                <li><a asp-area="" asp-controller="Account" asp-action="IndexTattooer"><font color="black">Tattooer</font></a></li>
+                                <li><a asp-area="" asp-controller="Account" asp-action="IndexUser"><font color="black">Customer</font> </a></li>
+
+                            }
+                            else if (User.Identity.IsAuthenticated)
+                            {
+                                <li><a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a></li>
+                                <li><a asp-area="" asp-controller="Account" asp-action="IndexTattooer"><font color="black">Tattooer</font></a></li>
+                            }
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <li><a asp-area="" asp-controller="Account" asp-action="ChangeUser"><font color="black">Hello @User.Identity.Name</font></a></li>
+                                <li><a asp-area="" asp-controller="Account" asp-action="Logout"><img src="~/images/Exit.png" style="width: 25px; position: relative; top: -5px;" /></a></li>
+                            }
+                            else
+                            {
+                                <li><a asp-area="" asp-controller="Account" asp-action="Login"><font color="black">Login</font></a></li>
+                            }
+                        </ul>
+                     
+                </div>
+           
         </div>
     </nav>
 
