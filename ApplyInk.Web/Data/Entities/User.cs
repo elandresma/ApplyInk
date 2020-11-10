@@ -34,8 +34,8 @@ namespace ApplyInk.Web.Data.Entities
 
        [Display(Name = "Image")]
         public string ImageFullPath => ImageId == Guid.Empty
-               ? $"https://applyink.azurewebsites.net/images/noimage.png"
-               : $"https://applyink.blob.core.windows.net/users/{ImageId}";
+               ? $"https://applylnk.azurewebsites.net/images/noimage.png"
+               : $"https://applylnk.blob.core.windows.net/users/{ImageId}";
         
         [Display(Name = "User Type")]
         public UserType UserType { get; set; }
