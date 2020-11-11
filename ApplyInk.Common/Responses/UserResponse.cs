@@ -19,13 +19,21 @@ namespace ApplyInk.Common.Responses
 
         public string Address { get; set; }
 
+        public string SocialNetworkURL { get; set; }
+
         public Guid ImageId { get; set; }
 
         public string ImageFullPath => ImageId == Guid.Empty
-       ? $"https://applyink.azurewebsites.net/images/noimage.png"
+       ? $"https://applyinkweb.azurewebsites.net/images/noimage.png"
        : $"https://applyink.blob.core.windows.net/users/{ImageId}";
 
         public UserType UserType { get; set; }
+
+        public ICollection<CategoryResponse> Categories { get; set; }
+
+        public ShopResponse Shop { get; set; }
+
+        public string FullName => $"{FirstName} {LastName}";
 
     }
 

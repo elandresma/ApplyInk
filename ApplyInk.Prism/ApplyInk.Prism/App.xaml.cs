@@ -6,6 +6,7 @@ using Xamarin.Essentials.Interfaces;
 using Xamarin.Essentials.Implementation;
 using Xamarin.Forms;
 using ApplyInk.Common.Services;
+using Syncfusion.Licensing;
 
 namespace ApplyInk.Prism
 {
@@ -18,9 +19,10 @@ namespace ApplyInk.Prism
 
         protected override async void OnInitialized()
         {
+            SyncfusionLicenseProvider.RegisterLicense("MzQ5NzUzQDMxMzgyZTMzMmUzMEU2OHhGUzdqNVpENUxQd3dZUkZNZ3pINHk1K1hxMVhSTmJWU284LytxNGM9");
             InitializeComponent();
 
-            await NavigationService.NavigateAsync("NavigationPage/MainPage");
+            await NavigationService.NavigateAsync($"NavigationPage/{nameof(TattoersPage)}");
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
@@ -29,6 +31,8 @@ namespace ApplyInk.Prism
             containerRegistry.Register<IApiService, ApiService>();
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();
+            containerRegistry.RegisterForNavigation<UsersPage, UsersPageViewModel>();
+            containerRegistry.RegisterForNavigation<TattoersPage, TattoersPageViewModel>();
         }
     }
 }
