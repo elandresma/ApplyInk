@@ -7,11 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApplyInk.Common", "ApplyInk
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApplyInk.Web", "ApplyInk.Web\ApplyInk.Web.csproj", "{DCAC2C5B-2B0C-4AE9-80BB-E980C86379CD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApplyInk.Prism", "ApplyInk.Prism\ApplyInk.Prism\ApplyInk.Prism.csproj", "{6FB45E8F-BCFF-4A64-B90B-2B87445F1BAE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApplyInk.Prism", "ApplyInk.Prism\ApplyInk.Prism\ApplyInk.Prism.csproj", "{6FB45E8F-BCFF-4A64-B90B-2B87445F1BAE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApplyInk.Prism.Android", "ApplyInk.Prism\ApplyInk.Prism.Android\ApplyInk.Prism.Android.csproj", "{D4D656B9-9618-49A5-8642-5C895DDC79FC}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApplyInk.Prism.iOS", "ApplyInk.Prism\ApplyInk.Prism.iOS\ApplyInk.Prism.iOS.csproj", "{08C81BC1-E805-467E-AD4E-DC9348867059}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -137,26 +135,6 @@ Global
 		{D4D656B9-9618-49A5-8642-5C895DDC79FC}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{D4D656B9-9618-49A5-8642-5C895DDC79FC}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 		{D4D656B9-9618-49A5-8642-5C895DDC79FC}.Release|iPhoneSimulator.Deploy.0 = Release|Any CPU
-		{08C81BC1-E805-467E-AD4E-DC9348867059}.Ad-Hoc|Any CPU.ActiveCfg = Ad-Hoc|iPhone
-		{08C81BC1-E805-467E-AD4E-DC9348867059}.Ad-Hoc|iPhone.ActiveCfg = Ad-Hoc|iPhone
-		{08C81BC1-E805-467E-AD4E-DC9348867059}.Ad-Hoc|iPhone.Build.0 = Ad-Hoc|iPhone
-		{08C81BC1-E805-467E-AD4E-DC9348867059}.Ad-Hoc|iPhoneSimulator.ActiveCfg = Ad-Hoc|iPhoneSimulator
-		{08C81BC1-E805-467E-AD4E-DC9348867059}.Ad-Hoc|iPhoneSimulator.Build.0 = Ad-Hoc|iPhoneSimulator
-		{08C81BC1-E805-467E-AD4E-DC9348867059}.AppStore|Any CPU.ActiveCfg = AppStore|iPhone
-		{08C81BC1-E805-467E-AD4E-DC9348867059}.AppStore|iPhone.ActiveCfg = AppStore|iPhone
-		{08C81BC1-E805-467E-AD4E-DC9348867059}.AppStore|iPhone.Build.0 = AppStore|iPhone
-		{08C81BC1-E805-467E-AD4E-DC9348867059}.AppStore|iPhoneSimulator.ActiveCfg = AppStore|iPhoneSimulator
-		{08C81BC1-E805-467E-AD4E-DC9348867059}.AppStore|iPhoneSimulator.Build.0 = AppStore|iPhoneSimulator
-		{08C81BC1-E805-467E-AD4E-DC9348867059}.Debug|Any CPU.ActiveCfg = Debug|iPhone
-		{08C81BC1-E805-467E-AD4E-DC9348867059}.Debug|iPhone.ActiveCfg = Debug|iPhone
-		{08C81BC1-E805-467E-AD4E-DC9348867059}.Debug|iPhone.Build.0 = Debug|iPhone
-		{08C81BC1-E805-467E-AD4E-DC9348867059}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
-		{08C81BC1-E805-467E-AD4E-DC9348867059}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
-		{08C81BC1-E805-467E-AD4E-DC9348867059}.Release|Any CPU.ActiveCfg = Release|iPhone
-		{08C81BC1-E805-467E-AD4E-DC9348867059}.Release|iPhone.ActiveCfg = Release|iPhone
-		{08C81BC1-E805-467E-AD4E-DC9348867059}.Release|iPhone.Build.0 = Release|iPhone
-		{08C81BC1-E805-467E-AD4E-DC9348867059}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
-		{08C81BC1-E805-467E-AD4E-DC9348867059}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

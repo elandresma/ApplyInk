@@ -3,14 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="http://prismlibrary.com"
              x:Class="ApplyInk.Prism.App">
-  <Application.Resources>
+    <Application.Resources>
 
-    <!-- Application resource dictionary -->
+        <!-- Application resource dictionary -->
 
         <ResourceDictionary>
 
             <!-- Parameters -->
-            <x:String x:Key="UrlAPI">http://applyink.azurewebsites.net/</x:String>
+            <x:String x:Key="UrlAPI">https://applyinkweb.azurewebsites.net/</x:String>
 
         </ResourceDictionary>
 
