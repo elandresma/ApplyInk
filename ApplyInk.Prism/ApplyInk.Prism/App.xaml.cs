@@ -31,7 +31,6 @@ namespace ApplyInk.Prism
             containerRegistry.Register<IApiService, ApiService>();
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();
-            containerRegistry.RegisterForNavigation<UsersPage, UsersPageViewModel>();
             containerRegistry.RegisterForNavigation<TattoersPage, TattoersPageViewModel>();
         }
     }

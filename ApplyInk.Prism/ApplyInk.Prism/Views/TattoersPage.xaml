@@ -4,6 +4,7 @@
              xmlns:prism="http://prismlibrary.com"
              prism:ViewModelLocator.AutowireViewModel="True"
              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:ffimageloadingTrans="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
              xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
              ios:Page.UseSafeArea="true"
              xmlns:busyindicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
@@ -31,28 +32,31 @@
                                 <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
                             <ffimageloading:CachedImage Grid.Column="0"
-                                                    Aspect="AspectFill"
-                                                    Source="{Binding ImageFullPath}" 
-                                                    CacheDuration= "50"
-                                                    Margin="5"
-                                                    RetryCount= "3"
-                                                    RetryDelay= "600"
-                                                    WidthRequest="100"/>
+                                                        Source="{Binding ImageFullPath}" 
+                                                        CacheDuration= "50"
+                                                        Margin="5"
+                                                        RetryCount= "3"
+                                                        RetryDelay= "600"
+                                                        WidthRequest="100">
+                                <ffimageloading:CachedImage.Transformations>
+                                    <ffimageloadingTrans:CircleTransformation />
+                                </ffimageloading:CachedImage.Transformations>
+                            </ffimageloading:CachedImage>
                             <StackLayout Grid.Column="1"
                                      VerticalOptions="Center">
                                 <Label Text="{Binding FullName}" 
                                    FontAttributes="Bold"
                                    FontSize="Medium"
-                                   LineBreakMode="TailTruncation" />
-                                <Label Text="{Binding Email}"
-                                   LineBreakMode="TailTruncation"
-                                   FontAttributes="Italic" 
-                                   VerticalOptions="End" />
+                                   VerticalOptions="Start"/>
                                 <Label Text="{Binding PhoneNumber}"
-                                   LineBreakMode="TailTruncation"
-                                   FontAttributes="Italic" 
-                                   VerticalOptions="End" />
+                                   FontSize="Micro"
+                                   VerticalOptions="Start"/>
+                                <Label Text="{Binding Shop.Name}"
+                                   FontSize="Micro"
+                                   VerticalOptions="Start"/>
                             </StackLayout>
+                            <Image Grid.Column="2" 
+                               Source="ic_more_vert"/>
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
