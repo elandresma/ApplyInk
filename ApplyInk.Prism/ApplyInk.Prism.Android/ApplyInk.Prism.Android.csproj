@@ -75,6 +75,7 @@
     <PackageReference Include="Prism.DryIoc.Forms" Version="8.0.0.1909" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Implementations\Localize.cs" />
     <Compile Include="MainApplication.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="SplashActivity.cs" />
@@ -116,6 +117,10 @@
     <AndroidResource Include="Resources\values\strings.xml" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\ApplyInk.Common\ApplyInk.Common.csproj">
+      <Project>{76794114-9AA7-4F99-8B5A-BDDDB3792C9B}</Project>
+      <Name>ApplyInk.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ApplyInk.Prism\ApplyInk.Prism.csproj">
       <Project>{A682884C-CB44-4A89-B752-27BB634E0ABE}</Project>
       <Name>ApplyInk.Prism</Name>

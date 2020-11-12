@@ -32,6 +32,7 @@ namespace ApplyInk.Prism
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();
             containerRegistry.RegisterForNavigation<TattoersPage, TattoersPageViewModel>();
+            containerRegistry.RegisterForNavigation<TattoerDetailPage, TattoerDetailPageViewModel>();
         }
     }
 }

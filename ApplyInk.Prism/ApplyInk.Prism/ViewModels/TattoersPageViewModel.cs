@@ -1,7 +1,7 @@
-﻿using ApplyInk.Common.Requests;
-using ApplyInk.Common.Responses;
+﻿using ApplyInk.Common.Responses;
 using ApplyInk.Common.Services;
-using Newtonsoft.Json;
+using ApplyInk.Prism.Helpers;
+using ApplyInk.Prism.ItemViewModels;
 using Prism.Commands;
 using Prism.Navigation;
 using System.Collections.Generic;
@@ -20,13 +20,14 @@ namespace ApplyInk.Prism.ViewModels
         private string _search;
         private List<UserResponse> _myUsers;
         private DelegateCommand _searchCommand;
+        private ObservableCollection<TattoerItemViewModel> _tattoers;
 
 
         public TattoersPageViewModel(INavigationService navigationService, IApiService apiService) : base(navigationService)
         {
             _navigationService = navigationService;
             _apiService = apiService;
-            Title = "Tattoers";
+            Title = Languages.Tattoers;
             LoadUsersAsync();
         }
 
@@ -41,6 +42,12 @@ namespace ApplyInk.Prism.ViewModels
                 ShowUsers();
             }
         }
+        public ObservableCollection<TattoerItemViewModel> Tattoers
+        {
+            get => _tattoers;
+            set => SetProperty(ref _tattoers, value);
+        }
+
 
 
         public bool IsRunning
@@ -60,7 +67,7 @@ namespace ApplyInk.Prism.ViewModels
         {
             if (Connectivity.NetworkAccess != NetworkAccess.Internet)
             {
-                await App.Current.MainPage.DisplayAlert("Error", "Check the internet connection.", "Accept");
+                await App.Current.MainPage.DisplayAlert(Languages.Error, Languages.ConnectionError, Languages.Accept);
                 return;
             }
 
@@ -74,10 +81,7 @@ namespace ApplyInk.Prism.ViewModels
 
             if (!response.IsSuccess)
             {
-                await App.Current.MainPage.DisplayAlert(
-                    "Error",
-                    response.Message,
-                    "Accept");
+                await App.Current.MainPage.DisplayAlert(Languages.Error, response.Message, Languages.Accept);
                 return;
             }
 
@@ -89,12 +93,44 @@ namespace ApplyInk.Prism.ViewModels
         {
             if (string.IsNullOrEmpty(Search))
             {
-                Users = new ObservableCollection<UserResponse>(_myUsers);
+                Tattoers = new ObservableCollection<TattoerItemViewModel>(_myUsers.Select(t => new TattoerItemViewModel(_navigationService)
+                {
+
+                    Id = t.Id,
+                    SocialNetworkURL = t.SocialNetworkURL,
+                    Address = t.Address,
+                    Categories = t.Categories,
+                    Email = t.Email,
+                    PhoneNumber = t.PhoneNumber,
+                    FirstName = t.FirstName,
+                    LastName = t.LastName,
+                    ImageId = t.ImageId,
+                    Shop = t.Shop
+
+                })
+                    .ToList());
             }
             else
             {
-                Users = new ObservableCollection<UserResponse>(_myUsers
-                    .Where(p => p.FullName.ToLower().Contains(Search.ToLower())));
+                Tattoers = new ObservableCollection<TattoerItemViewModel>(_myUsers.Select(t => new TattoerItemViewModel(_navigationService)
+                {
+
+                    Id = t.Id,
+                    SocialNetworkURL = t.SocialNetworkURL,
+                    Address = t.Address,
+                    Categories = t.Categories,
+                    Email = t.Email,
+                    PhoneNumber = t.PhoneNumber,
+                    FirstName = t.FirstName,
+                    LastName = t.LastName,
+                    ImageId = t.ImageId,
+                    Shop = t.Shop
+
+                })
+                    .Where(t => t.FullName.ToLower().Contains(Search.ToLower()))
+                    .ToList());
+
+
             }
         }
 
