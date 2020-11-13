@@ -7,6 +7,8 @@ using Xamarin.Essentials.Implementation;
 using Xamarin.Forms;
 using ApplyInk.Common.Services;
 using Syncfusion.Licensing;
+using ApplyInk.Prism.Helpers;
+using ApplyInk.Common.Helpers;
 
 namespace ApplyInk.Prism
 {
@@ -29,6 +31,8 @@ namespace ApplyInk.Prism
         {
             containerRegistry.RegisterSingleton<IAppInfo, AppInfoImplementation>();
             containerRegistry.Register<IApiService, ApiService>();
+            containerRegistry.Register<IRegexHelper, RegexHelper>();
+            containerRegistry.Register<IFilesHelper, FilesHelper>();
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();
             containerRegistry.RegisterForNavigation<TattoersPage, TattoersPageViewModel>();
@@ -37,6 +41,10 @@ namespace ApplyInk.Prism
             containerRegistry.RegisterForNavigation<TattoerMasterDetailPage, TattoerMasterDetailPageViewModel>();
             
             containerRegistry.RegisterForNavigation<ModifyUserPage, ModifyUserPageViewModel>();
+     
+            containerRegistry.RegisterForNavigation<RegisterPage, RegisterPageViewModel>();
+            containerRegistry.RegisterForNavigation<RecoverPasswordPage, RecoverPasswordPageViewModel>();
+            containerRegistry.RegisterForNavigation<ChangePasswordPage, ChangePasswordPageViewModel>();
         }
     }
 }

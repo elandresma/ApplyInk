@@ -121,15 +121,16 @@ namespace ApplyInk.Prism.ViewModels
 
         }
 
-        private void ForgotPasswordAsync()
+        private async void ForgotPasswordAsync()
         {
-            //TODO: Pending
+            await _navigationService.NavigateAsync(nameof(RecoverPasswordPage));
         }
 
-        private void RegisterAsync()
+        private async void RegisterAsync()
         {
-            //TODO: Pending
+            await _navigationService.NavigateAsync(nameof(RegisterPage));
         }
+
     }
 
 }

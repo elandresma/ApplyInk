@@ -17,11 +17,13 @@ namespace ApplyInk.Prism.ViewModels
 {
     public class TattoerMasterDetailPageViewModel : ViewModelBase
     {
+        private static TattoerMasterDetailPageViewModel _instance;
         private readonly INavigationService _navigationService;
         private UserResponse _user;
 
         public TattoerMasterDetailPageViewModel(INavigationService navigationService) : base(navigationService)
         {
+            _instance = this;
             _navigationService = navigationService;
             LoadMenus();
             LoadUser();
@@ -33,7 +35,12 @@ namespace ApplyInk.Prism.ViewModels
             set => SetProperty(ref _user, value);
         }
 
-        private void LoadUser()
+        public static TattoerMasterDetailPageViewModel GetInstance()
+        {
+            return _instance;
+        }
+
+        public void LoadUser()
         {
             if (Settings.IsLogin)
             {
@@ -47,38 +54,76 @@ namespace ApplyInk.Prism.ViewModels
 
         private void LoadMenus()
         {
-            List<Menu> menus = new List<Menu>
-        {
-            new Menu
-            {
-                Icon = "ic_action_assignment_ind",
-                PageName = $"{nameof(TattoersPage)}",
-                Title = Languages.Tattoers
-            },
-           
-            new Menu
-            {
-                Icon = "ic_action_person",
-                PageName = $"{nameof(ModifyUserPage)}",
-                Title = Languages.ModifyUser,
-                IsLoginRequired = true
-            },
-            new Menu
-            {
-                Icon = "ic_action_exit",
-                PageName = $"{nameof(LoginPage)}",
-                Title = Settings.IsLogin ? Languages.Logout : Languages.Login
-            }
-        };
 
-            Menus = new ObservableCollection<MenuItemViewModel>(
-                menus.Select(m => new MenuItemViewModel(_navigationService)
+            if (Settings.IsLogin)
+            {
+
+                List<Menu> menus = new List<Menu>
                 {
-                    Icon = m.Icon,
-                    PageName = m.PageName,
-                    Title = m.Title,
-                    IsLoginRequired = m.IsLoginRequired
-                }).ToList());
+                    new Menu
+                    {
+                        Icon = "ic_action_assignment_ind",
+                        PageName = $"{nameof(TattoersPage)}",
+                        Title = Languages.Tattoers
+                    },
+
+                    new Menu
+                    {
+                        Icon = "ic_action_person",
+                        PageName = $"{nameof(ModifyUserPage)}",
+                        Title = Languages.ModifyUser,
+                        IsLoginRequired = true
+                    },
+                    new Menu
+                    {
+                        Icon = "ic_action_exit",
+                        PageName = $"{nameof(LoginPage)}",
+                        Title = Settings.IsLogin ? Languages.Logout : Languages.Login
+                    }
+                };
+
+                  Menus = new ObservableCollection<MenuItemViewModel>(
+                     menus.Select(m => new MenuItemViewModel(_navigationService)
+                     {
+                       Icon = m.Icon,
+                       PageName = m.PageName,
+                       Title = m.Title,
+                       IsLoginRequired = m.IsLoginRequired
+                     }).ToList());
+
+            }else {
+                List<Menu> menus = new List<Menu>
+                {
+                    new Menu
+                    {
+                        Icon = "ic_action_assignment_ind",
+                        PageName = $"{nameof(TattoersPage)}",
+                        Title = Languages.Tattoers
+                    },
+                    new Menu
+                    {
+                        Icon = "ic_action_exit",
+                        PageName = $"{nameof(LoginPage)}",
+                        Title = Settings.IsLogin ? Languages.Logout : Languages.Login
+                    }
+                };
+
+                Menus = new ObservableCollection<MenuItemViewModel>(
+                   menus.Select(m => new MenuItemViewModel(_navigationService)
+                   {
+                       Icon = m.Icon,
+                       PageName = m.PageName,
+                       Title = m.Title,
+                       IsLoginRequired = m.IsLoginRequired
+                   }).ToList());
+
+
+
+
+
+
+
+            }
         }
     }
 

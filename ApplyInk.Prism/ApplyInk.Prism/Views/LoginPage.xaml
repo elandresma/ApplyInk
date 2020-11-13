@@ -11,7 +11,6 @@
               x:Class="ApplyInk.Prism.Views.LoginPage"
              BackgroundColor="{StaticResource ColorBackground}"
              Title="{Binding Title}">
-
     <AbsoluteLayout>
         <StackLayout AbsoluteLayout.LayoutBounds="0,0,1,1"
                      AbsoluteLayout.LayoutFlags="All" 
@@ -75,4 +74,3 @@
     </AbsoluteLayout>
 
 </ContentPage>
-

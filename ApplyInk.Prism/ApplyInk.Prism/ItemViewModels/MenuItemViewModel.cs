@@ -1,5 +1,6 @@
 ﻿using ApplyInk.Common.Helpers;
 using ApplyInk.Common.Models;
+using ApplyInk.Prism.Helpers;
 using ApplyInk.Prism.Views;
 using Prism.Commands;
 using Prism.Navigation;
@@ -30,8 +31,20 @@ namespace ApplyInk.Prism.ItemViewModels
                 Settings.Token = null;
             }
 
-            await _navigationService.NavigateAsync($"/{nameof(TattoerMasterDetailPage)}/NavigationPage/{PageName}");
+            if (IsLoginRequired && !Settings.IsLogin)
+            {
+                await App.Current.MainPage.DisplayAlert(Languages.Error, Languages.LoginFirstMessage, Languages.Accept);
+                NavigationParameters parameters = new NavigationParameters
+        {
+            { "pageReturn", PageName }
+        };
+
+                await _navigationService.NavigateAsync($"/{nameof(TattoerMasterDetailPage)}/NavigationPage/{nameof(LoginPage)}", parameters);
+            }
+            else
+            {
+                await _navigationService.NavigateAsync($"/{nameof(TattoerMasterDetailPage)}/NavigationPage/{PageName}");
+            }
         }
     }
-
 }

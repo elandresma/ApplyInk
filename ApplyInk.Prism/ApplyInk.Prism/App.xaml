@@ -11,6 +11,8 @@
 
             <!-- Parameters -->
             <x:String x:Key="UrlAPI">https://applyinkweb.azurewebsites.net/</x:String>
+            <x:String x:Key="UrlNoImage">https://applyinkweb.azurewebsites.net/images/noimage.png</x:String>
+
 
             <!-- Colors -->
             <Color x:Key="ColorBackground">#F2EBE9</Color>
@@ -39,11 +41,7 @@
             <Style x:Key="DangerButton" TargetType="Button">
                 <Setter Property="BackgroundColor" Value="{StaticResource ColorDanger}" />
             </Style>
-
-
-
+            
         </ResourceDictionary>
-
-
     </Application.Resources>
 </prism:PrismApplication>
