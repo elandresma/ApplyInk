@@ -25,7 +25,7 @@ namespace ApplyInk.Common.Responses
 
         public string ImageFullPath => ImageId == Guid.Empty
        ? $"https://applyinkweb.azurewebsites.net/images/noimage.png"
-       : $"https://applyink.blob.core.windows.net/users/{ImageId}";
+       : $"https://applylnk.blob.core.windows.net/users/{ImageId}";
 
         public UserType UserType { get; set; }
 
