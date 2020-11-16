@@ -369,4 +369,19 @@
   <data name="Delete" xml:space="preserve">
     <value>Delete</value>
   </data>
+  <data name="Shop" xml:space="preserve">
+    <value>Shop</value>
+  </data>
+  <data name="Categories" xml:space="preserve">
+    <value>Categories</value>
+  </data>
+  <data name="ContactInformation" xml:space="preserve">
+    <value>Contact Information</value>
+  </data>
+  <data name="BasicProfile" xml:space="preserve">
+    <value>Basic Profile</value>
+  </data>
+  <data name="TattoerDetails" xml:space="preserve">
+    <value>Tattoer Details</value>
+  </data>
 </root>

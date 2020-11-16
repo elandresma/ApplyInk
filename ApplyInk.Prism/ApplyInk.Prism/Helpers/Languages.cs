@@ -187,6 +187,16 @@ namespace ApplyInk.Prism.Helpers
 
         public static string Delete => Resource.Delete;
 
+        public static string Shop => Resource.Shop;
+
+        public static string Categories => Resource.Categories;
+
+        public static string ContactInformation => Resource.ContactInformation;
+
+        public static string BasicProfile => Resource.BasicProfile;
+
+        public static string TattoerDetails => Resource.TattoerDetails;
+
 
     }
 

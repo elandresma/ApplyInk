@@ -3,10 +3,205 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="http://prismlibrary.com"
              prism:ViewModelLocator.AutowireViewModel="True"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:ffimageloadingTrans="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             xmlns:local="clr-namespace:ApplyInk.Prism" 
              xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
              ios:Page.UseSafeArea="true"
+             xmlns:busyindicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
+             xmlns:i18n="clr-namespace:ApplyInk.Prism.Helpers"
              BackgroundColor="{StaticResource ColorBackground}"
              x:Class="ApplyInk.Prism.Views.TattoerDetailPage"
              Title="{Binding Title}">
-  
+
+    <AbsoluteLayout>
+        <StackLayout AbsoluteLayout.LayoutBounds="0,0,1,1"
+                     AbsoluteLayout.LayoutFlags="All"
+                     Padding="5">
+            <ScrollView>
+                <StackLayout>
+                    <StackLayout Spacing="0">
+                        <ffimageloading:CachedImage Aspect="AspectFit"
+                                                    Source="{Binding Tattoer.ImageFullPath}" 
+                                                    CacheDuration= "50"
+                                                    HeightRequest="150"
+                                                    Margin="5"
+                                                    RetryCount= "3"
+                                                    RetryDelay= "600">
+                            <ffimageloading:CachedImage.Transformations>
+                                <ffimageloadingTrans:CircleTransformation />
+                            </ffimageloading:CachedImage.Transformations>
+                        </ffimageloading:CachedImage>
+                    </StackLayout>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Label  
+                            Grid.Row="0"
+                            Grid.Column="1"
+                            Padding="5"
+                            Text="{i18n:Translate BasicProfile}"
+                            FontSize="Title"
+                            FontAttributes="Bold"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"/>
+                    </Grid>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Image Grid.Row="0"
+                               Grid.Column="0"
+                               Source="ic_action_face"
+                               Aspect="AspectFit"
+                               HeightRequest="35"
+                               HorizontalOptions="Start"
+                               VerticalOptions="Center"/>
+                        <Label Grid.Row="0"
+                               Grid.Column="1"
+                               Text="{Binding Tattoer.FullName}"
+                               HorizontalOptions="Start"
+                               VerticalOptions="Center"/>
+                        <Image Grid.Row="1"
+                               Grid.Column="0"
+                               Source="ic_action_language"
+                               Aspect="AspectFit"
+                               HeightRequest="35"
+                               HorizontalOptions="Start"
+                               VerticalOptions="Center"/>
+                        <local:HyperlinkLabel
+                               Grid.Row="1"
+                               Grid.Column="1"
+                               Text="{Binding Tattoer.SocialNetworkURL}"
+                               Url="{Binding Tattoer.SocialNetworkURL}"
+                               HorizontalOptions="Start"
+                               VerticalOptions="Center"/>
+                    </Grid>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Image Grid.Row="0"
+                               Grid.Column="0"
+                               Source="ic_action_store"
+                               Aspect="AspectFit"
+                               HeightRequest="35"
+                               HorizontalOptions="Start"
+                               VerticalOptions="Center"/>
+                        <Label Grid.Row="0"
+                               Grid.Column="1"
+                               FontAttributes="Bold"
+                               Text="{i18n:Translate Shop}"
+                               HorizontalOptions="Start"
+                               VerticalOptions="Center"/>
+                        <Label Grid.Row="0"
+                               Grid.Column="2"
+                               Text="{Binding Tattoer.Shop.Name}"
+                               HorizontalOptions="Start"
+                               VerticalOptions="Center"/>
+                        <Image Grid.Row="1"
+                               Grid.Column="0"
+                               Source="ic_action_list_alt"
+                               Aspect="AspectFit"
+                               HeightRequest="35"
+                               HorizontalOptions="Start"
+                               VerticalOptions="Center"/>
+                        <Label Grid.Row="1"
+                               Grid.Column="1"
+                               FontAttributes="Bold"
+                               Text="{i18n:Translate Categories}"
+                               HorizontalOptions="Start"
+                               VerticalOptions="Center"/>
+                    </Grid>
+                    <ScrollView>
+                    <StackLayout>
+
+                            <ListView VerticalScrollBarVisibility="Always"
+                                      HeightRequest="100"
+                                      ItemsSource="{Binding Categories}">
+                                        <ListView.ItemTemplate>
+                                            <DataTemplate>
+                                                <TextCell Text="{Binding Name}" />
+                                            </DataTemplate>
+                                        </ListView.ItemTemplate>
+                            </ListView>
+                    </StackLayout>
+                    </ScrollView>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Label  
+                            Grid.Row="0"
+                            Grid.Column="1"
+                            Padding="5"
+                            Text="{i18n:Translate ContactInformation}"
+                            FontSize="Title"
+                            FontAttributes="Bold"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"/>
+                    </Grid>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Image Grid.Row="0"
+                               Grid.Column="0"
+                               Source="ic_action_contact_mail"
+                               Aspect="AspectFit"
+                               HeightRequest="35"
+                               HorizontalOptions="Start"
+                               VerticalOptions="Center"/>
+                        <Label Grid.Row="0"
+                               Grid.Column="1"
+                               Text="{Binding Tattoer.Email}"
+                               HorizontalOptions="Start"
+                               VerticalOptions="Center"/>
+                        <Image Grid.Row="1"
+                               Grid.Column="0"
+                               Source="ic_action_contact_phone"
+                               Aspect="AspectFit"
+                               HeightRequest="35"
+                               HorizontalOptions="Start"
+                               VerticalOptions="Center"/>
+                        <Label Grid.Row="1"
+                               Grid.Column="1"
+                               Text="{Binding Tattoer.PhoneNumber}"
+                               HorizontalOptions="Start"
+                               VerticalOptions="Center"/>
+
+                    </Grid>
+                </StackLayout>
+
+
+            </ScrollView>
+
+        </StackLayout>
+
+    </AbsoluteLayout>
+
 </ContentPage>
