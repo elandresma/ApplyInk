@@ -17,7 +17,7 @@
         <StackLayout AbsoluteLayout.LayoutBounds="0,0,1,1"
                      AbsoluteLayout.LayoutFlags="All" 
                      Padding="5">
-            <SearchBar Placeholder="{i18n:Translate SearchProduct}"
+            <SearchBar Placeholder="{i18n:Translate SearchTattoer}"
                 SearchCommand="{Binding SearchCommand}"
                 Text="{Binding Search}"/>
 

@@ -57,7 +57,7 @@
                                                    ContainerType="Outlined">
                         <Entry Placeholder="{i18n:Translate PhonePlaceHolder}" 
                                Keyboard="Telephone"
-                               Text="{Binding User.Phone}" />
+                               Text="{Binding User.PhoneNumber}" />
                     </inputLayout:SfTextInputLayout>
                 </StackLayout>
             </ScrollView>

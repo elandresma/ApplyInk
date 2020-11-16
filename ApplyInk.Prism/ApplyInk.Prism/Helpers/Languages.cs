@@ -28,7 +28,7 @@ namespace ApplyInk.Prism.Helpers
 
         public static string Loading => Resource.Loading;
 
-        public static string SearchProduct => Resource.SearchProduct;
+        public static string SearchTattoer => Resource.SearchTattoer;
 
         public static string Name => Resource.Name;
 

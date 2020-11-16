@@ -799,11 +799,11 @@ namespace ApplyInk.Prism.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Search a product....
+        ///   Looks up a localized string similar to Search a tattoer....
         /// </summary>
-        internal static string SearchProduct {
+        internal static string SearchTattoer {
             get {
-                return ResourceManager.GetString("SearchProduct", resourceCulture);
+                return ResourceManager.GetString("SearchTattoer", resourceCulture);
             }
         }
         
