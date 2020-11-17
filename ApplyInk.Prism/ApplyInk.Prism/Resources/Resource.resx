@@ -138,14 +138,14 @@
   <data name="Description" xml:space="preserve">
     <value>Description</value>
   </data>
-  <data name="Category" xml:space="preserve">
-    <value>Category</value>
-  </data>
   <data name="Tattoer" xml:space="preserve">
     <value>Tattoer</value>
   </data>
   <data name="Tattoers" xml:space="preserve">
     <value>Tattoers</value>
+  </data>
+    <data name="TattoersForCategory" xml:space="preserve">
+    <value>Tattoers For Category</value>
   </data>
   <data name="Login" xml:space="preserve">
     <value>Login</value>
@@ -257,6 +257,15 @@
   </data>
   <data name="CountryPlaceHolder" xml:space="preserve">
     <value>Select your country...</value>
+  </data>
+  <data name="Category" xml:space="preserve">
+    <value>Category</value>
+  </data>
+  <data name="CategoryError" xml:space="preserve">
+    <value>You must select a Category.</value>
+  </data>
+  <data name="CategoryPlaceHolder" xml:space="preserve">
+    <value>Select your category...</value>
   </data>
   <data name="PasswordConfirm" xml:space="preserve">
     <value>Password confirm</value>

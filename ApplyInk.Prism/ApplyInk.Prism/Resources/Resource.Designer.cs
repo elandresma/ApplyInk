@@ -133,6 +133,24 @@ namespace ApplyInk.Prism.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You must select a Category..
+        /// </summary>
+        internal static string CategoryError {
+            get {
+                return ResourceManager.GetString("CategoryError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select your category....
+        /// </summary>
+        internal static string CategoryPlaceHolder {
+            get {
+                return ResourceManager.GetString("CategoryPlaceHolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Change Password.
         /// </summary>
         internal static string ChangePassword {
@@ -840,6 +858,15 @@ namespace ApplyInk.Prism.Resources {
         internal static string Tattoers {
             get {
                 return ResourceManager.GetString("Tattoers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tattoers For Category.
+        /// </summary>
+        internal static string TattoersForCategory {
+            get {
+                return ResourceManager.GetString("TattoersForCategory", resourceCulture);
             }
         }
         

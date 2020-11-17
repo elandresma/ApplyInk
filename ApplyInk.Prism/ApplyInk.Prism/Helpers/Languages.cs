@@ -197,6 +197,12 @@ namespace ApplyInk.Prism.Helpers
 
         public static string TattoerDetails => Resource.TattoerDetails;
 
+        public static string TattoersForCategory => Resource.TattoersForCategory;
+
+        public static string CategoryError => Resource.CategoryError;
+
+        public static string CategoryPlaceHolder => Resource.CategoryPlaceHolder;
+
 
     }
 

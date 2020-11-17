@@ -74,6 +74,15 @@ namespace ApplyInk.Prism.ViewModels
                         Title = Languages.ModifyUser,
                         IsLoginRequired = true
                     },
+
+                    new Menu
+                    {
+                        Icon = "ic_action_list_alt",
+                        PageName = $"{nameof(TattoersForCategoryPage)}",
+                        Title = Languages.TattoersForCategory,
+                        IsLoginRequired = true
+                    },
+
                     new Menu
                     {
                         Icon = "ic_action_exit",
