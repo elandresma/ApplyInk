@@ -2,28 +2,22 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
-using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
-namespace ApplyInk.Web.Data.Entities
+namespace ApplyInk.Web.Models
 {
-    public class Meeting
+    public class DetailsMeetingViewModel
     {
-        public int Id { get; set; }
-
-        [JsonIgnore]
-        [NotMapped]
-        public ICollection<MasterDetailMeeting> masterDetailMeeting { get; set; }
-        public Shop Shop { get; set; }
+        public string NameUser { get; set; }
+        public string NameTattooer { get; set; }
+        public string NameShop { get; set; }
 
         public StatusMeeting Status { get; set; }
 
         [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd hh:mm tt}")]
         public DateTime Date { get; set; }
 
-        [Display(Name = "Date")]
         [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd hh:mm tt}")]
         public DateTime DateLocal => Date.ToLocalTime();
 

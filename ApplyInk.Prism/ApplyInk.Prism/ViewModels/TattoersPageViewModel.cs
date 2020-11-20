@@ -128,7 +128,7 @@ namespace ApplyInk.Prism.ViewModels
 
                 })
                     .Where(t => t.FullName.ToLower().Contains(Search.ToLower()))
-                    .ToList());
+                    .ToList()) ;
 
 
             }

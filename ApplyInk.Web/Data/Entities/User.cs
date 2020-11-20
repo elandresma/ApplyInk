@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -47,6 +48,8 @@ namespace ApplyInk.Web.Data.Entities
         [Display(Name = "User")]
         public string FullName => $"{FirstName} {LastName}";
 
+        [JsonIgnore]
+        [NotMapped]
         public ICollection<MasterDetailMeeting> masterDetailMeeting { get; set; }
     }
 }

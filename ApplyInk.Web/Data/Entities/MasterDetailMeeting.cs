@@ -11,5 +11,6 @@ namespace ApplyInk.Web.Data.Entities
         public Meeting meeting { get; set; }
 
         public User user { get; set; }
+
     }
 }
