@@ -16,6 +16,15 @@ namespace ApplyInk.Web.Data.Entities
         [Required]
         public string Name { get; set; }
 
+        [MaxLength(100)]
+        public string Address { get; set; }
+
+        [DisplayFormat(DataFormatString = "{0:N4}")]
+        public double Latitude { get; set; }
+
+        [DisplayFormat(DataFormatString = "{0:N4}")]
+        public double Logitude { get; set; }
+
         [JsonIgnore]
         [NotMapped]
         public int IdCity { get; set; }

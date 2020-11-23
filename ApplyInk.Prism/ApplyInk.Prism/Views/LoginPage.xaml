@@ -19,23 +19,23 @@
                 <StackLayout>
                     <Image HeightRequest="150"
                            Margin="20"
-                           Source="onsale"/>
+                           Source="Logo"/>
 
                     <StackLayout VerticalOptions="CenterAndExpand">
-                        <inputLayout:SfTextInputLayout Hint="{i18n:Translate Email}" 
-                                                       ContainerType="Outlined">
+                        <!--<inputLayout:SfTextInputLayout Hint="{i18n:Translate Email}" 
+                                                       ContainerType="Outlined">-->
                             <Entry Placeholder="{i18n:Translate EmailPlaceHolder}"
                                    Keyboard="Email"
                                    Text="{Binding Email}" />
-                        </inputLayout:SfTextInputLayout>
+                        <!--</inputLayout:SfTextInputLayout>
 
                         <inputLayout:SfTextInputLayout Hint="{i18n:Translate Password}" 
                                                        EnablePasswordVisibilityToggle="true"
-                                                       ContainerType="Outlined">
+                                                       ContainerType="Outlined">-->
                             <Entry Placeholder="{i18n:Translate PasswordPlaceHolder}" 
                                    IsPassword="True"
                                    Text="{Binding Password}" />
-                        </inputLayout:SfTextInputLayout>
+                        <!--</inputLayout:SfTextInputLayout>-->
                     </StackLayout>
 
                     <Label FontAttributes="Bold"

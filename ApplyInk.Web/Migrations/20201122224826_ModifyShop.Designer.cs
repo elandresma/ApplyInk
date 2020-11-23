@@ -4,14 +4,16 @@ using ApplyInk.Web.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ApplyInk.Web.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20201122224826_ModifyShop")]
+    partial class ModifyShop
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -153,10 +155,6 @@ namespace ApplyInk.Web.Migrations
                         .HasMaxLength(100);
 
                     b.Property<int?>("CityId");
-
-                    b.Property<double>("Latitude");
-
-                    b.Property<double>("Logitude");
 
                     b.Property<string>("Name")
                         .IsRequired()
