@@ -25,7 +25,7 @@ namespace ApplyInk.Prism.ViewModels
         private bool _isEnabled;
         private string _search;
         private CategoryResponse _category;
-        private List<UserResponse> _myUsers;
+        private List<UserResponse> _myUsers = new List<UserResponse>();
         private List<UserResponse> _myUsers2;
         private UserResponse _user;
         private DelegateCommand _searchCommand;
@@ -161,9 +161,28 @@ namespace ApplyInk.Prism.ViewModels
                 return;
             }
 
-            
+                       
             _myUsers2 = (List<UserResponse>)response.Result;
-            _myUsers = _myUsers2.Where(t => t.Categories.Contains(Category)).ToList();
+
+            foreach ( var tattoer in _myUsers2)
+            {
+                if (tattoer.Categories != null)
+                {
+                    var flag = 0;
+                    foreach (var categories in tattoer.Categories)
+                    {
+                        
+                        if (categories.Name.ToString() == Category.Name && flag == 0)
+                        {
+                            _myUsers.Add(tattoer);
+                            flag = 1;
+                        }
+                    }
+                }
+
+            }
+
+            //_myUsers = _myUsers2.Where(t => t.Categories.Contains(Category)).ToList();
 
             ShowUsers();
         }

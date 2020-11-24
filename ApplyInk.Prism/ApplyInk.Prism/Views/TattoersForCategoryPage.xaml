@@ -20,21 +20,10 @@
         <StackLayout AbsoluteLayout.LayoutBounds="0,0,1,1"
                      AbsoluteLayout.LayoutFlags="All" 
                      Padding="5">
+            <SearchBar Placeholder="{i18n:Translate SearchTattoer}"
+                SearchCommand="{Binding SearchCommand}"
+                Text="{Binding Search}"/>
 
-
-            <StackLayout>
-                <inputLayout:SfTextInputLayout Hint="{i18n:Translate Category}" 
-                                                   ContainerType="Outlined">
-                    <Picker x:Name="picker"
-                            ItemDisplayBinding="{Binding Name}"
-                                ItemsSource="{Binding Categories}"
-                            SelectedItem="{Binding Category}"
-                                Title="{i18n:Translate CategoryPlaceHolder}"/>
-                </inputLayout:SfTextInputLayout>
-                
-                
-                
-            </StackLayout>
 
             <CollectionView ItemsSource="{Binding Tattoers}">
                 <CollectionView.ItemsLayout>
