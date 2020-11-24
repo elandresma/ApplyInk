@@ -182,57 +182,8 @@ namespace ApplyInk.Prism.ViewModels
 
             }
 
-            //_myUsers = _myUsers2.Where(t => t.Categories.Contains(Category)).ToList();
-
             ShowUsers();
         }
-
-
-
-        //private void ShowUsers()
-        //{
-        //    if (Category.Name == null)
-        //    {
-        //        Tattoers = new ObservableCollection<TattoerItemViewModel>(_myUsers.Select(t => new TattoerItemViewModel(_navigationService)
-        //        {
-
-        //            Id = t.Id,
-        //            SocialNetworkURL = t.SocialNetworkURL,
-        //            Address = t.Address,
-        //            Categories = t.Categories,
-        //            Email = t.Email,
-        //            PhoneNumber = t.PhoneNumber,
-        //            FirstName = t.FirstName,
-        //            LastName = t.LastName,
-        //            ImageId = t.ImageId,
-        //            Shop = t.Shop
-
-        //        })
-        //            .ToList());
-        //    }
-        //    else
-        //    {
-        //        Tattoers = new ObservableCollection<TattoerItemViewModel>(_myUsers.Select(t => new TattoerItemViewModel(_navigationService)
-        //        {
-
-        //            Id = t.Id,
-        //            SocialNetworkURL = t.SocialNetworkURL,
-        //            Address = t.Address,
-        //            Categories = t.Categories,
-        //            Email = t.Email,
-        //            PhoneNumber = t.PhoneNumber,
-        //            FirstName = t.FirstName,
-        //            LastName = t.LastName,
-        //            ImageId = t.ImageId,
-        //            Shop = t.Shop
-
-        //        })
-        //            .Where(t => t.Categories == Category)
-        //            .ToList());
-
-
-        //    }
-        //}
 
         private void ShowUsers()
         {

@@ -71,13 +71,13 @@
       <Version>6.0.1</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.Core">
-      <Version>18.3.0.50</Version>
+      <Version>18.3.0.51</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfBusyIndicator">
-      <Version>18.3.0.50</Version>
+      <Version>18.3.0.51</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfDataGrid">
-      <Version>18.3.0.50</Version>
+      <Version>18.3.0.51</Version>
     </PackageReference>
     <PackageReference Include="Xam.Plugin.Geolocator">
       <Version>4.6.2-beta</Version>
