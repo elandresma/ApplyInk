@@ -1,9 +1,14 @@
 ﻿using ApplyInk.Common.Responses;
 using ApplyInk.Common.Services;
+using ApplyInk.Prism.Helpers;
+using ApplyInk.Prism.ItemViewModels;
 using Plugin.Geolocator.Abstractions;
 using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
+using Prism.Navigation;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -16,6 +21,9 @@ namespace ApplyInk.Prism.Views
     {
         private readonly IGeolocatorService _geolocatorService;
         private ApiService _apiService;
+        private readonly INavigationService _navigationService;
+        private List<UserResponse> _myUsers;
+     
         public MapPage(IGeolocatorService geolocatorService, ApiService apiService)
         {
             InitializeComponent();
@@ -27,10 +35,11 @@ namespace ApplyInk.Prism.Views
         {
             base.OnAppearing();
             MoveMapToCurrentPositionAsync();
-            LoadUsersAsync();
+            LoadmapssAsync();
+           
         }
 
-        private async void LoadUsersAsync()
+        private async void LoadmapssAsync()
         {
             if (Connectivity.NetworkAccess != NetworkAccess.Internet)
             {

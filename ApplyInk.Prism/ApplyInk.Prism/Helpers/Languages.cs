@@ -203,6 +203,9 @@ namespace ApplyInk.Prism.Helpers
 
         public static string CategoryPlaceHolder => Resource.CategoryPlaceHolder;
 
+        public static string ChangeOnSocialNetwork => Resource.ChangeOnSocialNetwork;
+
+        public static string LoginFacebook => Resource.LoginFacebook;
 
     }
 

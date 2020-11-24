@@ -144,7 +144,7 @@
   <data name="Tattoers" xml:space="preserve">
     <value>Tattoers</value>
   </data>
-    <data name="TattoersForCategory" xml:space="preserve">
+  <data name="TattoersForCategory" xml:space="preserve">
     <value>Tattoers For Category</value>
   </data>
   <data name="Login" xml:space="preserve">
@@ -392,5 +392,11 @@
   </data>
   <data name="TattoerDetails" xml:space="preserve">
     <value>Tattoer Details</value>
+  </data>
+  <data name="ChangeOnSocialNetwork" xml:space="preserve">
+    <value>Cambiar a red Social</value>
+  </data>
+  <data name="LoginFacebook" xml:space="preserve">
+    <value>Login Facebook</value>
   </data>
 </root>

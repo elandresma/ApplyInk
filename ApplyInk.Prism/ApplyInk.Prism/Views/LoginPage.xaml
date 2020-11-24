@@ -24,7 +24,7 @@
                     <StackLayout VerticalOptions="CenterAndExpand">
                         <!--<inputLayout:SfTextInputLayout Hint="{i18n:Translate Email}" 
                                                        ContainerType="Outlined">-->
-                            <Entry Placeholder="{i18n:Translate EmailPlaceHolder}"
+                        <Entry Placeholder="{i18n:Translate EmailPlaceHolder}"
                                    Keyboard="Email"
                                    Text="{Binding Email}" />
                         <!--</inputLayout:SfTextInputLayout>
@@ -32,7 +32,7 @@
                         <inputLayout:SfTextInputLayout Hint="{i18n:Translate Password}" 
                                                        EnablePasswordVisibilityToggle="true"
                                                        ContainerType="Outlined">-->
-                            <Entry Placeholder="{i18n:Translate PasswordPlaceHolder}" 
+                        <Entry Placeholder="{i18n:Translate PasswordPlaceHolder}" 
                                    IsPassword="True"
                                    Text="{Binding Password}" />
                         <!--</inputLayout:SfTextInputLayout>-->
@@ -54,6 +54,15 @@
                 <Button Command="{Binding LoginCommand}" 
                         IsEnabled="{Binding IsEnabled}"
                         Text="{i18n:Translate Login}"/>
+                
+                <Button BackgroundColor="#4768AD" 
+            Command="{Binding LoginFacebookCommand}"
+            HeightRequest="45"
+            IsEnabled="{Binding IsEnabled}"
+            ImageSource="ic_facebook"
+            Text="{i18n:Translate LoginFacebook}"
+            TextColor="#FFFFFF"/>
+                
                 <Button Command="{Binding RegisterCommand}" 
                         IsEnabled="{Binding IsEnabled}"
                         Text="{i18n:Translate Register}"
@@ -72,5 +81,4 @@
                 	                   ViewBoxWidth="80"
                 	                   ViewBoxHeight="80" />
     </AbsoluteLayout>
-
 </ContentPage>
