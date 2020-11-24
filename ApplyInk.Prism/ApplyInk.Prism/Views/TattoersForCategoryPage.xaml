@@ -13,10 +13,10 @@
             BackgroundColor="{StaticResource ColorBackground}"
             x:Class="ApplyInk.Prism.Views.TattoersForCategoryPage"
             Title="{Binding Title}">
-    
+
     <AbsoluteLayout>
 
-    
+
         <StackLayout AbsoluteLayout.LayoutBounds="0,0,1,1"
                      AbsoluteLayout.LayoutFlags="All" 
                      Padding="5">

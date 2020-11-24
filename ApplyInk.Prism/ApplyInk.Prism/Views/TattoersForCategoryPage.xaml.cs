@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using ApplyInk.Prism.ViewModels;
+using Xamarin.Forms;
 
 namespace ApplyInk.Prism.Views
 {
@@ -7,6 +8,7 @@ namespace ApplyInk.Prism.Views
         public TattoersForCategoryPage()
         {
             InitializeComponent();
+           
         }
     }
 }

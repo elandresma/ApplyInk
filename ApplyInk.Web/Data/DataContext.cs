@@ -25,6 +25,7 @@ namespace ApplyInk.Web.Data
         public DbSet<Shop> Shops { get; set; }
 
         public DbSet<Meeting> Meetings { get; set; }
+
         public DbSet<MasterDetailMeeting> MasterDetailMeetings { get; set; }
 
 

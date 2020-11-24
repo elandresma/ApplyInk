@@ -35,30 +35,30 @@
                         </ffimageloading:CachedImage.GestureRecognizers>
                     </ffimageloading:CachedImage>
 
-                    <inputLayout:SfTextInputLayout Hint="{i18n:Translate FirstName}" 
-                                                   ContainerType="Outlined">
+                    <!--<inputLayout:SfTextInputLayout Hint="{i18n:Translate FirstName}" 
+                                                   ContainerType="Outlined">-->
                         <Entry Placeholder="{i18n:Translate FirstNamePlaceHolder}" 
                                Text="{Binding User.FirstName}" />
-                    </inputLayout:SfTextInputLayout>
+                    <!--</inputLayout:SfTextInputLayout>
 
                     <inputLayout:SfTextInputLayout Hint="{i18n:Translate LastName}" 
-                                                   ContainerType="Outlined">
+                                                   ContainerType="Outlined">-->
                         <Entry Placeholder="{i18n:Translate LastName}" 
                                Text="{Binding User.LastName}" />
-                    </inputLayout:SfTextInputLayout>
+                    <!--</inputLayout:SfTextInputLayout>
                
                     <inputLayout:SfTextInputLayout Hint="{i18n:Translate Address}" 
-                                                   ContainerType="Outlined">
+                                                   ContainerType="Outlined">-->
                         <Entry Placeholder="{i18n:Translate AddressPlaceHolder}" 
                                Text="{Binding User.Address}" />
-                    </inputLayout:SfTextInputLayout>
+                    <!--</inputLayout:SfTextInputLayout>
 
                     <inputLayout:SfTextInputLayout Hint="{i18n:Translate Phone} " 
-                                                   ContainerType="Outlined">
+                                                   ContainerType="Outlined">-->
                         <Entry Placeholder="{i18n:Translate PhonePlaceHolder}" 
                                Keyboard="Telephone"
                                Text="{Binding User.PhoneNumber}" />
-                    </inputLayout:SfTextInputLayout>
+                    <!--</inputLayout:SfTextInputLayout>-->
                 </StackLayout>
             </ScrollView>
             <StackLayout Orientation="Horizontal"

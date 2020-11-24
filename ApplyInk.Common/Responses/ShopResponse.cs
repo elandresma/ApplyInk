@@ -10,6 +10,12 @@ namespace ApplyInk.Common.Responses
 
         public string Name { get; set; }
 
+        public string Address { get; set; }
+     
+        public double Latitude { get; set; }
+     
+        public double Logitude { get; set; }
+
         public int IdCity { get; set; }
 
         public CityResponse City { get; set; }

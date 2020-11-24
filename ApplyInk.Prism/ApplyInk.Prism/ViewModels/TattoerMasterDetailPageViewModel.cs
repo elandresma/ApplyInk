@@ -46,6 +46,7 @@ namespace ApplyInk.Prism.ViewModels
             {
                 TokenResponse token = JsonConvert.DeserializeObject<TokenResponse>(Settings.Token);
                 User = token.User;
+                LoadMenus();
             }
         }
 
@@ -55,11 +56,19 @@ namespace ApplyInk.Prism.ViewModels
         private void LoadMenus()
         {
 
-            if (Settings.IsLogin)
+            if (User != null)
             {
 
                 List<Menu> menus = new List<Menu>
                 {
+
+                      new Menu
+                    {
+                        Icon = "ic_location_on",
+                        PageName = $"{nameof(MapPage)}",
+                        Title = Languages.Shop
+                    },
+
                     new Menu
                     {
                         Icon = "ic_action_assignment_ind",

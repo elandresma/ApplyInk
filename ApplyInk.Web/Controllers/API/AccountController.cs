@@ -283,8 +283,7 @@ namespace ApplyInk.Web.Controllers.API
 
             return Ok(new Response { IsSuccess = true });
         }
-
-        
+       
         [HttpGet]
         [Route("GetTattoers")]
         public async Task<IActionResult> GetTattoers()
@@ -296,13 +295,15 @@ namespace ApplyInk.Web.Controllers.API
                   .Include(s => s.Shop).ThenInclude(s => s.City)
                   .ToListAsync();
             return Ok(users);
-
-
-
-
         }
 
-
+        [HttpGet]
+        [Route("Getshop")]
+        public async Task<IActionResult> Getshop()
+        {
+            List<Shop> shops = await _context.Shops.ToListAsync();          
+            return Ok(shops);
+        }
 
     }
 

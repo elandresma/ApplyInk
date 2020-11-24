@@ -178,21 +178,22 @@ namespace ApplyInk.Web.Data
                                 Name = "Medellín",
                                 Shops = new List<Shop>
                                 {
-                                 new Shop { Name = "Applylnk Medellin"}
+                                 new Shop { Name = "Applylnk Medellin", Address = "Cr 28 # 107-486 ", Latitude = 6.297059486595525, Logitude = -75.53852334335151 }
                                 }
-
+                               
                             },
                                 new City { Name = "Envigado",
                                 Shops = new List<Shop>
                                 {
-                                     new Shop { Name = "Applylnk Envigado"},
-                                     new Shop { Name = "Applylnk Envigado two"}
+                                     new Shop { Name = "Applylnk Envigado", Address = "Cl. 37 Sur ##35-06, Envigado, Antioquia" , Latitude =6.171052080275017, Logitude = -75.58787056146134 },
+                                     new Shop { Name = "Applylnk Envigado two", Address = "Cra. 27g ## 36 Sur - 51, Envigado, Antioquia", Latitude =6.166797326169355 , Logitude = -75.57700469947343 }
+
                                 }
                             },
                             new City { Name = "Itagüí",
                             Shops = new List<Shop>
                                 {
-                                 new Shop { Name = "Applylnk Itagüí"}
+                                 new Shop { Name = "Applylnk Itagüí", Address = "Cra. 50A ## 38 - 38, Itagüi, Antioquia", Latitude = 6.172613978619887, Logitude = -75.6100090017207}
                                 }
                             }
                         }
@@ -205,19 +206,19 @@ namespace ApplyInk.Web.Data
                             new City { Name = "Albania",
                                 Shops = new List<Shop>
                                 {
-                                 new Shop { Name = "Applylnk Albania"}
+                                 new Shop { Name = "Applylnk Albania", Address = "Carrera 30, Tumaco, San Andres de Tumaco, Nariño", Latitude = 1.7872548724952042 , Logitude = -78.783922663065}
                                 }
                             },
                              new City { Name = "Distracción",
                                 Shops = new List<Shop>
                                 {
-                                 new Shop { Name = "Applylnk Distracción"}
+                                 new Shop { Name = "Applylnk Distracción", Address = "Cl. 12 #No. 22A-27, Pasto, Nariño", Latitude = 1.2089128009690464,  Logitude = -77.28207835341424}
                                 }
                              },
                               new City { Name = "Maicao",
                                 Shops = new List<Shop>
                                 {
-                                 new Shop { Name = "Applylnk Maicao"}
+                                 new Shop { Name = "Applylnk Maicao", Address = "Cra. 25 ## 15 62, Pasto, Nariño", Latitude = 1.2140574944949598, Logitude = -77.28101688302809}
                                 }
                               }
                         }
@@ -230,19 +231,19 @@ namespace ApplyInk.Web.Data
                             new City { Name = "Calí",
                                 Shops = new List<Shop>
                                 {
-                                 new Shop { Name = "Applylnk Calí"}
+                                 new Shop { Name = "Applylnk Calí", Address = "Cl. 15 #21-02, Cali, Valle del Cauca", Latitude = 3.4381074240809304, Logitude = -76.52617185735528}
                                 }
                             },
                             new City { Name = "Buenaventura",
                                 Shops = new List<Shop>
                                 {
-                                 new Shop { Name = "Applylnk Buenaventura"}
+                                 new Shop { Name = "Applylnk Buenaventura", Address = "Cra. 44 #4a-84 #4a-2 a, Buenaventura, Valle del Cauca" , Latitude =3.88325407253073 , Logitude = -77.02270863831103}
                                 }
                             },
                             new City { Name = "Palmira",
                                 Shops = new List<Shop>
                                 {
-                                 new Shop { Name = "Applylnk Palmira"}
+                                 new Shop { Name = "Applylnk Palmira", Address = "Cra. 24 Nte. ## 34-62, Palmira, Valle del Cauca" , Latitude = 3.5232093568996268, Logitude = -76.29735353784812}
                                 }
                             }
                         }
@@ -262,19 +263,19 @@ namespace ApplyInk.Web.Data
                             new City { Name = "Chordeleg",
                                 Shops = new List<Shop>
                                 {
-                                 new Shop { Name = "Applylnk Chordeleg"}
+                                 new Shop { Name = "Applylnk Chordeleg", Address = "15 de Octubre, Chordeleg, Ecuador", Latitude =-2.928479512375827 , Logitude =  -78.78015873632873}
                                 }
                             },
                             new City { Name = "Cuenca",
                                 Shops = new List<Shop>
                                 {
-                                 new Shop { Name = "Applylnk Cuenca"}
+                                 new Shop { Name = "Applylnk Cuenca", Address = "Calle Gran Colombia, Cuenca, Ecuador" , Latitude = -2.8953236240920925 , Logitude = -79.00992855130343}
                                 }
                             },
                             new City { Name = "Nabón",
                                 Shops = new List<Shop>
                                 {
-                                 new Shop { Name = "Applylnk Nabón"}
+                                 new Shop { Name = "Applylnk Nabón", Address = "Nabon, Ecuador", Latitude =-3.335201269021675 , Logitude = -79.06567462187886}
                                 }
                             }
                         }
@@ -287,13 +288,13 @@ namespace ApplyInk.Web.Data
                             new City { Name = "Ambato",
                                 Shops = new List<Shop>
                                 {
-                                 new Shop { Name = "Applylnk Ambato"}
+                                 new Shop { Name = "Applylnk Ambato", Address = "Av. Doce de Noviembre, Ambato 180201, Ecuador", Latitude = -1.2399173409953868, Logitude = -78.62587882251391}
                                 }
                             },
                             new City { Name = "Cevallos",
                                 Shops = new List<Shop>
                                 {
-                                 new Shop { Name = "Applylnk Cevallos"}
+                                 new Shop { Name = "Applylnk Cevallos", Address = "Cevallos, Ecuador", Latitude = -1.3470335818655912, Logitude = -78.62069255898653}
                                 }
                             }
                         }
@@ -312,19 +313,19 @@ namespace ApplyInk.Web.Data
                             new City { Name = "Quilmes",
                                 Shops = new List<Shop>
                                 {
-                                 new Shop { Name = "Applylnk Quilmes"}
+                                 new Shop { Name = "Applylnk Quilmes", Address = "Gaboto 649, Quilmes, Provincia de Buenos Aires, Argentina", Latitude = -34.724307909247024,  Logitude = -58.26077077631599}
                                 }
                             },
                             new City { Name = "Mar del Plata",
                                 Shops = new List<Shop>
                                 {
-                                 new Shop { Name = "Applylnk Mar del Plata"}
+                                 new Shop { Name = "Applylnk Mar del Plata", Address = "Arenales 2735, Primera Junta, B7600EGM Mar del Plata, Provincia de Buenos Aires, Argentina" , Latitude =-38.011047895945396 , Logitude = -57.54681654722352}
                                 }
                             },
                             new City { Name = "Bahía Blanca",
                                 Shops = new List<Shop>
                                 {
-                                 new Shop { Name = "Applylnk Bahía Blanca"}
+                                 new Shop { Name = "Applylnk Bahía Blanca", Address = "Sarmiento 2153, B8000 Bahía Blanca, Provincia de Buenos Aires, Argentina" , Latitude = -38.699936704316414, Logitude =  -62.24156744832685}
                                 }
                             }
                         }
@@ -337,19 +338,19 @@ namespace ApplyInk.Web.Data
                             new City { Name = "General Roca",
                                 Shops = new List<Shop>
                                 {
-                                 new Shop { Name = "Applylnk General Roca"}
+                                 new Shop { Name = "Applylnk General Roca", Address = "Av. Gral. Julio Argentino Roca 1343, Gral. Roca, Río Negro, Argentina" , Latitude =-39.03035036573331 , Logitude = -67.57615409383367}
                                 }
                             },
                             new City { Name = "Ischilín",
                                 Shops = new List<Shop>
                                 {
-                                 new Shop { Name = "Applylnk Ischilín"}
+                                 new Shop { Name = "Applylnk Ischilín", Address = "Ischilín, Córdoba, Argentina" , Latitude =-30.4705312378108, Logitude = -64.5809755087245}
                                 }
                             },
                             new City { Name = "Cruz del Eje",
                                 Shops = new List<Shop>
                                 {
-                                 new Shop { Name = "Applylnk Cruz del Eje"}
+                                 new Shop { Name = "Applylnk Cruz del Eje", Address = "X5280 Cruz del Eje, Córdoba, Argentina", Latitude = -30.720397739740605, Logitude = -64.80630593702605 }
                                 }
                             }
                         }
@@ -362,19 +363,19 @@ namespace ApplyInk.Web.Data
                             new City { Name = "Catriló",
                                 Shops = new List<Shop>
                                 {
-                                 new Shop { Name = "Applylnk Catriló"}
+                                 new Shop { Name = "Applylnk Catriló", Address = "Estrada, San Martín y, Catriló, La Pampa, Argentina", Latitude =-36.40543212551708  , Logitude = -63.424586547296585}
                                 }
                             },
                             new City { Name = "Hucal",
                                 Shops = new List<Shop>
                                 {
-                                 new Shop { Name = "Applylnk Hucal"}
+                                 new Shop { Name = "Applylnk Hucal", Address = "Hucal, La Pampa, Argentina", Latitude = -37.7902126033856, Logitude =-64.02369145951667 }
                                 }
                             },
                             new City { Name = "Maracó",
                                 Shops = new List<Shop>
                                 {
-                                 new Shop { Name = "Applylnk Maracó"}
+                                 new Shop { Name = "Applylnk Maracó", Address = "Calle 13 552, L6360 Gral. Pico, La Pampa, Argentina", Latitude = -35.66197529020277, Logitude = -63.75875179168671 }
                                 }
                             }
                         }

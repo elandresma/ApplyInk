@@ -22,8 +22,7 @@
 
             <StackLayout Padding="20">
                 <StackLayout Orientation="Horizontal">
-                    <Image HeightRequest="80"
-                       Source="Applylnk"/>
+
                     <ffimageloading:CachedImage Aspect="AspectFill"
                                                 Source="{Binding User.ImageFullPath}" 
                                                 CacheDuration= "50"
@@ -36,6 +35,7 @@
                             <fftransformations:CircleTransformation />
                         </ffimageloading:CachedImage.Transformations>
                     </ffimageloading:CachedImage>
+
                 </StackLayout>
                 <Label FontAttributes="Bold"
                        FontSize="Large"
@@ -69,6 +69,8 @@
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
+                <Image HeightRequest="100"
+                       Source="Logo"/>
             </StackLayout>
         </ContentPage>
     </MasterDetailPage.Master>
