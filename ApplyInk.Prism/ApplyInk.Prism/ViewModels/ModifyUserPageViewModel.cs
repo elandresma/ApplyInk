@@ -1,4 +1,5 @@
-﻿using ApplyInk.Common.Helpers;
+﻿using ApplyInk.Common.Enums;
+using ApplyInk.Common.Helpers;
 using ApplyInk.Common.Requests;
 using ApplyInk.Common.Responses;
 using ApplyInk.Common.Services;
@@ -31,6 +32,7 @@ namespace ApplyInk.Prism.ViewModels
         private DelegateCommand _changeImageCommand;
         private DelegateCommand _saveCommand;
         private DelegateCommand _changePasswordCommand;
+        private bool _IsapplylnkUser;
 
         public ModifyUserPageViewModel(
             INavigationService navigationService,
@@ -46,8 +48,17 @@ namespace ApplyInk.Prism.ViewModels
             TokenResponse token = JsonConvert.DeserializeObject<TokenResponse>(Settings.Token);
             User = token.User;
             Image = User.ImageFullPath;
-            
+            IsapplylnkUser = User.LoginType == LoginType.Applylnk;
+
+
         }
+
+        public bool IsapplylnkUser
+        {
+            get => _IsapplylnkUser;
+            set => SetProperty(ref _IsapplylnkUser, value);
+        }
+
 
         public DelegateCommand ChangeImageCommand => _changeImageCommand ??
             (_changeImageCommand = new DelegateCommand(ChangeImageAsync));
@@ -85,6 +96,13 @@ namespace ApplyInk.Prism.ViewModels
    
         private async void ChangeImageAsync()
         {
+
+            if (!IsapplylnkUser)
+            {
+                await App.Current.MainPage.DisplayAlert(Languages.Error, Languages.ChangeOnSocialNetwork, Languages.Accept);
+                return;
+            }
+
             await CrossMedia.Current.Initialize();
 
             string source = await Application.Current.MainPage.DisplayActionSheet(
@@ -237,6 +255,13 @@ namespace ApplyInk.Prism.ViewModels
 
         private async void ChangePasswordAsync()
         {
+
+            if (!IsapplylnkUser)
+            {
+                await App.Current.MainPage.DisplayAlert(Languages.Error, Languages.ChangeOnSocialNetwork, Languages.Accept);
+                return;
+            }
+
             await _navigationService.NavigateAsync(nameof(ChangePasswordPage));
         }
 

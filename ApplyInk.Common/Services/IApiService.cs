@@ -1,4 +1,5 @@
-﻿using ApplyInk.Common.Requests;
+﻿using ApplyInk.Common.Models;
+using ApplyInk.Common.Requests;
 using ApplyInk.Common.Responses;
 using ApplyInk.Web.Models;
 using System;
@@ -30,6 +31,9 @@ namespace ApplyInk.Common.Services
         Task<RandomUsers> GetRandomUser(string urlBase, string servicePrefix);
 
         Task<Stream> GetPictureAsync(string urlBase, string servicePrefix);
+
+        Task<Response> GetTokenAsync(string urlBase, string servicePrefix, string controller, FacebookProfile request);
+
 
     }
 }

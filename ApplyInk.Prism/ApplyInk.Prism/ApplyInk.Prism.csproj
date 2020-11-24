@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="EnvDTE" Version="16.7.30508.193" />
+    <PackageReference Include="Plugin.FacebookClient" Version="3.0.7-beta" />
     <PackageReference Include="Plugin.Permissions" Version="6.0.1" />
     <PackageReference Include="Syncfusion.Xamarin.Core" Version="18.3.0.50" />
     <PackageReference Include="Syncfusion.Xamarin.SfBusyIndicator" Version="18.3.0.50" />

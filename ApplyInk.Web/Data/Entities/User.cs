@@ -1,4 +1,5 @@
 ﻿using ApplyInk.Common.Enum;
+using ApplyInk.Common.Enums;
 using Microsoft.AspNetCore.Identity;
 using Newtonsoft.Json;
 using System;
@@ -33,10 +34,30 @@ namespace ApplyInk.Web.Data.Entities
         [Display(Name = "Image")]
         public Guid ImageId { get; set; }
 
-       [Display(Name = "Image")]
-        public string ImageFullPath => ImageId == Guid.Empty
-               ? $"https://applyinkweb.azurewebsites.net/images/noimage.png"
-               : $"https://applylnk.blob.core.windows.net/users/{ImageId}";
+        [Display(Name = "Login Type")]
+        public LoginType LoginType { get; set; }
+
+        public string ImageFacebook { get; set; }
+
+        [Display(Name = "Image")]
+        public string ImageFullPath
+        {
+            get
+            {
+                if (LoginType == LoginType.Facebook && string.IsNullOrEmpty(ImageFacebook) ||
+                    LoginType == LoginType.Applylnk && ImageId == Guid.Empty)
+                {
+                    return $"https://applyinkweb.azurewebsites.net/images/noimage.png";
+                }
+
+                if (LoginType == LoginType.Facebook)
+                {
+                    return ImageFacebook;
+                }
+
+                return $"https://applylnk.blob.core.windows.net/users/{ImageId}";
+            }
+        }
         
         [Display(Name = "User Type")]
         public UserType UserType { get; set; }
