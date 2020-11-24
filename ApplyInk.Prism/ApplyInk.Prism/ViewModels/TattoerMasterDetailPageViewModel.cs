@@ -85,6 +85,14 @@ namespace ApplyInk.Prism.ViewModels
 
                     new Menu
                     {
+                        Icon = "ic_action_list_alt",
+                        PageName = $"{nameof(CategoriesPage)}",
+                        Title = Languages.Categories,
+                        IsLoginRequired = true
+                    },
+
+                    new Menu
+                    {
                         Icon = "ic_action_exit",
                         PageName = $"{nameof(LoginPage)}",
                         Title = Settings.IsLogin ? Languages.Logout : Languages.Login

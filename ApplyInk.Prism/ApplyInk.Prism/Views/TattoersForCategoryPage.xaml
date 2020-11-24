@@ -25,12 +25,15 @@
             <StackLayout>
                 <inputLayout:SfTextInputLayout Hint="{i18n:Translate Category}" 
                                                    ContainerType="Outlined">
-                    <Picker ItemDisplayBinding="{Binding Name}"
+                    <Picker x:Name="picker"
+                            ItemDisplayBinding="{Binding Name}"
                                 ItemsSource="{Binding Categories}"
-                                SelectedItem="{Binding Search}"
-                            
+                            SelectedItem="{Binding Category}"
                                 Title="{i18n:Translate CategoryPlaceHolder}"/>
                 </inputLayout:SfTextInputLayout>
+                
+                
+                
             </StackLayout>
 
             <CollectionView ItemsSource="{Binding Tattoers}">

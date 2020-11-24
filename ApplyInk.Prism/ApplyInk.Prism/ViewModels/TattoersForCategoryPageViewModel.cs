@@ -8,6 +8,7 @@ using Prism.Commands;
 using Prism.Navigation;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using Xamarin.Essentials;
 
@@ -25,6 +26,7 @@ namespace ApplyInk.Prism.ViewModels
         private string _search;
         private CategoryResponse _category;
         private List<UserResponse> _myUsers;
+        private List<UserResponse> _myUsers2;
         private UserResponse _user;
         private DelegateCommand _searchCommand;
         private ObservableCollection<TattoerItemViewModel> _tattoers;
@@ -40,8 +42,7 @@ namespace ApplyInk.Prism.ViewModels
             IsEnabled = true;
             TokenResponse token = JsonConvert.DeserializeObject<TokenResponse>(Settings.Token);
             User = token.User;
-            LoadUsersAsync();
-            LoadCategoriesAsync();
+            
         }
 
 
@@ -127,6 +128,17 @@ namespace ApplyInk.Prism.ViewModels
             Categories = new ObservableCollection<CategoryResponse>(list.OrderBy(c => c.Name));
         }
 
+        public override void OnNavigatedTo(INavigationParameters parameters)
+        {
+            base.OnNavigatedTo(parameters);
+
+            if (parameters.ContainsKey("category"))
+            {
+                Category = parameters.GetValue<CategoryResponse>("category");
+            }
+            LoadUsersAsync();
+        }
+
         private async void LoadUsersAsync()
         {
             if (Connectivity.NetworkAccess != NetworkAccess.Internet)
@@ -149,7 +161,10 @@ namespace ApplyInk.Prism.ViewModels
                 return;
             }
 
-            _myUsers = (List<UserResponse>)response.Result;
+            
+            _myUsers2 = (List<UserResponse>)response.Result;
+            _myUsers = _myUsers2.Where(t => t.Categories.Contains(Category)).ToList();
+
             ShowUsers();
         }
 
@@ -157,7 +172,7 @@ namespace ApplyInk.Prism.ViewModels
 
         //private void ShowUsers()
         //{
-        //    if (Category == null)
+        //    if (Category.Name == null)
         //    {
         //        Tattoers = new ObservableCollection<TattoerItemViewModel>(_myUsers.Select(t => new TattoerItemViewModel(_navigationService)
         //        {
@@ -193,7 +208,7 @@ namespace ApplyInk.Prism.ViewModels
         //            Shop = t.Shop
 
         //        })
-        //            .Where(t => t.Categories.Contains(Category))
+        //            .Where(t => t.Categories == Category)
         //            .ToList());
 
 
