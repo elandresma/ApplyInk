@@ -1,4 +1,6 @@
 ﻿using ApplyInk.Common.Enum;
+using ApplyInk.Common.Enums;
+using ApplyInk.Common.Models;
 using ApplyInk.Web.Data;
 using ApplyInk.Web.Data.Entities;
 using ApplyInk.Web.Models;
@@ -167,6 +169,35 @@ namespace ApplyInk.Web.Helpers
         public async Task<IdentityResult> ResetPasswordAsync(User user, string token, string password)
         {
             return await _userManager.ResetPasswordAsync(user, token, password);
+        }
+
+        public async Task<User> AddUserAsync(FacebookProfile model)
+        {
+            User userEntity = new User
+            {
+                Address = "...",
+               
+                Email = model.Email,
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+                ImageFacebook = model.Picture?.Data?.Url,
+                PhoneNumber = "...",
+                //City = await _context.Cities.FirstOrDefaultAsync(),
+                UserName = model.Email,
+                UserType = UserType.User,
+                LoginType = LoginType.Facebook,
+                ImageId = Guid.Empty
+            };
+
+            IdentityResult result = await _userManager.CreateAsync(userEntity, model.Id);
+            if (result != IdentityResult.Success)
+            {
+                return null;
+            }
+
+            User newUser = await GetUserAsync(model.Email);
+            await AddUserToRoleAsync(newUser, userEntity.UserType.ToString());
+            return newUser;
         }
 
     }

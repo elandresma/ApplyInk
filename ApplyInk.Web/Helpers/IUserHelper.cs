@@ -1,4 +1,5 @@
 ﻿using ApplyInk.Common.Enum;
+using ApplyInk.Common.Models;
 using ApplyInk.Web.Data.Entities;
 using ApplyInk.Web.Models;
 using Microsoft.AspNetCore.Identity;
@@ -36,6 +37,9 @@ namespace ApplyInk.Web.Helpers
         Task<IdentityResult> ConfirmEmailAsync(User user, string token);
         Task<string> GeneratePasswordResetTokenAsync(User user);
         Task<IdentityResult> ResetPasswordAsync(User user, string token, string password);
+
+        Task<User> AddUserAsync(FacebookProfile model);
+
 
 
     }

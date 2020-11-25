@@ -1,4 +1,5 @@
-﻿using ApplyInk.Common.Requests;
+﻿using ApplyInk.Common.Models;
+using ApplyInk.Common.Requests;
 using ApplyInk.Common.Responses;
 using ApplyInk.Web.Models;
 using Newtonsoft.Json;
@@ -352,15 +353,13 @@ namespace ApplyInk.Common.Services
                 };
             }
         }
-        public async Task<Response> CreateMeetingAsync<T>(
-         string urlBase,
-         string servicePrefix,
-         string controller, MeetingRequest meeting)
+
+        public async Task<Response> GetTokenAsync(string urlBase, string servicePrefix, string controller, FacebookProfile request)
         {
             try
             {
-                string request = JsonConvert.SerializeObject(meeting);
-                StringContent content = new StringContent(request, Encoding.UTF8, "application/json");
+                string requestString = JsonConvert.SerializeObject(request);
+                StringContent content = new StringContent(requestString, Encoding.UTF8, "application/json");
                 HttpClient client = new HttpClient
                 {
                     BaseAddress = new Uri(urlBase)
@@ -368,9 +367,23 @@ namespace ApplyInk.Common.Services
 
                 string url = $"{servicePrefix}{controller}";
                 HttpResponseMessage response = await client.PostAsync(url, content);
-                string answer = await response.Content.ReadAsStringAsync();
-                Response obj = JsonConvert.DeserializeObject<Response>(answer);
-                return obj;
+                string result = await response.Content.ReadAsStringAsync();
+
+                if (!response.IsSuccessStatusCode)
+                {
+                    return new Response
+                    {
+                        IsSuccess = false,
+                        Message = result,
+                    };
+                }
+
+                TokenResponse token = JsonConvert.DeserializeObject<TokenResponse>(result);
+                return new Response
+                {
+                    IsSuccess = true,
+                    Result = token
+                };
             }
             catch (Exception ex)
             {
@@ -381,6 +394,7 @@ namespace ApplyInk.Common.Services
                 };
             }
         }
+
     }
 
 }

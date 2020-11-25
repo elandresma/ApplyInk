@@ -6,6 +6,10 @@ using Prism;
 using Prism.Ioc;
 using Syncfusion.SfBusyIndicator.XForms.Droid;
 using Plugin.Permissions;
+using Java.Security;
+using System;
+using Plugin.FacebookClient;
+using Android.Content;
 
 namespace ApplyInk.Prism.Droid
 {
@@ -20,10 +24,13 @@ namespace ApplyInk.Prism.Droid
             ToolbarResource = Resource.Layout.Toolbar;
 
             base.OnCreate(savedInstanceState);
+            FacebookClientManager.Initialize(this);
             CrossCurrentActivity.Current.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             Xamarin.FormsMaps.Init(this, savedInstanceState);
             new SfBusyIndicatorRenderer();
+          
+
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init(true);
             LoadApplication(new App(new AndroidInitializer()));
         }
@@ -34,6 +41,37 @@ namespace ApplyInk.Prism.Droid
             PermissionsImplementation.Current.OnRequestPermissionsResult(requestCode, permissions, grantResults);
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
+
+        protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
+        {
+            base.OnActivityResult(requestCode, resultCode, data);
+            FacebookClientManager.OnActivityResult(requestCode, resultCode, data);
+        }
+
+
+        private void GetAppHash()
+        {
+            try
+            {
+                PackageInfo info = Application.Context.PackageManager.GetPackageInfo(Application.Context.PackageName, PackageInfoFlags.Signatures);
+                foreach (Android.Content.PM.Signature signature in info.Signatures)
+                {
+                    MessageDigest md = MessageDigest.GetInstance("SHA");
+                    md.Update(signature.ToByteArray());
+
+                    var hash = Convert.ToBase64String(md.Digest());
+                }
+            }
+            catch (NoSuchAlgorithmException e)
+            {
+                System.Diagnostics.Debug.WriteLine(e);
+            }
+            catch (Exception e)
+            {
+                System.Diagnostics.Debug.WriteLine(e);
+            }
+        }
+
     }
 
     public class AndroidInitializer : IPlatformInitializer

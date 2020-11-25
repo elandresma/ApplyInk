@@ -24,7 +24,15 @@ namespace ApplyInk.Prism
             SyncfusionLicenseProvider.RegisterLicense("MzQ5NzUzQDMxMzgyZTMzMmUzMEU2OHhGUzdqNVpENUxQd3dZUkZNZ3pINHk1K1hxMVhSTmJWU284LytxNGM9");
             InitializeComponent();
 
-           await NavigationService.NavigateAsync($"{nameof(TattoerMasterDetailPage)}/NavigationPage/{nameof(TattoersPage)}");
+            if (Settings.IsLogin)
+            {
+                await NavigationService.NavigateAsync($"{nameof(TattoerMasterDetailPage)}/NavigationPage/{nameof(TattoersPage)}");
+            }
+            else {
+                await NavigationService.NavigateAsync($"{nameof(TattoerMasterDetailPage)}/NavigationPage/{nameof(TattoersPage)}");
+            }
+
+
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
@@ -46,9 +54,9 @@ namespace ApplyInk.Prism
             containerRegistry.RegisterForNavigation<RegisterPage, RegisterPageViewModel>();
             containerRegistry.RegisterForNavigation<RecoverPasswordPage, RecoverPasswordPageViewModel>();
             containerRegistry.RegisterForNavigation<ChangePasswordPage, ChangePasswordPageViewModel>();
-            containerRegistry.RegisterForNavigation<Schedule, ScheduleViewModel>();
+            containerRegistry.RegisterForNavigation<TattoersForCategoryPage, TattoersForCategoryPageViewModel>();
+            containerRegistry.RegisterForNavigation<CategoriesPage, CategoriesPageViewModel>();
             containerRegistry.RegisterForNavigation<MapPage, MapPageViewModel>();
-
         }
     }
 }

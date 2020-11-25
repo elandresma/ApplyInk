@@ -1,4 +1,5 @@
-﻿using ApplyInk.Common.Requests;
+﻿using ApplyInk.Common.Models;
+using ApplyInk.Common.Requests;
 using ApplyInk.Common.Responses;
 using ApplyInk.Web.Models;
 using System;
@@ -31,6 +32,9 @@ namespace ApplyInk.Common.Services
 
         Task<Stream> GetPictureAsync(string urlBase, string servicePrefix);
         Task<Response> CreateMeetingAsync<T>(string urlBase, string servicePrefix, string controller, MeetingRequest meeting);
+
+        Task<Response> GetTokenAsync(string urlBase, string servicePrefix, string controller, FacebookProfile request);
+
 
     }
 }

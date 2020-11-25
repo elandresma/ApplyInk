@@ -6,10 +6,11 @@
 
   <ItemGroup>
     <PackageReference Include="EnvDTE" Version="16.7.30508.193" />
+    <PackageReference Include="Plugin.FacebookClient" Version="3.0.7-beta" />
     <PackageReference Include="Plugin.Permissions" Version="6.0.1" />
-    <PackageReference Include="Syncfusion.Xamarin.Core" Version="18.3.0.50" />
-    <PackageReference Include="Syncfusion.Xamarin.SfBusyIndicator" Version="18.3.0.50" />
-    <PackageReference Include="Syncfusion.Xamarin.SfDataGrid" Version="18.3.0.50" />
+    <PackageReference Include="Syncfusion.Xamarin.Core" Version="18.3.0.51" />
+    <PackageReference Include="Syncfusion.Xamarin.SfBusyIndicator" Version="18.3.0.51" />
+    <PackageReference Include="Syncfusion.Xamarin.SfDataGrid" Version="18.3.0.51" />
     <PackageReference Include="Xam.Plugin.Geolocator" Version="4.6.2-beta" />
     <PackageReference Include="Xam.Plugin.Media" Version="5.0.1" />
     <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.11.982" />
@@ -38,6 +39,9 @@
     <EmbeddedResource Update="Resources\Resource.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\CategoriesPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\ChangePasswordPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>

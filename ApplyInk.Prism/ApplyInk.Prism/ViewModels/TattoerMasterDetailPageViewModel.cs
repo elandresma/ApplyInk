@@ -56,7 +56,7 @@ namespace ApplyInk.Prism.ViewModels
         private void LoadMenus()
         {
 
-            if (User != null)
+            if (Settings.IsLogin)
             {
 
                 List<Menu> menus = new List<Menu>
@@ -87,8 +87,8 @@ namespace ApplyInk.Prism.ViewModels
                     new Menu
                     {
                         Icon = "ic_action_list_alt",
-                        PageName = $"{nameof(TattoersForCategoryPage)}",
-                        Title = Languages.TattoersForCategory,
+                        PageName = $"{nameof(CategoriesPage)}",
+                        Title = Languages.Categories,
                         IsLoginRequired = true
                     },
 
@@ -118,7 +118,7 @@ namespace ApplyInk.Prism.ViewModels
                         PageName = $"{nameof(TattoersPage)}",
                         Title = Languages.Tattoers
                     },
-                    new Menu
+                     new Menu
                     {
                         Icon = "ic_action_exit",
                         PageName = $"{nameof(LoginPage)}",

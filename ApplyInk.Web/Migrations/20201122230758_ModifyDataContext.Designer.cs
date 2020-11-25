@@ -4,14 +4,16 @@ using ApplyInk.Web.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ApplyInk.Web.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20201122230758_ModifyDataContext")]
+    partial class ModifyDataContext
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -149,14 +151,7 @@ namespace ApplyInk.Web.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Address")
-                        .HasMaxLength(100);
-
                     b.Property<int?>("CityId");
-
-                    b.Property<double>("Latitude");
-
-                    b.Property<double>("Logitude");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -191,8 +186,6 @@ namespace ApplyInk.Web.Migrations
                         .IsRequired()
                         .HasMaxLength(50);
 
-                    b.Property<string>("ImageFacebook");
-
                     b.Property<Guid>("ImageId");
 
                     b.Property<string>("LastName")
@@ -202,8 +195,6 @@ namespace ApplyInk.Web.Migrations
                     b.Property<bool>("LockoutEnabled");
 
                     b.Property<DateTimeOffset?>("LockoutEnd");
-
-                    b.Property<int>("LoginType");
 
                     b.Property<string>("NormalizedEmail")
                         .HasMaxLength(256);

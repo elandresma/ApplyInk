@@ -8,6 +8,7 @@ using Prism.Commands;
 using Prism.Navigation;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using Xamarin.Essentials;
 
@@ -24,7 +25,8 @@ namespace ApplyInk.Prism.ViewModels
         private bool _isEnabled;
         private string _search;
         private CategoryResponse _category;
-        private List<UserResponse> _myUsers;
+        private List<UserResponse> _myUsers = new List<UserResponse>();
+        private List<UserResponse> _myUsers2;
         private UserResponse _user;
         private DelegateCommand _searchCommand;
         private ObservableCollection<TattoerItemViewModel> _tattoers;
@@ -40,8 +42,7 @@ namespace ApplyInk.Prism.ViewModels
             IsEnabled = true;
             TokenResponse token = JsonConvert.DeserializeObject<TokenResponse>(Settings.Token);
             User = token.User;
-            LoadUsersAsync();
-            LoadCategoriesAsync();
+            
         }
 
 
@@ -127,6 +128,17 @@ namespace ApplyInk.Prism.ViewModels
             Categories = new ObservableCollection<CategoryResponse>(list.OrderBy(c => c.Name));
         }
 
+        public override void OnNavigatedTo(INavigationParameters parameters)
+        {
+            base.OnNavigatedTo(parameters);
+
+            if (parameters.ContainsKey("category"))
+            {
+                Category = parameters.GetValue<CategoryResponse>("category");
+            }
+            LoadUsersAsync();
+        }
+
         private async void LoadUsersAsync()
         {
             if (Connectivity.NetworkAccess != NetworkAccess.Internet)
@@ -149,56 +161,29 @@ namespace ApplyInk.Prism.ViewModels
                 return;
             }
 
-            _myUsers = (List<UserResponse>)response.Result;
+                       
+            _myUsers2 = (List<UserResponse>)response.Result;
+
+            foreach ( var tattoer in _myUsers2)
+            {
+                if (tattoer.Categories != null)
+                {
+                    var flag = 0;
+                    foreach (var categories in tattoer.Categories)
+                    {
+                        
+                        if (categories.Name.ToString() == Category.Name && flag == 0)
+                        {
+                            _myUsers.Add(tattoer);
+                            flag = 1;
+                        }
+                    }
+                }
+
+            }
+
             ShowUsers();
         }
-
-
-
-        //private void ShowUsers()
-        //{
-        //    if (Category == null)
-        //    {
-        //        Tattoers = new ObservableCollection<TattoerItemViewModel>(_myUsers.Select(t => new TattoerItemViewModel(_navigationService)
-        //        {
-
-        //            Id = t.Id,
-        //            SocialNetworkURL = t.SocialNetworkURL,
-        //            Address = t.Address,
-        //            Categories = t.Categories,
-        //            Email = t.Email,
-        //            PhoneNumber = t.PhoneNumber,
-        //            FirstName = t.FirstName,
-        //            LastName = t.LastName,
-        //            ImageId = t.ImageId,
-        //            Shop = t.Shop
-
-        //        })
-        //            .ToList());
-        //    }
-        //    else
-        //    {
-        //        Tattoers = new ObservableCollection<TattoerItemViewModel>(_myUsers.Select(t => new TattoerItemViewModel(_navigationService)
-        //        {
-
-        //            Id = t.Id,
-        //            SocialNetworkURL = t.SocialNetworkURL,
-        //            Address = t.Address,
-        //            Categories = t.Categories,
-        //            Email = t.Email,
-        //            PhoneNumber = t.PhoneNumber,
-        //            FirstName = t.FirstName,
-        //            LastName = t.LastName,
-        //            ImageId = t.ImageId,
-        //            Shop = t.Shop
-
-        //        })
-        //            .Where(t => t.Categories.Contains(Category))
-        //            .ToList());
-
-
-        //    }
-        //}
 
         private void ShowUsers()
         {

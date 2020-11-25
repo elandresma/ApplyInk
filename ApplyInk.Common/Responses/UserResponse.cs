@@ -1,4 +1,5 @@
 ﻿using ApplyInk.Common.Enum;
+using ApplyInk.Common.Enums;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -23,9 +24,28 @@ namespace ApplyInk.Common.Responses
 
         public Guid ImageId { get; set; }
 
-        public string ImageFullPath => ImageId == Guid.Empty
-       ? $"https://applyinkweb.azurewebsites.net/images/noimage.png"
-       : $"https://applylnk.blob.core.windows.net/users/{ImageId}";
+        public string ImageFacebook { get; set; }
+
+        public LoginType LoginType { get; set; }
+
+        public string ImageFullPath
+        {
+            get
+            {
+                if (LoginType == LoginType.Facebook && string.IsNullOrEmpty(ImageFacebook) ||
+                    LoginType == LoginType.Applylnk && ImageId == Guid.Empty)
+                {
+                    return $"https://applyinkweb.azurewebsites.net/images/noimage.png";
+                }
+
+                if (LoginType == LoginType.Facebook)
+                {
+                    return ImageFacebook;
+                }
+
+                return $"https://applylnk.blob.core.windows.net/users/{ImageId}";
+            }
+        }
 
         public UserType UserType { get; set; }
 
