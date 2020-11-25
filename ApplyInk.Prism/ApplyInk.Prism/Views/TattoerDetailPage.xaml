@@ -130,18 +130,18 @@
                                VerticalOptions="Center"/>
                     </Grid>
                     <ScrollView>
-                    <StackLayout>
+                        <StackLayout>
 
                             <ListView VerticalScrollBarVisibility="Always"
                                       HeightRequest="100"
                                       ItemsSource="{Binding Categories}">
-                                        <ListView.ItemTemplate>
-                                            <DataTemplate>
-                                                <TextCell Text="{Binding Name}" />
-                                            </DataTemplate>
-                                        </ListView.ItemTemplate>
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextCell Text="{Binding Name}" />
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
                             </ListView>
-                    </StackLayout>
+                        </StackLayout>
                     </ScrollView>
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -193,11 +193,12 @@
                                Text="{Binding Tattoer.PhoneNumber}"
                                HorizontalOptions="Start"
                                VerticalOptions="Center"/>
-
                     </Grid>
+
+                    <Button Command="{Binding seeCommand}" 
+                        IsEnabled="{Binding IsEnabled}"
+                        Text="See schedule"/>
                 </StackLayout>
-
-
             </ScrollView>
 
         </StackLayout>

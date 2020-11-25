@@ -352,6 +352,35 @@ namespace ApplyInk.Common.Services
                 };
             }
         }
+        public async Task<Response> CreateMeetingAsync<T>(
+         string urlBase,
+         string servicePrefix,
+         string controller, MeetingRequest meeting)
+        {
+            try
+            {
+                string request = JsonConvert.SerializeObject(meeting);
+                StringContent content = new StringContent(request, Encoding.UTF8, "application/json");
+                HttpClient client = new HttpClient
+                {
+                    BaseAddress = new Uri(urlBase)
+                };
+
+                string url = $"{servicePrefix}{controller}";
+                HttpResponseMessage response = await client.PostAsync(url, content);
+                string answer = await response.Content.ReadAsStringAsync();
+                Response obj = JsonConvert.DeserializeObject<Response>(answer);
+                return obj;
+            }
+            catch (Exception ex)
+            {
+                return new Response
+                {
+                    IsSuccess = false,
+                    Message = ex.Message
+                };
+            }
+        }
     }
 
 }

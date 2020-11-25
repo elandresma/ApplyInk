@@ -46,8 +46,9 @@ namespace ApplyInk.Prism
             containerRegistry.RegisterForNavigation<RegisterPage, RegisterPageViewModel>();
             containerRegistry.RegisterForNavigation<RecoverPasswordPage, RecoverPasswordPageViewModel>();
             containerRegistry.RegisterForNavigation<ChangePasswordPage, ChangePasswordPageViewModel>();
-            containerRegistry.RegisterForNavigation<TattoersForCategoryPage, TattoersForCategoryPageViewModel>();
+            containerRegistry.RegisterForNavigation<Schedule, ScheduleViewModel>();
             containerRegistry.RegisterForNavigation<MapPage, MapPageViewModel>();
+
         }
     }
 }

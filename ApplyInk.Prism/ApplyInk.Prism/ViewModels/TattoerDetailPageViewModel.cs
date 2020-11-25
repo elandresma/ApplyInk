@@ -1,12 +1,9 @@
 ﻿using ApplyInk.Common.Responses;
 using ApplyInk.Prism.Helpers;
+using ApplyInk.Prism.Views;
 using Prism.Commands;
-using Prism.Mvvm;
 using Prism.Navigation;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
 
 namespace ApplyInk.Prism.ViewModels
 {
@@ -14,12 +11,17 @@ namespace ApplyInk.Prism.ViewModels
     public class TattoerDetailPageViewModel : ViewModelBase
     {
         private UserResponse _tattoer;
+        private readonly INavigationService _navigationService;
         private ObservableCollection<CategoryResponse> _categories;
+        private DelegateCommand _seeCommand;
 
         public TattoerDetailPageViewModel(INavigationService navigationService) : base(navigationService)
         {
+            _navigationService = navigationService;
             Title = "Tattoer";
         }
+
+        public DelegateCommand seeCommand => _seeCommand ?? (_seeCommand = new DelegateCommand(ScheduleAsync));
 
         public UserResponse Tattoer
         {
@@ -44,6 +46,12 @@ namespace ApplyInk.Prism.ViewModels
                 Categories = new ObservableCollection<CategoryResponse>(Tattoer.Categories);
             }
         }
+
+        private async void ScheduleAsync()
+        {
+            await _navigationService.NavigateAsync(nameof(Schedule));
+        }
+
 
 
     }
