@@ -20,6 +20,7 @@ namespace ApplyInk.Prism.ViewModels
     {
         private DateTime _date;
         private bool _isRunning;
+        private UserResponse _tattoer;
         private readonly IApiService _apiService;
         private readonly INavigationService _navigationService;
         private DelegateCommand _addmeetingcommand;
@@ -35,6 +36,12 @@ namespace ApplyInk.Prism.ViewModels
         {
             get => _isRunning;
             set => SetProperty(ref _isRunning, value);
+        }
+
+        public UserResponse Tattoer
+        {
+            get => _tattoer;
+            set => SetProperty(ref _tattoer, value);
         }
 
         [Obsolete]
@@ -62,6 +69,16 @@ namespace ApplyInk.Prism.ViewModels
             }
         }
 
+
+        public override void OnNavigatedTo(INavigationParameters parameters)
+        {
+            base.OnNavigatedTo(parameters);
+
+            if (parameters.ContainsKey("tattoer"))
+            {
+                Tattoer = parameters.GetValue<UserResponse>("tattoer");
+            }
+        }
         private async void CreateMeetingAsync()
         {
             IsRunning = true;
@@ -77,8 +94,8 @@ namespace ApplyInk.Prism.ViewModels
             {
                 Date = Date,
                 Email = JsonConvert.DeserializeObject<String>(token.User.Email),
-                EmailTattooer = "viene del detail",
-                ShopId =0,
+                EmailTattooer = Tattoer.Email,
+                ShopId =Tattoer.Shop.Id,
                 Status = 0
 
             };

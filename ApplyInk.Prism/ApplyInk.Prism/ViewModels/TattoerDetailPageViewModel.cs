@@ -1,5 +1,7 @@
-﻿using ApplyInk.Common.Responses;
+﻿using ApplyInk.Common.Helpers;
+using ApplyInk.Common.Responses;
 using ApplyInk.Prism.Helpers;
+using ApplyInk.Prism.ItemViewModels;
 using ApplyInk.Prism.Views;
 using Prism.Commands;
 using Prism.Navigation;
@@ -49,7 +51,18 @@ namespace ApplyInk.Prism.ViewModels
 
         private async void ScheduleAsync()
         {
-            await _navigationService.NavigateAsync(nameof(Schedule));
+            if (Settings.IsLogin)
+            {
+                NavigationParameters parameters = new NavigationParameters
+                {
+                { "tattoer", Tattoer }
+                };
+
+                await _navigationService.NavigateAsync(nameof(Schedule), parameters);
+            }
+            else {
+                await App.Current.MainPage.DisplayAlert(Languages.Error, "Debe loguearse", Languages.Accept);
+            }
         }
 
 

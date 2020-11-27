@@ -194,8 +194,8 @@
                                HorizontalOptions="Start"
                                VerticalOptions="Center"/>
                     </Grid>
-
-                    <Button Command="{Binding seeCommand}" 
+                    
+                        <Button Command="{Binding seeCommand}" 
                         IsEnabled="{Binding IsEnabled}"
                         Text="See schedule"/>
                 </StackLayout>
