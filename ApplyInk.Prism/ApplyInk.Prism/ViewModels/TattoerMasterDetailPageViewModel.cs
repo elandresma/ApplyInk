@@ -68,6 +68,12 @@ namespace ApplyInk.Prism.ViewModels
                         PageName = $"{nameof(MapPage)}",
                         Title = Languages.Shop
                     },
+                        new Menu
+                    {
+                        Icon = "ic_Meeting",
+                        PageName = $"{nameof(MyMeetings)}",
+                        Title = Languages.MyMeetings
+                    },
 
                     new Menu
                     {

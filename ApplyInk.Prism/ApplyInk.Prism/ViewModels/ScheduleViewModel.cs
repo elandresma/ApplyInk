@@ -93,7 +93,7 @@ namespace ApplyInk.Prism.ViewModels
             MeetingRequest request = new MeetingRequest
             {
                 Date = Date,
-                Email = JsonConvert.DeserializeObject<String>(token.User.Email),
+                Email = token.User.Email,
                 EmailTattooer = Tattoer.Email,
                 ShopId =Tattoer.Shop.Id,
                 Status = 0

@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="ApplyInk.Prism.Views.MyMeetings"
+             xmlns:i18n="clr-namespace:ApplyInk.Prism.Helpers"
+             xmlns:busyindicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
+             BackgroundColor="{StaticResource ColorBackground}"
+             Title="{Binding Title}">
+
+
+
+    <AbsoluteLayout>
+        <StackLayout AbsoluteLayout.LayoutBounds="0,0,1,1"
+                     AbsoluteLayout.LayoutFlags="All" 
+                     Padding="5">
+            <Frame CornerRadius="7"  
+       OutlineColor="Red" 
+       Padding="0">
+                <StackLayout Padding="5" Orientation="Horizontal">
+                    <Label Text="Date" FontAttributes="Bold" FontSize="Medium"
+                VerticalTextAlignment="Center"/>
+                    <Label Text="Shop" FontAttributes="Bold" FontSize="Medium"
+                VerticalTextAlignment="Center"/>
+                    <Label Text="Tattooer" FontAttributes="Bold" FontSize="Medium"
+                VerticalTextAlignment="Center"/>
+                    <Label Text="Client" FontAttributes="Bold" FontSize="Medium"
+                VerticalTextAlignment="Center"/>
+                    <Label Text="Status" FontAttributes="Bold" FontSize="Medium"
+                VerticalTextAlignment="Center"/>
+
+
+                </StackLayout>
+            </Frame>
+            <CollectionView ItemsSource="{Binding Meetings}">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical"
+                                     VerticalItemSpacing="2"/>
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid  Padding="15">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <StackLayout 
+                                     VerticalOptions="Center">
+                                <Label Grid.Column="0"
+                                       Text="{Binding Meeting.Date,StringFormat='{0:MMMM d/yyyy}'}"
+                                   FontAttributes="Bold"
+                                   FontSize="Medium"
+                                   LineBreakMode="TailTruncation" />
+                            </StackLayout>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+        <busyindicator:SfBusyIndicator AnimationType="Gear" 
+                                       AbsoluteLayout.LayoutBounds=".5,.5,.5,.5"
+                	                   AbsoluteLayout.LayoutFlags="All"
+                	                   BackgroundColor="{StaticResource ColorAccent}"
+                	                   HorizontalOptions="Center"
+                	                   TextColor="{StaticResource ColorFontInverse}"
+                	                   IsBusy="{Binding IsRunning}"
+                	                   Title="Loading..."
+                	                   VerticalOptions="Center"
+                	                   ViewBoxWidth="80"
+                	                   ViewBoxHeight="80" />
+    </AbsoluteLayout>
+</ContentPage>

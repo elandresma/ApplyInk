@@ -25,8 +25,10 @@ namespace ApplyInk.Web.Controllers.API
             _context = context;
         }
 
-        [HttpGet]
-        public async Task<IActionResult> GetMeetings(MeetingRequest request)
+
+        [HttpPost]
+        [Route("GetMeetings")]
+        public async Task<IActionResult> GetMeetings([FromBody] MeetingRequest request)
         {
             if (!ModelState.IsValid)
             {

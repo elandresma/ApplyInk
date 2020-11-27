@@ -619,6 +619,15 @@ namespace ApplyInk.Prism.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to My meetings.
+        /// </summary>
+        internal static string MyMeetings {
+            get {
+                return ResourceManager.GetString("MyMeetings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Name.
         /// </summary>
         internal static string Name {

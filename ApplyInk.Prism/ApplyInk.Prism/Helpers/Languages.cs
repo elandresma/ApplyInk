@@ -26,6 +26,8 @@ namespace ApplyInk.Prism.Helpers
 
         public static string Error => Resource.Error;
 
+        public static string MyMeetings => Resource.MyMeetings;
+
         public static string Loading => Resource.Loading;
 
         public static string SearchTattoer => Resource.SearchTattoer;

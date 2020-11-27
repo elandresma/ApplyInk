@@ -34,6 +34,8 @@ namespace ApplyInk.Common.Services
         Task<Response> CreateMeetingAsync<T>(string urlBase, string servicePrefix, string controller, MeetingRequest meeting);
 
         Task<Response> GetTokenAsync(string urlBase, string servicePrefix, string controller, FacebookProfile request);
+        Task<Response> GetMyMeetingsAsync<T>(string urlBase, string servicePrefix, string controller, MeetingRequest email);
+
 
 
     }

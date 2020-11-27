@@ -56,6 +56,7 @@ namespace ApplyInk.Prism
             containerRegistry.RegisterForNavigation<CategoriesPage, CategoriesPageViewModel>();
             containerRegistry.RegisterForNavigation<MapPage, MapPageViewModel>();
             containerRegistry.RegisterForNavigation<Schedule, ScheduleViewModel>();
+            containerRegistry.RegisterForNavigation<MyMeetings, MyMeetingsViewModel>();
         }
     }
 }
