@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1032123578828",
+    "firebase_url": "https://applyink-46dab.firebaseio.com",
+    "project_id": "applyink-46dab",
+    "storage_bucket": "applyink-46dab.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1032123578828:android:6265887344f5199d9ac569",
+        "android_client_info": {
+          "package_name": "com.Applylnk.Applylnk"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1032123578828-h2n7tbrs8paca0bogklvqb6107pp3kok.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCBpUVS8P5ZbF1RKj3lWolGUiMSgpjWfCE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1032123578828-h2n7tbrs8paca0bogklvqb6107pp3kok.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

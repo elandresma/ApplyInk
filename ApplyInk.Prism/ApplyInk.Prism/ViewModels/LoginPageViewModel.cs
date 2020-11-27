@@ -144,7 +144,6 @@ namespace ApplyInk.Prism.ViewModels
         {
             try
             {
-
                 if (_facebookService.IsLoggedIn)
                 {
                     _facebookService.Logout();
@@ -174,7 +173,7 @@ namespace ApplyInk.Prism.ViewModels
 
                 _facebookService.OnUserData += userDataDelegate;
 
-                string[] fbRequestFields = { "email", "first_name", "picture", "picture.width(999)", "gender", "last_name" };
+                string[] fbRequestFields = { "email", "first_name", "picture.width(999)", "gender", "last_name" };
                 string[] fbPermisions = { "email" };
                 await _facebookService.RequestUserDataAsync(fbRequestFields, fbPermisions);
             }
@@ -183,6 +182,7 @@ namespace ApplyInk.Prism.ViewModels
                 Debug.WriteLine(ex.ToString());
             }
         }
+
 
         private async Task LoginFacebookAsync(FacebookProfile facebookProfile)
         {

@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using Xamarin.Essentials;
+using Xamarin.Forms;
 
 namespace ApplyInk.Prism.ViewModels
 {
@@ -21,10 +22,11 @@ namespace ApplyInk.Prism.ViewModels
         private List<UserResponse> _myUsers;
         private DelegateCommand _searchCommand;
         private ObservableCollection<TattoerItemViewModel> _tattoers;
-
+        private static TattoersPageViewModel _instance;
 
         public TattoersPageViewModel(INavigationService navigationService, IApiService apiService) : base(navigationService)
         {
+            _instance = this;
             _navigationService = navigationService;
             _apiService = apiService;
             Title = Languages.Tattoers;
@@ -61,6 +63,19 @@ namespace ApplyInk.Prism.ViewModels
         {
             get => _users;
             set => SetProperty(ref _users, value);
+        }
+
+        public static TattoersPageViewModel GetInstance()
+        {
+            return _instance;
+        }
+
+        public void AddMessage(string message)
+        {
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                App.Current.MainPage.DisplayAlert(Languages.Ok, message, Languages.Accept);
+            });
         }
 
         private async void LoadUsersAsync()
