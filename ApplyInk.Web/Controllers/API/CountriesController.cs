@@ -1,13 +1,6 @@
 ﻿using ApplyInk.Web.Data;
-using ApplyInk.Web.Data.Entities;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace ApplyInk.Web.Controllers.API
 {
@@ -17,7 +10,7 @@ namespace ApplyInk.Web.Controllers.API
     {
         private readonly DataContext _context;
 
-        public CountriesController(Data.DataContext context)
+        public CountriesController(DataContext context)
         {
             _context = context;
         }
@@ -31,7 +24,7 @@ namespace ApplyInk.Web.Controllers.API
                 .ThenInclude(s => s.Shops));
         }
 
-     
+
     }
 
 

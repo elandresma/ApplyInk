@@ -41,7 +41,7 @@ namespace ApplyInk.Web.Controllers.API
                 .Include(m => m.meeting)
                  .Include(m => m.user)
                  .Where(m => m.user.Email == request.Email)
-                 .ToListAsync();
+                 .ToListAsync();//debe traer solo 1
 
             return Ok(await _context.MasterDetailMeetings
                  .Include(m => m.meeting)

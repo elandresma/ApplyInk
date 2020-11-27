@@ -31,6 +31,7 @@ namespace ApplyInk.Common.Services
         Task<RandomUsers> GetRandomUser(string urlBase, string servicePrefix);
 
         Task<Stream> GetPictureAsync(string urlBase, string servicePrefix);
+        Task<Response> CreateMeetingAsync<T>(string urlBase, string servicePrefix, string controller, MeetingRequest meeting);
 
         Task<Response> GetTokenAsync(string urlBase, string servicePrefix, string controller, FacebookProfile request);
 

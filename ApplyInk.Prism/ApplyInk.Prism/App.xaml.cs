@@ -48,15 +48,14 @@ namespace ApplyInk.Prism
             containerRegistry.RegisterForNavigation<TattoerDetailPage, TattoerDetailPageViewModel>();
             containerRegistry.RegisterForNavigation<LoginPage, LoginPageViewModel>();
             containerRegistry.RegisterForNavigation<TattoerMasterDetailPage, TattoerMasterDetailPageViewModel>();
-            
             containerRegistry.RegisterForNavigation<ModifyUserPage, ModifyUserPageViewModel>();
-     
             containerRegistry.RegisterForNavigation<RegisterPage, RegisterPageViewModel>();
             containerRegistry.RegisterForNavigation<RecoverPasswordPage, RecoverPasswordPageViewModel>();
             containerRegistry.RegisterForNavigation<ChangePasswordPage, ChangePasswordPageViewModel>();
             containerRegistry.RegisterForNavigation<TattoersForCategoryPage, TattoersForCategoryPageViewModel>();
             containerRegistry.RegisterForNavigation<CategoriesPage, CategoriesPageViewModel>();
             containerRegistry.RegisterForNavigation<MapPage, MapPageViewModel>();
+            containerRegistry.RegisterForNavigation<Schedule, ScheduleViewModel>();
         }
     }
 }
