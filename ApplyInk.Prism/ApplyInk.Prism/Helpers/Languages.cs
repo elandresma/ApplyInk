@@ -31,7 +31,8 @@ namespace ApplyInk.Prism.Helpers
         public static string Loading => Resource.Loading;
 
         public static string SearchTattoer => Resource.SearchTattoer;
-
+        public static string MeetingCreated => Resource.MeetingCreated;
+        public static string Schedule => Resource.Schedule; 
         public static string Name => Resource.Name;
 
         public static string Description => Resource.Description;

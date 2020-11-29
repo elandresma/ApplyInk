@@ -13,7 +13,6 @@
         <StackLayout AbsoluteLayout.LayoutBounds="0,0,1,1"
                      AbsoluteLayout.LayoutFlags="All" 
                      Padding="5">
-
             <controls:Calendar Padding="10,0,10,0"   
                    SelectedBorderWidth="4"   
                    DisabledBorderColor="Black"  

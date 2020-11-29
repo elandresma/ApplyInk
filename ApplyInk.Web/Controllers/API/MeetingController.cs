@@ -54,6 +54,32 @@ namespace ApplyInk.Web.Controllers.API
 
         }
 
+
+        [HttpPost]
+        [Route("GetMeetings2")]
+        public async Task<IActionResult> GetMeetings2([FromBody] MeetingRequest request)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(new Response
+                {
+                    IsSuccess = false,
+                    Message = "Bad request",
+                    Result = ModelState
+                });
+            }
+           
+            return Ok(await _context.Meetings
+                 .Include(m => m.masterDetailMeeting)
+                 .ThenInclude(ma => ma.user)
+                 .Include(me => me.Shop)
+                 .Where(m => m.masterDetailMeeting.Any(ma => ma.user.Email == request.Email ))
+                 .ToListAsync());
+
+        }
+
+
+
         [HttpPost]
         [Route("Create")]
         public async Task<IActionResult> CreateMeeting ([FromBody] MeetingRequest request)

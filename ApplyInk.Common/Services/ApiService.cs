@@ -453,6 +453,9 @@ namespace ApplyInk.Common.Services
                 }
 
                 List<T> list = JsonConvert.DeserializeObject<List<T>>(result);
+                //new MeetingAuxResponse
+
+
                 return new Response
                 {
                     IsSuccess = true,

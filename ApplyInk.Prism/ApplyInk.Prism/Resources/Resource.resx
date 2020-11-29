@@ -399,7 +399,13 @@
   <data name="LoginFacebook" xml:space="preserve">
     <value>Login Facebook</value>
   </data>
+  <data name="MeetingCreated" xml:space="preserve">
+    <value>The meeting was created succesfully</value>
+  </data>
   <data name="MyMeetings" xml:space="preserve">
     <value>My meetings</value>
+  </data>
+  <data name="Schedule" xml:space="preserve">
+    <value>Schedule</value>
   </data>
 </root>

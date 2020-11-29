@@ -28,7 +28,7 @@ namespace ApplyInk.Prism.ViewModels
         {
             _navigationService = navigationService;
             _apiService = apiService;
-            Title = "Schedule";//Languages.AddMeeting;
+            Title = Languages.Schedule;
         }
 
         public DelegateCommand AddMeetingCommand => _addmeetingcommand ?? (_addmeetingcommand = new DelegateCommand(CreateMeetingAsync));
@@ -113,7 +113,7 @@ namespace ApplyInk.Prism.ViewModels
                 return;
             }
             
-            await App.Current.MainPage.DisplayAlert(Languages.Ok, "ok", Languages.Accept);
+            await App.Current.MainPage.DisplayAlert(Languages.Ok, Languages.MeetingCreated, Languages.Accept);
             await _navigationService.GoBackAsync();
             
         }

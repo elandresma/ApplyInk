@@ -21,7 +21,7 @@ namespace ApplyInk.Prism.ViewModels
         {
             _navigationService = navigationService;
             _apiService = apiService;
-            Title = "MyMeeting";//Languages.AddMeeting;
+            Title = Languages.MyMeetings;
             LoadMyMeetings();
         }
 

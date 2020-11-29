@@ -610,6 +610,15 @@ namespace ApplyInk.Prism.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The meeting was created succesfully.
+        /// </summary>
+        internal static string MeetingCreated {
+            get {
+                return ResourceManager.GetString("MeetingCreated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Modify user.
         /// </summary>
         internal static string ModifyUser {
@@ -840,6 +849,15 @@ namespace ApplyInk.Prism.Resources {
         internal static string Save {
             get {
                 return ResourceManager.GetString("Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Schedule.
+        /// </summary>
+        internal static string Schedule {
+            get {
+                return ResourceManager.GetString("Schedule", resourceCulture);
             }
         }
         
