@@ -23,7 +23,7 @@ namespace ApplyInk.Prism.ViewModels
     {
         _navigationService = navigationService;
         _apiService = apiService;
-        Title = Languages.Tattoers;
+        Title = Languages.Shops;
         LoadUsersAsync();
     }
 

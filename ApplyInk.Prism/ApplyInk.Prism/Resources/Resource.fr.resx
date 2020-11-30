@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -117,4 +117,301 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Accept" xml:space="preserve">
+    <value>Accepter</value>
+  </data>
+  <data name="Address" xml:space="preserve">
+    <value>Adresse</value>
+  </data>
+  <data name="AddressError" xml:space="preserve">
+    <value>Vous devez entrer une adresse.</value>
+  </data>
+  <data name="AddressPlaceHolder" xml:space="preserve">
+    <value>Entrez votre adresse ...</value>
+  </data>
+  <data name="BasicProfile" xml:space="preserve">
+    <value>Profil de base</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Annuler</value>
+  </data>
+  <data name="Categories" xml:space="preserve">
+    <value>Catégories</value>
+  </data>
+  <data name="Category" xml:space="preserve">
+    <value>Catégorie</value>
+  </data>
+  <data name="CategoryError" xml:space="preserve">
+    <value>Vous devez sélectionner une catégorie.</value>
+  </data>
+  <data name="CategoryPlaceHolder" xml:space="preserve">
+    <value>Sélectionnez votre catégorie...</value>
+  </data>
+  <data name="ChangeOnSocialNetwork" xml:space="preserve">
+    <value>Changement sur les réseaux sociaux</value>
+  </data>
+  <data name="ChangePassword" xml:space="preserve">
+    <value>Change Password</value>
+  </data>
+  <data name="ChangePassworrdMessage" xml:space="preserve">
+    <value>Le mot de passe a été modifié avec succès.</value>
+  </data>
+  <data name="ChangeUserMessage" xml:space="preserve">
+    <value>Utilisateur mis à jour.</value>
+  </data>
+  <data name="City" xml:space="preserve">
+    <value>Ville</value>
+  </data>
+  <data name="CityError" xml:space="preserve">
+    <value>Vous devez sélectionner une ville.</value>
+  </data>
+  <data name="CityPlaceHolder" xml:space="preserve">
+    <value>Sélectionnez votre ville ...</value>
+  </data>
+  <data name="ConfirmNewPassword" xml:space="preserve">
+    <value>Confirmer le nouveau mot de passe</value>
+  </data>
+  <data name="ConfirmNewPasswordError1" xml:space="preserve">
+    <value>Vous devez entrer une confirmation pour le nouveau mot de passe.</value>
+  </data>
+  <data name="ConfirmNewPasswordError2" xml:space="preserve">
+    <value>Utilisateur mis à jour.</value>
+  </data>
+  <data name="ConfirmNewPasswordPlaceHolder" xml:space="preserve">
+    <value>Entrez la confirmation du nouveau mot de passe ...</value>
+  </data>
+  <data name="ConnectionError" xml:space="preserve">
+    <value>Vérifiez la connexion Internet</value>
+  </data>
+  <data name="ContactInformation" xml:space="preserve">
+    <value>Informations de contact</value>
+  </data>
+  <data name="Country" xml:space="preserve">
+    <value>Pays</value>
+  </data>
+  <data name="CountryError" xml:space="preserve">
+    <value>Vous devez sélectionner un pays.</value>
+  </data>
+  <data name="CountryPlaceHolder" xml:space="preserve">
+    <value>Sélectionnez votre pays...</value>
+  </data>
+  <data name="CurrentPassword" xml:space="preserve">
+    <value>Mot de passe actuel</value>
+  </data>
+  <data name="CurrentPasswordError" xml:space="preserve">
+    <value>Vous devez entrer votre nouveau mot de passe.</value>
+  </data>
+  <data name="CurrentPasswordPlaceHolder" xml:space="preserve">
+    <value>Entrer votre mot de passe actuel....</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Supprimer</value>
+  </data>
+  <data name="Department" xml:space="preserve">
+    <value>département</value>
+  </data>
+  <data name="DepartmentError" xml:space="preserve">
+    <value>Vous devez sélectionner un département.</value>
+  </data>
+  <data name="DepartmentPlaceHolder" xml:space="preserve">
+    <value>Sélectionnez votre département ...</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>La description</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>Détails</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="EmailError" xml:space="preserve">
+    <value>Vous devez entrer un e-mail valide.</value>
+  </data>
+  <data name="EmailPlaceHolder" xml:space="preserve">
+    <value>Enter your email...</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Erreur</value>
+  </data>
+  <data name="Error001" xml:space="preserve">
+    <value>Utilisateur non trouvé.</value>
+  </data>
+  <data name="Error002" xml:space="preserve">
+    <value>Tattoer pas trouvé.</value>
+  </data>
+  <data name="Error003" xml:space="preserve">
+    <value>Un utilisateur avec cette adresse e-mail est déjà enregistré.</value>
+  </data>
+  <data name="Error004" xml:space="preserve">
+    <value>Ville non trouvée.</value>
+  </data>
+  <data name="Error005" xml:space="preserve">
+    <value>Le mot de passe actuel est incorrect.</value>
+  </data>
+  <data name="FirstName" xml:space="preserve">
+    <value>Prénom</value>
+  </data>
+  <data name="FirstNameError" xml:space="preserve">
+    <value>Vous devez entrer un prénom.</value>
+  </data>
+  <data name="FirstNamePlaceHolder" xml:space="preserve">
+    <value>Entrez votre prénom...</value>
+  </data>
+  <data name="ForgotPassword" xml:space="preserve">
+    <value>Forgot your password?</value>
+  </data>
+  <data name="FromCamera" xml:space="preserve">
+    <value>De la caméra</value>
+  </data>
+  <data name="FromGallery" xml:space="preserve">
+    <value>De la galerie</value>
+  </data>
+  <data name="Items" xml:space="preserve">
+    <value>Articles</value>
+  </data>
+  <data name="LastName" xml:space="preserve">
+    <value>Nom de famille</value>
+  </data>
+  <data name="LastNameError" xml:space="preserve">
+    <value>Vous devez entrer un nom de famille.</value>
+  </data>
+  <data name="LastNamePlaceHolder" xml:space="preserve">
+    <value>Entrez votre nom de famille ...</value>
+  </data>
+  <data name="Loading" xml:space="preserve">
+    <value>Chargement...</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>S'identifier</value>
+  </data>
+  <data name="LoginError" xml:space="preserve">
+    <value>Email ou mot de passe incorrect</value>
+  </data>
+  <data name="LoginFacebook" xml:space="preserve">
+    <value>Connexion Facebook</value>
+  </data>
+  <data name="LoginFirstMessage" xml:space="preserve">
+    <value>Vous devez être connecté pour terminer cette action. Vous pouvez vous connecter ou vous enregistrer en tant qu'utilisateur ci-dessous.</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>Se déconnecter</value>
+  </data>
+  <data name="MeetingCreated" xml:space="preserve">
+    <value>La réunion a été créée avec succès</value>
+  </data>
+  <data name="ModifyUser" xml:space="preserve">
+    <value>Modifier l'utilisateur</value>
+  </data>
+  <data name="MyMeetings" xml:space="preserve">
+    <value>Mes rencontres</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Nom</value>
+  </data>
+  <data name="NewPassword" xml:space="preserve">
+    <value>Nouveau mot de passe</value>
+  </data>
+  <data name="NewPasswordError" xml:space="preserve">
+    <value>Vous devez entrer le nouveau mot de passe.</value>
+  </data>
+  <data name="NewPasswordPlaceHolder" xml:space="preserve">
+    <value>Entrez le nouveau mot de passe ...</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>Non</value>
+  </data>
+  <data name="NoCameraSupported" xml:space="preserve">
+    <value>L'appareil ne prend pas en charge l'accès à la caméra.</value>
+  </data>
+  <data name="NoGallerySupported" xml:space="preserve">
+    <value>L'appareil ne prend pas en charge l'accès à la galerie.</value>
+  </data>
+  <data name="Ok" xml:space="preserve">
+    <value>D'accord</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Mot de passe</value>
+  </data>
+  <data name="PasswordConfirm" xml:space="preserve">
+    <value>Confirmer le mot de passe</value>
+  </data>
+  <data name="PasswordConfirmError1" xml:space="preserve">
+    <value>Vous devez entrer un mot de passe pour confirmer</value>
+  </data>
+  <data name="PasswordConfirmError2" xml:space="preserve">
+    <value>Le mot de passe et la confirmation ne correspondent pas.</value>
+  </data>
+  <data name="PasswordConfirmPlaceHolder" xml:space="preserve">
+    <value>Entrez le mot de passe confirmez ...</value>
+  </data>
+  <data name="PasswordError" xml:space="preserve">
+    <value>Vous devez entrer votre mot de passe.</value>
+  </data>
+  <data name="PasswordPlaceHolder" xml:space="preserve">
+    <value>Tapez votre mot de passe...</value>
+  </data>
+  <data name="Phone" xml:space="preserve">
+    <value>Téléphone</value>
+  </data>
+  <data name="PhoneError" xml:space="preserve">
+    <value>Entrez votre téléphone ...</value>
+  </data>
+  <data name="PhonePlaceHolder" xml:space="preserve">
+    <value>Vous devez entrer un téléphone.</value>
+  </data>
+  <data name="PictureSource" xml:space="preserve">
+    <value>Où voulez-vous prendre la photo?</value>
+  </data>
+  <data name="RecoverPassword" xml:space="preserve">
+    <value>Récupérer mot de passe</value>
+  </data>
+  <data name="RecoverPasswordMessage" xml:space="preserve">
+    <value>Un e-mail a été envoyé pour modifier votre mot de passe.</value>
+  </data>
+  <data name="Register" xml:space="preserve">
+    <value>Enregistrer un nouvel utilisateur</value>
+  </data>
+  <data name="RegisterMessge" xml:space="preserve">
+    <value>Votre utilisateur a été enregistré sur, un e-mail a été envoyé pour confirmer le compte utilisateur.</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>sauvegarder</value>
+  </data>
+  <data name="Schedule" xml:space="preserve">
+    <value>Programme</value>
+  </data>
+  <data name="SearchTattoer" xml:space="preserve">
+    <value>Rechercher un tatoueur ...</value>
+  </data>
+  <data name="Shop" xml:space="preserve">
+    <value>Atelier</value>
+  </data>
+  <data name="Tattoer" xml:space="preserve">
+    <value>Tatoueur</value>
+  </data>
+  <data name="TattoerDetails" xml:space="preserve">
+    <value>Détails du tatoueur</value>
+  </data>
+  <data name="Tattoers" xml:space="preserve">
+    <value>Tatoueurs</value>
+  </data>
+  <data name="TattoersForCategory" xml:space="preserve">
+    <value>Tatouages pour la catégorie</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>Total</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Oui</value>
+  </data>
+  <data name="SearchCategory" xml:space="preserve">
+    <value>Search a category...</value>
+  </data>
+  <data name="Shops" xml:space="preserve">
+    <value>Ateliers</value>
+  </data>
 </root>

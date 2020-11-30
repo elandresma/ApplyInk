@@ -151,7 +151,7 @@ namespace ApplyInk.Prism.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cambiar a red Social.
+        ///   Looks up a localized string similar to Change On Social Network.
         /// </summary>
         internal static string ChangeOnSocialNetwork {
             get {
@@ -862,6 +862,15 @@ namespace ApplyInk.Prism.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Search a category....
+        /// </summary>
+        internal static string SearchCategory {
+            get {
+                return ResourceManager.GetString("SearchCategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Search a tattoer....
         /// </summary>
         internal static string SearchTattoer {
@@ -876,6 +885,15 @@ namespace ApplyInk.Prism.Resources {
         internal static string Shop {
             get {
                 return ResourceManager.GetString("Shop", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Shops.
+        /// </summary>
+        internal static string Shops {
+            get {
+                return ResourceManager.GetString("Shops", resourceCulture);
             }
         }
         
