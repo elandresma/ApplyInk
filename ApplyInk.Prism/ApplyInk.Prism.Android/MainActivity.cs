@@ -29,11 +29,14 @@ namespace ApplyInk.Prism.Droid
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             Xamarin.FormsMaps.Init(this, savedInstanceState);
             new SfBusyIndicatorRenderer();
-          
-
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init(true);
+#if DEBUG
+            GetAppHash();
+#endif
             LoadApplication(new App(new AndroidInitializer()));
         }
+
+
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Android.Content.PM.Permission[] grantResults)
         {
