@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<string name="app_name">Applylnk</string>
-  <string name="facebook_app_name">Applylnk</string>
-	<string name="facebook_app_id">1095940854159695</string>
-	<string name="fb_login_protocol_scheme">fb1095940854159695</string>
+	<string name="app_name">Apply Ink</string>
+  <string name="facebook_app_name">ApplyInk</string>
+	<string name="facebook_app_id">1313977748936198</string>
+	<string name="fb_login_protocol_scheme">fb1313977748936198</string>
 
 </resources>
