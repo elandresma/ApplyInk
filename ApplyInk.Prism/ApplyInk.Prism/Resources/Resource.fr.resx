@@ -429,4 +429,7 @@
   <data name="SeeSchedule" xml:space="preserve">
     <value>Planifier</value>
   </data>
+  <data name="Update" xml:space="preserve">
+    <value>Mettre à jour</value>
+  </data>
 </root>

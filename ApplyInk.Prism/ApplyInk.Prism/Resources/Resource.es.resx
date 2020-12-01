@@ -429,4 +429,7 @@
   <data name="SeeSchedule" xml:space="preserve">
     <value>Ver agenda</value>
   </data>
+  <data name="Update" xml:space="preserve">
+    <value>Actualizar</value>
+  </data>
 </root>

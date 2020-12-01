@@ -21,6 +21,8 @@ namespace ApplyInk.Prism.Helpers
         public static string Culture { get; set; }
 
         public static string Accept => Resource.Accept;
+        public static string Update => Resource.Update;
+
 
         public static string ConnectionError => Resource.ConnectionError;
 

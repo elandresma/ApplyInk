@@ -84,7 +84,7 @@
                 HorizontalOptions="Center"
                     Command="{Binding UpdateAssistanceCommand}" 
                         IsEnabled="{Binding IsEnabled}"
-                        Text="{i18n:Translate Accept}"
+                        Text="{i18n:Translate Update}"
                         Style="{StaticResource DangerButton}"/>
         </StackLayout>
         <busyindicator:SfBusyIndicator AnimationType="Gear" 
