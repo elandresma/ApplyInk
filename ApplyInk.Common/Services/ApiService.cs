@@ -473,7 +473,7 @@ namespace ApplyInk.Common.Services
         public async Task<Response> UpdateMeetingAsync<T>(
          string urlBase,
          string servicePrefix,
-         string controller, UpdateMeetingRequest meeting)
+         string controller, List<UpdateMeetingRequest> meeting)
         {
             try
             {

@@ -9,5 +9,6 @@ namespace ApplyInk.Common.Requests
     {
         [Required]
         public int IdMeeting { get; set; }
+        public bool isActive { get; set; }
     }
 }

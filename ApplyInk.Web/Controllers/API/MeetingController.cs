@@ -120,7 +120,7 @@ namespace ApplyInk.Web.Controllers.API
 
         [HttpPut]
         [Route("UpdateMeetings")]
-        public async Task<IActionResult> UpdateMeetingStatus([FromBody] UpdateMeetingRequest request)
+        public async Task<IActionResult> UpdateMeetingStatus([FromBody] List<UpdateMeetingRequest> request)
         {
             if (!ModelState.IsValid)
             {
@@ -131,10 +131,13 @@ namespace ApplyInk.Web.Controllers.API
                     Result = ModelState
                 });
             }
-            Meeting meeting = await _context.Meetings.FindAsync(request.IdMeeting);
-            meeting.Status = StatusMeeting.Cancelled;
-            _context.Update(meeting);
-            await _context.SaveChangesAsync();
+            foreach (var item in request)
+            {
+                Meeting meeting = await _context.Meetings.FindAsync(item.IdMeeting);
+                meeting.Status = item.isActive==true ? StatusMeeting.Active : StatusMeeting.Cancelled;
+                _context.Update(meeting);
+                await _context.SaveChangesAsync();
+            }
             return Ok(new Response { IsSuccess = true });
         }
     }

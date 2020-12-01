@@ -4,6 +4,7 @@ using ApplyInk.Common.Responses;
 using ApplyInk.Common.Services;
 using ApplyInk.Prism.Helpers;
 using Newtonsoft.Json;
+using Prism.Commands;
 using Prism.Navigation;
 using System.Collections.Generic;
 using Xamarin.Essentials;
@@ -16,6 +17,8 @@ namespace ApplyInk.Prism.ViewModels
         private List<MeetingAuxResponse> _meetings;
         private readonly INavigationService _navigationService;
         private bool _isRunning;
+        private DelegateCommand _updateassistancecommand;
+
 
         public MyMeetingsViewModel(IApiService apiService, INavigationService navigationService) : base(navigationService)
         {
@@ -24,6 +27,8 @@ namespace ApplyInk.Prism.ViewModels
             Title = Languages.MyMeetings;
             LoadMyMeetings();
         }
+
+        public DelegateCommand UpdateAssistanceCommand => _updateassistancecommand ?? (_updateassistancecommand = new DelegateCommand(UpdateStatus));
 
         public bool IsRunning
         {
@@ -34,6 +39,7 @@ namespace ApplyInk.Prism.ViewModels
         {
             get => _meetings;
             set => SetProperty(ref _meetings, value);
+         //   UpdateStatus();
         }
 
         private async void LoadMyMeetings()
@@ -69,7 +75,7 @@ namespace ApplyInk.Prism.ViewModels
 
         }
 
-       /* private async void UpdateStatus()
+        private async void UpdateStatus()
         {
 
             if (Connectivity.NetworkAccess != NetworkAccess.Internet)
@@ -78,10 +84,15 @@ namespace ApplyInk.Prism.ViewModels
                 await App.Current.MainPage.DisplayAlert(Languages.Error, Languages.ConnectionError, Languages.Accept);
                 return;
             }
-            UpdateMeetingRequest request = new UpdateMeetingRequest
+            List<UpdateMeetingRequest> request = new List<UpdateMeetingRequest>();
+            foreach (var item in Meetings)
             {
-                IdMeeting = "IDmeetin"
-            };
+                request.Add(new UpdateMeetingRequest
+                {
+                    IdMeeting=item.Id,
+                    isActive = item.Status
+                });
+            }
 
             string url = App.Current.Resources["UrlAPI"].ToString();
 
@@ -101,7 +112,7 @@ namespace ApplyInk.Prism.ViewModels
                 await App.Current.MainPage.DisplayAlert(Languages.Ok, Languages.MeetingCancelled, Languages.Accept);
             }
 
-        }*/
+        }
 
     }
 }

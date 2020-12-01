@@ -18,20 +18,7 @@
             <Frame CornerRadius="7"  
        OutlineColor="Red" 
        Padding="0">
-                <StackLayout Padding="5" Orientation="Horizontal">
-                    <Label Text="Date" FontAttributes="Bold" FontSize="Medium"
-                VerticalTextAlignment="Center"/>
-                    <Label Text="Shop" FontAttributes="Bold" FontSize="Medium"
-                VerticalTextAlignment="Center"/>
-                    <Label Text="Tattooer" FontAttributes="Bold" FontSize="Medium"
-                VerticalTextAlignment="Center"/>
-                    <Label Text="Client" FontAttributes="Bold" FontSize="Medium"
-                VerticalTextAlignment="Center"/>
-                    <Label Text="Status" FontAttributes="Bold" FontSize="Medium"
-                VerticalTextAlignment="Center"/>
-
-
-                </StackLayout>
+                
             </Frame>
             <CollectionView ItemsSource="{Binding Meetings}">
                 <CollectionView.ItemsLayout>
@@ -42,39 +29,63 @@
                     <DataTemplate>
                         <Grid  Padding="15">
                             <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="2*" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-                            <StackLayout 
-                                     VerticalOptions="Center">
-                                <Label Grid.Column="0"
-                                       Text="{Binding Meeting.Date,StringFormat='{0:MMMM d/yyyy}'}"
+                            <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+                            <Label     Text="{i18n:Translate Date}" FontAttributes="Bold" FontSize="Medium"
+                                 VerticalTextAlignment="Center" Grid.Column="0" Grid.Row="0"/>
+                                <Label Grid.Column="1" Grid.Row="0"
+                                       Text="{Binding Date,StringFormat='{0:MMMM d/yyyy}'}"
                                    FontAttributes="Bold"
                                    FontSize="Medium"
                                    LineBreakMode="TailTruncation" />
-                                <Label Grid.Column="0"
-                                       Text="{Binding Meeting.Shop}"
+                            <Label     Text="{i18n:Translate Shop}" FontAttributes="Bold" FontSize="Medium"
+                                 VerticalTextAlignment="Center" Grid.Column="0" Grid.Row="1"/>
+                            <Label Grid.Column="1" Grid.Row="1"
+                                       Text="{Binding Shop}"
                                    FontAttributes="Bold"
                                    FontSize="Medium"
                                    LineBreakMode="TailTruncation" />
-                                <Label Grid.Column="0"
-                                       Text="{Binding Meeting.tattooerName}"
+                            <Label     Text="{i18n:Translate Tattoer}" FontAttributes="Bold" FontSize="Medium" Grid.Column="0" Grid.Row="2"
+                            VerticalTextAlignment="Center"/>
+                            <Label Grid.Column="1" Grid.Row="2"
+                                       Text="{Binding tattooerName}"
                                    FontAttributes="Bold"
                                    FontSize="Medium"
                                    LineBreakMode="TailTruncation" />
-                                <Label Grid.Column="0"
-                                       Text="{Binding Meeting.userName}"
+                            <Label Text="{i18n:Translate Client}" FontAttributes="Bold" FontSize="Medium" Grid.Column="0" Grid.Row="3"
+                            VerticalTextAlignment="Center"/>
+                            <Label Grid.Column="1" Grid.Row="3" 
+                                       Text="{Binding userName}"
                                    FontAttributes="Bold"
                                    FontSize="Medium"
                                    LineBreakMode="TailTruncation" />
-                                <Switch IsToggled="{Binding Meeting.Status}"
-                                        IsEnabled="{Binding Meeting.Status}"/>
+                            <Label     Text="{i18n:Translate Status}" FontAttributes="Bold" FontSize="Medium" Grid.Column="2" Grid.Row="1"
+                           HorizontalOptions="End"/>
+                            <Switch IsToggled="{Binding Status}" Grid.Column="2" Grid.Row="2"
+                                    IsEnabled="{Binding Status}"
+                                    />
                                 
-                            </StackLayout>
+                            
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
+            <Button VerticalOptions="EndAndExpand"
+                HorizontalOptions="Center"
+                    Command="{Binding UpdateAssistanceCommand}" 
+                        IsEnabled="{Binding IsEnabled}"
+                        Text="{i18n:Translate Accept}"
+                        Style="{StaticResource DangerButton}"/>
         </StackLayout>
         <busyindicator:SfBusyIndicator AnimationType="Gear" 
                                        AbsoluteLayout.LayoutBounds=".5,.5,.5,.5"
