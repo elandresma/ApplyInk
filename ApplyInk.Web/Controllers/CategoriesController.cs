@@ -142,11 +142,11 @@ namespace ApplyInk.Web.Controllers
             {
                 _context.Categories.Remove(category);
                 await _context.SaveChangesAsync();
-                _flashMessage.Confirmation("The profession was deleted.");
+                _flashMessage.Confirmation("The category was deleted.");
             }
             catch (Exception)
             {
-                _flashMessage.Danger("The profession can't be deleted because it has related records.");
+                _flashMessage.Danger("The category can't be deleted because it has related records.");
             }
 
             return RedirectToAction(nameof(Index));
