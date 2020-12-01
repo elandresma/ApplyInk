@@ -14,7 +14,7 @@ namespace ApplyInk.Common.Responses
 
         public string tattooerName { get; set; }
 
-        public ShopResponse Shop { get; set; }
+        public string Shop { get; set; }
 
         public StatusMeeting Status { get; set; }
 

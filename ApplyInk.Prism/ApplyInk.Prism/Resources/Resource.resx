@@ -414,4 +414,16 @@
   <data name="Schedule" xml:space="preserve">
     <value>Schedule</value>
   </data>
+  <data name="Client" xml:space="preserve">
+    <value>Client</value>
+  </data>
+  <data name="CreateMeeting" xml:space="preserve">
+    <value>Create Meeting</value>
+  </data>
+  <data name="MeetingCancelled" xml:space="preserve">
+    <value>The meeting was cancelled succesfully</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
 </root>

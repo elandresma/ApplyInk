@@ -13,7 +13,7 @@ namespace ApplyInk.Prism.ViewModels
     public class MyMeetingsViewModel : ViewModelBase
     {
         private readonly IApiService _apiService;
-        private List<MasterDetailMeetingResponse> _meetings;
+        private List<MeetingAuxResponse> _meetings;
         private readonly INavigationService _navigationService;
         private bool _isRunning;
 
@@ -30,7 +30,7 @@ namespace ApplyInk.Prism.ViewModels
             get => _isRunning;
             set => SetProperty(ref _isRunning, value);
         }
-        public List<MasterDetailMeetingResponse> Meetings
+        public List<MeetingAuxResponse> Meetings
         {
             get => _meetings;
             set => SetProperty(ref _meetings, value);
@@ -55,7 +55,7 @@ namespace ApplyInk.Prism.ViewModels
             Response response = await _apiService.GetMyMeetingsAsync<Response>(
                 url,
                 "/api",
-                "/Meeting/GetMeetings", request);
+                "/Meeting/GetMeetings2", request);
             IsRunning = false;
 
             if (!response.IsSuccess)
@@ -64,8 +64,42 @@ namespace ApplyInk.Prism.ViewModels
                 return;
             }
 
-            _meetings = (List<MasterDetailMeetingResponse>)response.Result;
-            Meetings = new List<MasterDetailMeetingResponse>(_meetings);
+            _meetings = (List<MeetingAuxResponse>)response.Result;
+            Meetings = new List<MeetingAuxResponse>(_meetings);
+
+        }
+
+        private async void UpdateStatus()
+        {
+
+            if (Connectivity.NetworkAccess != NetworkAccess.Internet)
+            {
+                IsRunning = false;
+                await App.Current.MainPage.DisplayAlert(Languages.Error, Languages.ConnectionError, Languages.Accept);
+                return;
+            }
+            UpdateMeetingRequest request = new UpdateMeetingRequest
+            {
+                IdMeeting = "IDmeetin"
+            };
+
+            string url = App.Current.Resources["UrlAPI"].ToString();
+
+            Response response = await _apiService.UpdateMeetingAsync<Response>(
+                url,
+                "/api",
+                "/Meeting/UpdateMeetings", request);
+            IsRunning = false;
+
+            if (!response.IsSuccess)
+            {
+                await App.Current.MainPage.DisplayAlert(Languages.Error, response.Message, Languages.Accept);
+                return;
+            }
+            else 
+            {
+                await App.Current.MainPage.DisplayAlert(Languages.Ok, Languages.MeetingCancelled, Languages.Accept);
+            }
 
         }
 

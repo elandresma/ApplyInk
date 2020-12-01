@@ -213,6 +213,14 @@ namespace ApplyInk.Prism.Helpers
         public static string ChangeOnSocialNetwork => Resource.ChangeOnSocialNetwork;
 
         public static string LoginFacebook => Resource.LoginFacebook;
+        public static string Client => Resource.Client;
+
+        public static string Status => Resource.Status;
+        public static string CreateMeeting => Resource.CreateMeeting;
+        public static string MeetingCancelled => Resource.MeetingCancelled;
+
+
+
 
     }
 

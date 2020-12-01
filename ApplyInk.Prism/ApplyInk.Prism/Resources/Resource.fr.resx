@@ -414,4 +414,16 @@
   <data name="Shops" xml:space="preserve">
     <value>Ateliers</value>
   </data>
+  <data name="Client" xml:space="preserve">
+    <value>Client</value>
+  </data>
+  <data name="CreateMeeting" xml:space="preserve">
+    <value>Créer une réunion</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>État</value>
+  </data>
+  <data name="MeetingCancelled" xml:space="preserve">
+    <value>Pendant la réunion</value>
+  </data>
 </root>

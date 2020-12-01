@@ -214,6 +214,15 @@ namespace ApplyInk.Prism.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Client.
+        /// </summary>
+        internal static string Client {
+            get {
+                return ResourceManager.GetString("Client", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Confirm new password.
         /// </summary>
         internal static string ConfirmNewPassword {
@@ -291,6 +300,15 @@ namespace ApplyInk.Prism.Resources {
         internal static string CountryPlaceHolder {
             get {
                 return ResourceManager.GetString("CountryPlaceHolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create Meeting.
+        /// </summary>
+        internal static string CreateMeeting {
+            get {
+                return ResourceManager.GetString("CreateMeeting", resourceCulture);
             }
         }
         
@@ -610,6 +628,15 @@ namespace ApplyInk.Prism.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The meeting was cancelled succesfully.
+        /// </summary>
+        internal static string MeetingCancelled {
+            get {
+                return ResourceManager.GetString("MeetingCancelled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The meeting was created succesfully.
         /// </summary>
         internal static string MeetingCreated {
@@ -894,6 +921,15 @@ namespace ApplyInk.Prism.Resources {
         internal static string Shops {
             get {
                 return ResourceManager.GetString("Shops", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Status.
+        /// </summary>
+        internal static string Status {
+            get {
+                return ResourceManager.GetString("Status", resourceCulture);
             }
         }
         

@@ -1,4 +1,5 @@
-﻿using ApplyInk.Web.Data.Entities;
+﻿using ApplyInk.Common.Responses;
+using ApplyInk.Web.Data.Entities;
 using ApplyInk.Web.Models;
 using System;
 using System.Collections.Generic;
@@ -12,5 +13,6 @@ namespace ApplyInk.Web.Helpers
         Category ToCategory(CategoryViewModel model, bool isNew);
 
         CategoryViewModel ToCategoryViewModel(Category category);
+        List<MeetingAuxResponse> ToMeetingAuxResponse(List<Meeting> meetings);
     }
 }

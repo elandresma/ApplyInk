@@ -1,4 +1,6 @@
-﻿using ApplyInk.Web.Data.Entities;
+﻿using ApplyInk.Common.Enum;
+using ApplyInk.Common.Responses;
+using ApplyInk.Web.Data.Entities;
 using ApplyInk.Web.Models;
 using System;
 using System.Collections.Generic;
@@ -26,5 +28,30 @@ namespace ApplyInk.Web.Helpers
                 Name = category.Name
             };
         }
+        public List<MeetingAuxResponse> ToMeetingAuxResponse(List<Meeting> meetings)
+        {
+            List<MeetingAuxResponse> meetingsResponse = new List<MeetingAuxResponse>();
+            foreach (var meeting in meetings)
+            {
+                var masterTattooer = meeting.masterDetailMeeting.Where(m => m.user.UserType == UserType.Tattooer);
+                var masterClient = meeting.masterDetailMeeting.Where(m => m.user.UserType == UserType.User);
+
+                meetingsResponse.Add(new MeetingAuxResponse
+                {
+                    Id = meeting.Id,
+                    Shop = meeting.Shop.Name,
+                    Date = meeting.DateLocal,
+                    tattooerName = masterTattooer.FirstOrDefault().user.FullName,
+                    Status = meeting.Status,
+                    userName = masterClient.FirstOrDefault().user.FullName
+                });
+            }
+
+
+            return meetingsResponse;
+
+
+        }
+
     }
 }

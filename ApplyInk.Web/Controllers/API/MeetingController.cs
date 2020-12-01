@@ -1,4 +1,5 @@
-﻿using ApplyInk.Common.Requests;
+﻿using ApplyInk.Common.Enums;
+using ApplyInk.Common.Requests;
 using ApplyInk.Common.Responses;
 using ApplyInk.Web.Data;
 using ApplyInk.Web.Data.Entities;
@@ -18,40 +19,13 @@ namespace ApplyInk.Web.Controllers.API
     {
         private readonly IUserHelper _userHelper;
         private readonly DataContext _context;
+        private readonly IConverterHelper _converteHelper;
 
-        public MeetingController(DataContext context, IUserHelper userHelper)
+        public MeetingController(DataContext context, IUserHelper userHelper, IConverterHelper converterHelper )
         {
             _userHelper = userHelper;
             _context = context;
-        }
-
-
-        [HttpPost]
-        [Route("GetMeetings")]
-        public async Task<IActionResult> GetMeetings([FromBody] MeetingRequest request)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(new Response
-                {
-                    IsSuccess = false,
-                    Message = "Bad request",
-                    Result = ModelState
-                });
-            }
-            var myMeeting= await _context.MasterDetailMeetings
-                .Include(m => m.meeting)
-                 .Include(m => m.user)
-                 .Where(m => m.user.Email == request.Email)
-                 .ToListAsync();//debe traer solo 1
-
-            return Ok(await _context.MasterDetailMeetings
-                 .Include(m => m.meeting)
-                 .ThenInclude(me => me.Shop)
-                 .Include(m => m.user)
-                 .Where(m => m.meeting.Id== myMeeting.FirstOrDefault().Id)
-                 .ToListAsync());
-
+            _converteHelper = converterHelper;
         }
 
 
@@ -68,13 +42,15 @@ namespace ApplyInk.Web.Controllers.API
                     Result = ModelState
                 });
             }
-           
-            return Ok(await _context.Meetings
-                 .Include(m => m.masterDetailMeeting)
-                 .ThenInclude(ma => ma.user)
-                 .Include(me => me.Shop)
-                 .Where(m => m.masterDetailMeeting.Any(ma => ma.user.Email == request.Email ))
-                 .ToListAsync());
+
+            var rpta = await _context.Meetings
+                    .Include(m => m.masterDetailMeeting)
+                    .ThenInclude(ma => ma.user)
+                    .Include(me => me.Shop)
+                    .Where(m => m.masterDetailMeeting.Any(ma => ma.user.Email == request.Email))
+                    .ToListAsync();
+            
+            return Ok(_converteHelper.ToMeetingAuxResponse(rpta));
 
         }
 
@@ -140,6 +116,26 @@ namespace ApplyInk.Web.Controllers.API
             await _context.SaveChangesAsync();
             return Ok();
 
+        }
+
+        [HttpPut]
+        [Route("UpdateMeetings")]
+        public async Task<IActionResult> UpdateMeetingStatus([FromBody] UpdateMeetingRequest request)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(new Response
+                {
+                    IsSuccess = false,
+                    Message = "Bad request",
+                    Result = ModelState
+                });
+            }
+            Meeting meeting = await _context.Meetings.FindAsync(request.IdMeeting);
+            meeting.Status = StatusMeeting.Cancelled;
+            _context.Update(meeting);
+            await _context.SaveChangesAsync();
+            return Ok(new Response { IsSuccess = true });
         }
     }
 }

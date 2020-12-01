@@ -27,7 +27,7 @@
                 HorizontalOptions="Center"
                     Command="{Binding AddMeetingCommand}" 
                         IsEnabled="{Binding IsEnabled}"
-                        Text="{i18n:Translate Ok}"
+                        Text="{i18n:Translate CreateMeeting}"
                         Style="{StaticResource DangerButton}"/>
         </StackLayout>
         <busyindicator:SfBusyIndicator AnimationType="Gear" 
