@@ -452,7 +452,7 @@ namespace ApplyInk.Common.Services
                     };
                 }
 
-                List<T> list = JsonConvert.DeserializeObject<List<T>>(result);
+                List<MeetingAuxResponse> list = JsonConvert.DeserializeObject<List<MeetingAuxResponse>>(result);
 
                 return new Response
                 {

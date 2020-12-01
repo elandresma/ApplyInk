@@ -52,6 +52,24 @@
                                    FontAttributes="Bold"
                                    FontSize="Medium"
                                    LineBreakMode="TailTruncation" />
+                                <Label Grid.Column="0"
+                                       Text="{Binding Meeting.Shop}"
+                                   FontAttributes="Bold"
+                                   FontSize="Medium"
+                                   LineBreakMode="TailTruncation" />
+                                <Label Grid.Column="0"
+                                       Text="{Binding Meeting.tattooerName}"
+                                   FontAttributes="Bold"
+                                   FontSize="Medium"
+                                   LineBreakMode="TailTruncation" />
+                                <Label Grid.Column="0"
+                                       Text="{Binding Meeting.userName}"
+                                   FontAttributes="Bold"
+                                   FontSize="Medium"
+                                   LineBreakMode="TailTruncation" />
+                                <Switch IsToggled="{Binding Meeting.Status}"
+                                        IsEnabled="{Binding Meeting.Status}"/>
+                                
                             </StackLayout>
                         </Grid>
                     </DataTemplate>

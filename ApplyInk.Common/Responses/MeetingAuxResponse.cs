@@ -16,7 +16,7 @@ namespace ApplyInk.Common.Responses
 
         public string Shop { get; set; }
 
-        public StatusMeeting Status { get; set; }
+        public bool Status { get; set; }
 
         [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd hh:mm tt}")]
         public DateTime Date { get; set; }

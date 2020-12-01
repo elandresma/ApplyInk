@@ -21,7 +21,8 @@
                    TitleLabelTextColor="Purple"  
                    TitleLeftArrowTextColor="Blue"  
                    SelectedDate="{Binding Date}"  
-                   DateCommand="{Binding DateChosen}"/>
+                   DateCommand="{Binding DateChosen}"
+                   MinDate="{Binding DateMin}"/>
 
             <Button VerticalOptions="EndAndExpand"
                 HorizontalOptions="Center"

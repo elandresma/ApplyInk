@@ -907,6 +907,15 @@ namespace ApplyInk.Prism.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to See schedule.
+        /// </summary>
+        internal static string SeeSchedule {
+            get {
+                return ResourceManager.GetString("SeeSchedule", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Shop.
         /// </summary>
         internal static string Shop {

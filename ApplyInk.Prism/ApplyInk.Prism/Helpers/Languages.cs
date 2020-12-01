@@ -218,6 +218,7 @@ namespace ApplyInk.Prism.Helpers
         public static string Status => Resource.Status;
         public static string CreateMeeting => Resource.CreateMeeting;
         public static string MeetingCancelled => Resource.MeetingCancelled;
+        public static string SeeSchedule => Resource.SeeSchedule;
 
 
 

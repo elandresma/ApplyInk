@@ -19,6 +19,7 @@ namespace ApplyInk.Prism.ViewModels
     public class ScheduleViewModel : ViewModelBase
     {
         private DateTime _date;
+        private DateTime DateMin = DateTime.Today;
         private bool _isRunning;
         private UserResponse _tattoer;
         private readonly IApiService _apiService;
@@ -29,6 +30,7 @@ namespace ApplyInk.Prism.ViewModels
             _navigationService = navigationService;
             _apiService = apiService;
             Title = Languages.Schedule;
+
         }
 
         public DelegateCommand AddMeetingCommand => _addmeetingcommand ?? (_addmeetingcommand = new DelegateCommand(CreateMeetingAsync));

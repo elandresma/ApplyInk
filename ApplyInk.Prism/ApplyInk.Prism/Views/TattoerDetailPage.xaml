@@ -197,7 +197,7 @@
                     
                         <Button Command="{Binding seeCommand}" 
                         IsEnabled="{Binding IsEnabled}"
-                        Text="See schedule"/>
+                        Text="{i18n:Translate SeeSchedule}"/>
                 </StackLayout>
             </ScrollView>
 

@@ -423,6 +423,9 @@
   <data name="MeetingCancelled" xml:space="preserve">
     <value>The meeting was cancelled succesfully</value>
   </data>
+  <data name="SeeSchedule" xml:space="preserve">
+    <value>See schedule</value>
+  </data>
   <data name="Status" xml:space="preserve">
     <value>Status</value>
   </data>

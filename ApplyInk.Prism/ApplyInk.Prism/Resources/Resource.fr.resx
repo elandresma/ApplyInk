@@ -426,4 +426,7 @@
   <data name="MeetingCancelled" xml:space="preserve">
     <value>Pendant la réunion</value>
   </data>
+  <data name="SeeSchedule" xml:space="preserve">
+    <value>Planifier</value>
+  </data>
 </root>

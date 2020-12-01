@@ -1,4 +1,5 @@
 ﻿using ApplyInk.Common.Enum;
+using ApplyInk.Common.Enums;
 using ApplyInk.Common.Responses;
 using ApplyInk.Web.Data.Entities;
 using ApplyInk.Web.Models;
@@ -42,7 +43,7 @@ namespace ApplyInk.Web.Helpers
                     Shop = meeting.Shop.Name,
                     Date = meeting.DateLocal,
                     tattooerName = masterTattooer.FirstOrDefault().user.FullName,
-                    Status = meeting.Status,
+                    Status = meeting.Status == StatusMeeting.Active ? true : false,
                     userName = masterClient.FirstOrDefault().user.FullName
                 });
             }

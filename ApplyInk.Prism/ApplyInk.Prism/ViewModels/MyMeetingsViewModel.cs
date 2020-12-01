@@ -69,7 +69,7 @@ namespace ApplyInk.Prism.ViewModels
 
         }
 
-        private async void UpdateStatus()
+       /* private async void UpdateStatus()
         {
 
             if (Connectivity.NetworkAccess != NetworkAccess.Internet)
@@ -101,7 +101,7 @@ namespace ApplyInk.Prism.ViewModels
                 await App.Current.MainPage.DisplayAlert(Languages.Ok, Languages.MeetingCancelled, Languages.Accept);
             }
 
-        }
+        }*/
 
     }
 }
